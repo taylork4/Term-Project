@@ -1,8 +1,7 @@
 import java.util.*;
-import java.math.*;
 
 public class Deck {
-    private ArrayList<Card> cardArr = new ArrayList<Card>();
+    public ArrayList<Card> cardArr = new ArrayList<Card>();
 
     //constructor for an empty deck: pass in any integer parameter
     public Deck(int zero){}
@@ -92,7 +91,7 @@ public class Deck {
     }
 
     //method to move a card from one deck to another
-    public void move(Deck d1, Deck d2, Card c){
+    public static void move(Deck d1, Deck d2, Card c){
         d2.add(c);
         d1.remove(c);
     }

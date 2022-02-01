@@ -20,10 +20,12 @@ public class Rummy {
      * 
      */
 
-    private int[] deck;
-    private int[] discard;
+    private Deck deck;     // the full game deck
+    private Deck discard; //an empty deck (discard pile)
     private boolean gameInProg;
     private boolean setupComplete;
+    private ArrayList<Deck> melds;
+    private ArrayList<Player> players;
     //private Player player;
 
     /**************************************************************************************************************************************************************************************
@@ -33,8 +35,9 @@ public class Rummy {
  	 */
 
     public Rummy() {
-        deck = new int[52];
-        discard = new int[52];
+        deck = new Deck();
+        discard = new Deck(0);
+        melds = new ArrayList<Deck>();
         gameInProg = true;
         setupComplete = false;
     }
@@ -46,10 +49,7 @@ public class Rummy {
  	 */
 
     public void play() {
-        for (int i = 0; i < 52; i++) {
-            deck[i] = i;
-        }
-        deck = shuffle(deck, 52);
+        deck.shuffle();
         System.out.println("--------------");
         // for (int i = 0; i < 52; i++) {           //Simply used to show the cards are shuffled properly
         //     System.out.print(deck[i]+ ", ");
@@ -61,13 +61,13 @@ public class Rummy {
     }
     
     /**************************************************************************************************************************************************************************************
- 	 * 
+ 	 * METHOD ADAPTED AND MOVED TO DECK CLASS
 	 * The shuffle(int[], int) method shuffles the values in an integer array (Card shuffler).  
      * @param cards = Integer array that holds a number of cards being sent to the method to be shuffled.
      * @param num = Integer value representing the number of cards being sent to the method to be shuffled.
      * 
  	 */
-    public static int[] shuffle(int[] cards, int num) {
+    /*public static int[] shuffle(int[] cards, int num) {
         Random rand = new Random();
         for (int i = 0; i < num; i++) {
 			int randNum = rand.nextInt(num);
@@ -76,7 +76,28 @@ public class Rummy {
 			cards[i] = temp;
 		}
         return cards;
+    }*/
+
+    //when a player plays a meld, this method is called, and it is added to the
+    // list of melds.
+    public void addMeld(Deck d){
+        this.melds.add(d);
     }
+
+    /**
+     * method to deal cards to each player
+     * @param p arraylist of players
+     * @param d deck
+     * TODO: - make it so that number of players cant be < 2
+     */
+    public void deal(ArrayList<Player> p, Deck d){
+        for(int h = 0; h < 7; h++){
+            for(int i = 0; i < p.size(); i++){
+                Deck.move(d, p.get(i).hand, d.cardArr.get(0)); // moving cards from the deck to
+            }                                                   // the player's hands
+        }                                                        
+    }
+    
 
     /**************************************************************************************************************************************************************************************
  	 * 

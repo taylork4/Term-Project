@@ -2,8 +2,8 @@ import java.util.*;
 
 
 public class Card {
-    public int value;   //1 = ace, 2 = 2, 11 = jack. you get it
-    public String suit;
+    private int value;   //1 = ace, 2 = 2, 11 = jack. you get it
+    private String suit;
     
     
     
@@ -25,5 +25,21 @@ public class Card {
             this.value = val;
         if(suits.contains(suit))
             this.suit = suit;
+    }
+
+    /**
+     * getter for suit
+     * @return returns the suit of the card
+     */
+    public String getSuit(){
+        return this.suit;
+    }
+
+    /**
+     * getter for value
+     * @return returns the value of the card
+     */
+    public int getValue(){
+        return this.value;
     }
 }
