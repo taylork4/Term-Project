@@ -78,8 +78,11 @@ public class Rummy {
         return cards;
     }*/
 
-    //when a player plays a meld, this method is called, and it is added to the
+    /**
+     * when a player plays a meld, this method is called, and it is added to the
     // list of melds.
+     * @param d deck to be added to list of melds
+     */
     public void addMeld(Deck d){
         this.melds.add(d);
     }
@@ -97,7 +100,63 @@ public class Rummy {
             }                                                   // the player's hands
         }                                                        
     }
+
+    /**
+     * method to draw a card from either the discard pile or the regular deck
+     * @param from the deck the card comes from
+     * @param to the deck the card is moving to
+     */
+    public void draw(Deck from, Deck to ){
+        if(from.equals(this.deck) || from.equals(this.discard)){    // can only draw from discard pile or deck
+            Deck.move(from, to, from.cardArr.get(from.cardArr.size() - 1));
+            //move the card from bottom of whichever deck to player's deck
+        }
+    } 
+
+    /**
+     * moves a card from the player's deck to the discard pile
+     * @param p player who is discarding
+     * @param c card being discarded
+     */
+    public void discard(Player p, Card c){
+        Deck.move(p.hand, this.discard, c);
+    }
     
+    /**
+     * checks if a deck is a meld. returns 1 if it is a meld, 0 if not a meld.
+     * NOTE: MELDS MUST BE IN ORDER FROM LOWEST CARD VALUE TO HIGHEST CARD VALUE
+     * @param d deck you are checking if is meld
+     */
+    public int checkMeld(Deck d){
+        if(d.cardArr.size() >= 3){ // meld must have at least 3 cards
+            if(!(d.cardArr.get(0).getSuit().equals(d.cardArr.get(1).getSuit()))) {  // if card 1 and 2 are different suit
+                for(int i = 0; i < d.cardArr.size() - 1; i++){
+                    if(d.cardArr.get(i).getValue() == d.cardArr.get(i + 1).getValue()) { // make sure cards are same value
+                        continue;
+                    } else {
+                        return 0;
+                    }
+                    
+                }
+                return 1;
+            } else if(d.cardArr.get(0).getSuit().equals(d.cardArr.get(1).getSuit())) {  // if card 1 and 2 are same suit
+                for(int i = 0; i < d.cardArr.size() - 1; i++){
+                    if(d.cardArr.get(i).getSuit().equals(d.cardArr.get(i + 1).getSuit())
+                    && d.cardArr.get(i).getValue() == d.cardArr.get(i + 1).getValue() - 1){
+                        continue;
+                    } else {
+                        return 0;
+                    }
+                }
+                return 1;
+            }
+        } 
+        
+        return 0;
+        
+    }
+
+
 
     /**************************************************************************************************************************************************************************************
  	 * 
