@@ -19,6 +19,10 @@ public class RummyGUI extends JFrame implements ActionListener {
  	 */
     
     private JMenuBar menu;
+    private JFrame frame;
+    private JLabel title;
+    private Container pane;
+
 
     private JMenu options;
     private JMenuItem settings;
@@ -26,6 +30,10 @@ public class RummyGUI extends JFrame implements ActionListener {
     
     private ImageIcon settingsGear;
     private ImageIcon redX;
+    private ImageIcon backOfCardLR;
+    
+
+    
 
     //private JPanel panel;
     /**************************************************************************************************************************************************************************************
@@ -40,23 +48,46 @@ public class RummyGUI extends JFrame implements ActionListener {
     public RummyGUI() {
         settingsGear = new ImageIcon("images/settings-gear.png");
         redX = new ImageIcon("images/red-x.png");
+        backOfCardLR = new ImageIcon("images/LR_Cards/LRBackCardDesign.jpg");
         menu = new JMenuBar();
+        frame = new JFrame();
+        title = new JLabel();
+        pane = new Container();
+        pane.setLayout(null);
+        Font font = new Font("Segoe Script", Font.BOLD, 120);
+        //label = new JLabel(backOfCardLR);
         options = new JMenu("Options");
         settings = new JMenuItem("Settings", settingsGear);
         exit = new JMenuItem("Exit", redX);
 
-        menu.add(options);
+        Insets insets = pane.getInsets();
+        pane.add(title);
+        title.setFont(font);
+        title.setText("Lakers Rummy");
+        title.setForeground(Color.BLACK);
+        title.setBounds(380 + insets.left, 100 + insets.top,
+                     1000, 150);
+        //title.setVerticalAlignment(JLabel.NORTH);
+        //title.setHorizontalAlignment(JLabel.CENTER);
+        frame.add(menu);
+        frame.add(pane);
+        //frame.add(label);
 
+        menu.add(options);
         options.add(settings);
         options.add(exit);
 
         settings.addActionListener(this);
         exit.addActionListener(this);
 
-        setJMenuBar(menu);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-        setSize(1700,920);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setSize(1700,920);
+        frame.setJMenuBar(menu);
+        frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // setVisible(true);
+        // setSize(1700,920);
     }
     /**************************************************************************************************************************************************************************************
  	 * 
