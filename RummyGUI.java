@@ -22,15 +22,25 @@ public class RummyGUI extends JFrame implements ActionListener {
     private JFrame frame;
     private JLabel title;
     private Container pane;
+    private Insets insets;
 
 
     private JMenu options;
+    private JMenu tutorial;
+    private JMenuItem rummyHow;
+    private JMenuItem lakersRummyHow;
     private JMenuItem settings;
     private JMenuItem exit;
     
     private ImageIcon settingsGear;
     private ImageIcon redX;
     private ImageIcon backOfCardLR;
+    private ImageIcon how2Play;
+
+    private Font titleFont;
+    private Font menuFont;
+    private Font subMenuFont;
+
     
 
     
@@ -49,20 +59,37 @@ public class RummyGUI extends JFrame implements ActionListener {
         settingsGear = new ImageIcon("images/settings-gear.png");
         redX = new ImageIcon("images/red-x.png");
         backOfCardLR = new ImageIcon("images/LR_Cards/LRBackCardDesign.jpg");
+        how2Play = new ImageIcon("images/how2Play.png");
         menu = new JMenuBar();
         frame = new JFrame();
         title = new JLabel();
         pane = new Container();
         pane.setLayout(null);
-        Font font = new Font("Segoe Script", Font.BOLD, 120);
+        titleFont = new Font("Segoe Script", Font.BOLD, 120);
+        menuFont = new Font("Georgia",Font.PLAIN, 21);
+        subMenuFont = new Font("Cooper Black",Font.PLAIN, 21);
+        
+
         //label = new JLabel(backOfCardLR);
         options = new JMenu("Options");
-        settings = new JMenuItem("Settings", settingsGear);
-        exit = new JMenuItem("Exit", redX);
+        settings = new JMenuItem(" Settings", settingsGear);
+        tutorial = new JMenu(" How to Play");
+        rummyHow = new JMenuItem(" Rummy", how2Play);
+        lakersRummyHow = new JMenuItem(" Lakers Rummy", how2Play);
+        exit = new JMenuItem(" Exit", redX);
+        exit.setBackground(Color.YELLOW);
+        //menu.setBackground(Color.GRAY);
 
-        Insets insets = pane.getInsets();
+        insets = pane.getInsets();
         pane.add(title);
-        title.setFont(font);
+        title.setFont(titleFont);
+        options.setFont(menuFont);
+        tutorial.setFont(menuFont);
+        exit.setFont(subMenuFont);
+        settings.setFont(subMenuFont);
+        rummyHow.setFont(subMenuFont);
+        lakersRummyHow.setFont(subMenuFont);
+
         title.setText("Lakers Rummy");
         title.setForeground(Color.BLACK);
         title.setBounds(380 + insets.left, 100 + insets.top,
@@ -74,10 +101,15 @@ public class RummyGUI extends JFrame implements ActionListener {
         //frame.add(label);
 
         menu.add(options);
+        menu.add(tutorial);
         options.add(settings);
+        options.addSeparator();
         options.add(exit);
+        tutorial.add(rummyHow);
+        tutorial.add(lakersRummyHow);
 
         settings.addActionListener(this);
+        tutorial.addActionListener(this);
         exit.addActionListener(this);
 
         frame.pack();
