@@ -1,5 +1,5 @@
 import java.util.*;
-
+import javax.swing.JOptionPane;
 
 public class Card {
     private int value;   //1 = ace, 2 = 2, 11 = jack. you get it
@@ -12,7 +12,8 @@ public class Card {
         this.suit = "spades";
     }
 
-    public Card(int val, String suit){
+    public Card(int val, String suit) throws IllegalArgumentException{
+        IllegalArgumentException e = new IllegalArgumentException();    // thrown if invalid input
 
         //list of allowed card suits
         ArrayList<String> suits = new ArrayList<String>();
@@ -21,10 +22,20 @@ public class Card {
         suits.add("spades");
         suits.add("clubs");
 
-        if(val > 0 && val < 14)
-            this.value = val;
-        if(suits.contains(suit))
-            this.suit = suit;
+        //try {
+            if(val > 0 && val < 14)
+                this.value = val;
+            else {
+                throw e;
+            }
+            if(suits.contains(suit))
+                this.suit = suit;
+            else {
+                throw e;
+            }
+        //} catch (IllegalArgumentException ill) {
+          //  JOptionPane.showMessageDialog(null, "ERROR: invalid input", "ERROR", JOptionPane.ERROR_MESSAGE);
+        //}
     }
 
     /**
