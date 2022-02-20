@@ -34,6 +34,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     private JMenu options;
     private JMenu tutorial;
+    private JMenuItem returnMenu;
     private JMenuItem rummyHow;
     private JMenuItem lakersRummyHow;
     private JMenuItem settings;
@@ -51,6 +52,7 @@ public class RummyGUI extends JFrame implements ActionListener {
     private ImageIcon redX;
     private ImageIcon backOfCardLR;
     private ImageIcon how2Play;
+    private ImageIcon returnBack;
 
     private Font titleFont;
     private Font menuFont;
@@ -59,7 +61,7 @@ public class RummyGUI extends JFrame implements ActionListener {
     private Font gameButtonFont;
     private Font numPlayersButtonFont;
 
-    private LineBorder menubarBorder;
+    private LineBorder cardBorder;
     private LineBorder menuBorder;
     private LineBorder buttonBorder;
 
@@ -82,6 +84,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     private int whichGame;
     private int numPlayers;
+    private boolean gameInProg;
 
     // private JPanel panel;
     /**************************************************************************************************************************************************************************************
@@ -99,6 +102,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         redX = new ImageIcon("images/red-x.png");
         backOfCardLR = new ImageIcon("images/LR_Cards/LRBackCardDesign.jpg");
         how2Play = new ImageIcon("images/how2Play.png");
+        returnBack = new ImageIcon("images/returnBack.png");
 
         // Creating colors
         black = Color.BLACK;
@@ -127,7 +131,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         numPlayersButtonFont = new Font("Courier", Font.BOLD, 30);
 
         // Creating borders
-        menubarBorder = new LineBorder(black, 2);
+        cardBorder = new LineBorder(black, 2);
         menuBorder = new LineBorder(black, 1);
         buttonBorder = new LineBorder(black, 5);
 
@@ -157,6 +161,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Creating menu items
         settings = new JMenuItem(" Settings", settingsGear);
+        returnMenu = new JMenuItem(" Return to Menu", returnBack);
         exit = new JMenuItem(" Exit", redX);
         rummyHow = new JMenuItem(" Rummy", how2Play);
         lakersRummyHow = new JMenuItem(" Lakers Rummy", how2Play);
@@ -168,6 +173,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Setting foreground colors
         options.setForeground(black);
         tutorial.setForeground(black);
+        returnMenu.setForeground(black);
         exit.setForeground(black);
         settings.setForeground(black);
         rummyHow.setForeground(black);
@@ -177,16 +183,17 @@ public class RummyGUI extends JFrame implements ActionListener {
         options.setFont(menuFont);
         tutorial.setFont(menuFont);
         exit.setFont(subMenuFont);
+        returnMenu.setFont(subMenuFont);
         settings.setFont(subMenuFont);
         rummyHow.setFont(subMenuFont);
         lakersRummyHow.setFont(subMenuFont);
 
         // Setting borders
-        cardDeck.setBorder(buttonBorder);
+        cardDeck.setBorder(cardBorder);
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
-        cardDeck.setBounds(700 + insets.left, 150 + insets.top, 340, 475);
+        cardDeck.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         // title.setVerticalAlignment(JLabel.NORTH);
         // title.setHorizontalAlignment(JLabel).CENTER);
 
@@ -196,6 +203,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Adding elements to menu items
         options.add(settings);
+        options.add(returnMenu);
         options.addSeparator();
         options.add(exit);
         tutorial.add(rummyHow);
@@ -211,6 +219,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Addiing action listeners to elements
         settings.addActionListener(this);
         tutorial.addActionListener(this);
+        returnMenu.addActionListener(this);
         exit.addActionListener(this);
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -220,6 +229,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         gameFrame.setSize(1700, 920);
         gameFrame.setJMenuBar(menu);
         gameFrame.getContentPane().setBackground(tan);
+
+        // Setting game as in progress
+        gameInProg = true;
     }
 
     public void mainMenuScreen() {
@@ -368,6 +380,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Setting default whichGame and howManyPlayers
         whichGame = 1;
         numPlayers = 1;
+        gameInProg = false;
     }
 
     /**************************************************************************************************************************************************************************************
@@ -393,6 +406,11 @@ public class RummyGUI extends JFrame implements ActionListener {
         if (action == playButton) {
             mainMenuFrame.dispose();
             gameScreen();
+        }
+
+        if (action == returnMenu) {
+            gameFrame.dispose();
+            mainMenuScreen();
         }
 
         // rummyButton is clicked
