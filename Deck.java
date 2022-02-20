@@ -81,30 +81,54 @@ public class Deck {
 
     //method to add a card to a deck
     public void add(Card c){
-        if(!this.cardArr.contains(c))
+        // if(this.searchByFields(c.getValue(), c.getSuit()) != -1)        //if card is not already there
             this.cardArr.add(c);
     }
 
-    //method to remove a card from a deck
+    /**
+     * method to remove a card c from the deck
+     * NOTE: MUST pass in variable for c. Do NOT pass in "new Card(whatever)"
+     * as an argument, or it will break. 
+     * @param c card to be removed.
+     */
     public void remove(Card c){
         this.cardArr.remove(c);
     }
 
-    //method to move a card from one deck to another
+//     /**
+//      * 
+//      * @param value value to be searched for
+//      * @param suit suit to be searched for
+//      * @return index of card, or -1 if it is not in deck.
+//      */
+//     private int searchByFields(int value, String suit){         
+//             for(int i = 0; i < this.cardArr.size(); i++){
+//                 if(this.cardArr.get(i).getValue() == value){
+//                         if(this.cardArr.get(i).getSuit().equals(suit)){
+//                                 return i;
+//                         }
+//                 }
+//             }
+//             return -1;
+//     }
+
+    /**
+     * method to move a card from deck d1 to deck d2
+     * NOTE: MUST pass in variable for c. Do NOT pass in "new Card(whatever)"
+     * as an argument, or it will break.
+     * @param d1 deck that card c is being moved FROM
+     * @param d2 deck that card c is being moved TO
+     * @param c card being moved
+     */
     public static void move(Deck d1, Deck d2, Card c){
         d2.add(c);
         d1.remove(c);
-    }
+    } 
 
+    /**
+     * Shuffles the deck.
+     */
     public void shuffle(){
-        for(int i = 0; i < this.cardArr.size(); i++){
-            int num = i;
-            Card placeholder;
-            
-            num = (int) Math.random() * this.cardArr.size();    //random card index
-            placeholder = this.cardArr.get(i);  
-            this.cardArr.add(i, this.cardArr.get(num));     //replace card at i with card at random index
-            this.cardArr.add(num, placeholder); // replace card at random value with card at i
-        }
+        Collections.shuffle(this.cardArr);
     }
 }
