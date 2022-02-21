@@ -127,7 +127,7 @@ public class Rummy {
      * NOTE: MELDS MUST BE IN ORDER FROM LOWEST CARD VALUE TO HIGHEST CARD VALUE
      * @param d deck you are checking if is meld
      */
-    public int checkMeld(Deck d){
+    public static int checkMeld(Deck d){
         if(d.cardArr.size() >= 3){ // meld must have at least 3 cards
             if(!(d.cardArr.get(0).getSuit().equals(d.cardArr.get(1).getSuit()))) {  // if card 1 and 2 are different suit
                 for(int i = 0; i < d.cardArr.size() - 1; i++){
