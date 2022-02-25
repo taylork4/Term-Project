@@ -800,7 +800,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         menu = new JMenuBar();
 
         // Creating frame
-        mainMenuFrame = new JFrame();
+        settingsFrame = new JFrame();
 
         // Creating pane
         pane = new Container();
@@ -816,8 +816,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         options = new JMenu("Options");
 
         // Creating menu items
-        returnGame = new JMenuItem(" returnGame", returnBack);
-        returnMenu = new JMenuItem(" returnGame", returnBack);
+        returnGame = new JMenuItem(" Return to Game", returnBack);
+        returnMenu = new JMenuItem(" Return to Menu", returnBack);
         exit = new JMenuItem(" Exit", redX);
 
         // Setting background colors
@@ -854,24 +854,27 @@ public class RummyGUI extends JFrame implements ActionListener {
         options.add(exit);
 
         // Adding elements to frame
-        mainMenuFrame.add(menu);
-        mainMenuFrame.add(pane);
+        settingsFrame.add(menu);
+        settingsFrame.add(pane);
 
         // Adding elements to pane
         //pane.add(title);
 
         // Addiing action listeners to elements
         exit.addActionListener(this);
-        returnMenu.addActionListener(this);
-        returnGame.addActionListener(this);
-        mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        if (gameInProg){
+            returnGame.addActionListener(this);
+        } else {
+            returnMenu.addActionListener(this);
+        }
+        settingsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Setting elements compatible with the frame
-        mainMenuFrame.pack();
-        mainMenuFrame.setVisible(true);
-        mainMenuFrame.setSize(800, 600);
-        mainMenuFrame.setJMenuBar(menu);
-        mainMenuFrame.getContentPane().setBackground(lightGrey);
+        settingsFrame.pack();
+        settingsFrame.setVisible(true);
+        settingsFrame.setSize(800, 600);
+        settingsFrame.setJMenuBar(menu);
+        settingsFrame.getContentPane().setBackground(lightGrey);
 
         // Setting current screen location
         currentScreen = SETTINGS;
@@ -896,12 +899,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         // exit menu item is clicked
         if (action == exit) {
             System.exit(1);
-        }
-
-        // returnMenu menu item is clicked
-        if (action == returnMenu) {
-            gameFrame.dispose();
-            mainMenuScreen();
         }
 
         // returnMenu menu item is clicked
