@@ -627,6 +627,12 @@ public class RummyGUI extends JFrame implements ActionListener  {
 
         // Setting game as in progress
         gameInProg = true;
+
+        Rummy rummy = new Rummy();      // creating rummy object with 
+        rummy.addPlayer(numPlayers);    // numplayers players
+
+        rummy.deal();   //dealing to the players
+
     }
     
 

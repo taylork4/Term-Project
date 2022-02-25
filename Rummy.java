@@ -89,15 +89,13 @@ public class Rummy {
 
     /**
      * method to deal cards to each player
-     * @param p arraylist of players
-     * @param d deck
      * TODO: - make it so that number of players cant be < 2
      */
-    public void deal(ArrayList<Player> p, Deck d){
+    public void deal(){
         for(int h = 0; h < 7; h++){
-            for(int i = 0; i < p.size(); i++){
-                Deck.move(d, p.get(i).hand, d.cardArr.get(0)); // moving cards from the deck to
-            }                                                   // the player's hands
+            for(int i = 0; i < this.players.size(); i++){
+                Deck.move(this.deck, this.players.get(i).hand, this.deck.cardArr.get(0)); // moving cards from the deck to
+            }                                                                               // the player's hands
         }                                                        
     }
 
@@ -154,6 +152,16 @@ public class Rummy {
         
         return 0;
         
+    }
+
+    /**
+     * method to add players to player array
+     * @param players number of players to be added
+     */
+    public void addPlayer(int players){
+        for(int i = 0; i < players; i++){
+            this.players.add(new Player());
+        }
     }
 
 

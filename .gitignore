@@ -23,3 +23,6 @@
 hs_err_pid*
 /JavaApplication3/nbproject/private/
 /GUI/LakerRummyGUI/nbproject/private/
+
+# Noah's misc. GUI experiments 
+GUIExperiment.java
