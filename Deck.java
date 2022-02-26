@@ -3,9 +3,9 @@ import java.util.*;
 public class Deck {
         /**************************************************************************************************************************************************************************************
          * 
-         * The Card class sets the values for the cards to specific suits within the
-         * deck. The class also allows for the retrieval
-         * of a card suit and the value of a card.
+         * The Deck class constructs a deck of cards, as well as allows for cards to be
+         * removed and added from deck to deck. It also is capable of shuffling the card
+         * deck.
          * 
          * @author Noah Arden
          * @author Owen Carroll
@@ -13,13 +13,19 @@ public class Deck {
          * @version 2/28/2022
          * 
          */
+
+        /**************************************************************************************************************************************************************************************
+         * 
+         * Instance Variables
+         * 
+         */
         public ArrayList<Card> cardArr = new ArrayList<Card>();
 
-        // constructor for an empty deck: pass in any integer parameter
-        public Deck(int zero) {
-        }
-
-        // constructor for a full deck
+        /**************************************************************************************************************************************************************************************
+         * 
+         * Default constructor of the Card class.
+         * 
+         */
         public Deck() {
                 int value = 1;
                 switch (value) {
@@ -100,64 +106,92 @@ public class Deck {
                                 this.cardArr.add(new Card(13, "clubs"));
                                 this.cardArr.add(new Card(13, "hearts"));
                                 this.cardArr.add(new Card(13, "diamonds"));
-
                 }
-
         }
 
-        // method to add a card to a deck
+        /**************************************************************************************************************************************************************************************
+         * 
+         * Constructor of the Card class that takes an integer as a parameter.
+         * 
+         * @param zero - Integer value that ???
+         * 
+         */
+        public Deck(int zero) {
+        }
+
+        /**************************************************************************************************************************************************************************************
+         * The add(Card c) method adds a Card c to the deck.
+         * NOTE: MUST pass in variable for c. Do NOT pass in "new Card(whatever)"
+         * as an argument, or it will break.
+         * 
+         * @param c - Card to be added.
+         * 
+         */
         public void add(Card c) {
                 // if(this.searchByFields(c.getValue(), c.getSuit()) != -1) //if card is not
                 // already there
                 this.cardArr.add(c);
         }
 
-        /**
-         * method to remove a card c from the deck
+        /**************************************************************************************************************************************************************************************
+         * The remove(Card c) method removes a Card c from the deck.
          * NOTE: MUST pass in variable for c. Do NOT pass in "new Card(whatever)"
          * as an argument, or it will break.
          * 
-         * @param c card to be removed.
+         * @param c - Card to be removed.
+         * 
          */
         public void remove(Card c) {
                 this.cardArr.remove(c);
         }
 
-        // /**
-        // *
-        // * @param value value to be searched for
-        // * @param suit suit to be searched for
-        // * @return index of card, or -1 if it is not in deck.
-        // */
-        // private int searchByFields(int value, String suit){
-        // for(int i = 0; i < this.cardArr.size(); i++){
-        // if(this.cardArr.get(i).getValue() == value){
-        // if(this.cardArr.get(i).getSuit().equals(suit)){
-        // return i;
-        // }
-        // }
-        // }
-        // return -1;
-        // }
-
-        /**
-         * method to move a card from deck d1 to deck d2
+        /**************************************************************************************************************************************************************************************
+         * The move(Deck d1, Deck d2, Card c) method moves a Card from Deck d1 to Deck
+         * d2.
          * NOTE: MUST pass in variable for c. Do NOT pass in "new Card(whatever)"
          * as an argument, or it will break.
          * 
-         * @param d1 deck that card c is being moved FROM
-         * @param d2 deck that card c is being moved TO
-         * @param c  card being moved
+         * @param d1 - Deck that Card c is being moved FROM
+         * @param d2 - Deck that Card c is being moved TO
+         * @param c  - Card that is being moved
+         * 
          */
         public static void move(Deck d1, Deck d2, Card c) {
                 d2.add(c);
                 d1.remove(c);
         }
 
-        /**
-         * Shuffles the deck.
+        /**************************************************************************************************************************************************************************************
+         * 
+         * The shuffle() method shuffles a deck of cards
+         * 
          */
         public void shuffle() {
                 Collections.shuffle(this.cardArr);
         }
+
+        /**************************************************************************************************************************************************************************************
+         * 
+         * Methods no longer in use
+         * 
+         */
+
+        // /**************************************************************************************************************************************************************************************
+        // * The searchByFields(int value, String suit) searches for an integer value
+        // *
+        // * @param value - Integer value to be searched for
+        // * @param suit - String suit to be searched for
+        // *
+        // * @return index of card, or -1 if it is not in deck.
+        // */
+        // private int searchByFields(int value, String suit) {
+        // for (int i = 0; i < this.cardArr.size(); i++) {
+        // if (this.cardArr.get(i).getValue() == value) {
+        // if (this.cardArr.get(i).getSuit().equals(suit)) {
+        // return i;
+        // }
+        // }
+        // }
+        // return -1;
+        // }
 }
