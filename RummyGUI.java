@@ -14,11 +14,9 @@ import java.util.GregorianCalendar;
 public class RummyGUI extends JFrame implements ActionListener {
     /**************************************************************************************************************************************************************************************
      * 
-     * The RummyGUI class is an extension of JFrame that also implements the
-     * ActionListener class.
-     * Within this class, the program creates a usable menu that allows for the
-     * changing of screens,
-     * changing game modes, changing settings, and closing the GUI.
+     * The RummyGUI class is an extension of JFrame that also implements the ActionListener class.
+     * Within this class, the program creates a usable menu that allows for the changing of screens,
+     * changing game modes, changing the number of players, changing settings, and closing the GUI.
      * 
      * @author Noah Arden
      * @author Owen Carroll
@@ -221,7 +219,6 @@ public class RummyGUI extends JFrame implements ActionListener {
     private boolean handCardClick;
     private boolean hasSetClicks;
 
-    // private JPanel panel;
     /**************************************************************************************************************************************************************************************
      * 
      * The default constructor for the RummyGUI() class. Within this constructor,
@@ -230,7 +227,6 @@ public class RummyGUI extends JFrame implements ActionListener {
      * 
      * 
      */
-
     public RummyGUI() {
         // Creating image icons
         settingsGear = new ImageIcon("images/settings-gear.png");
@@ -332,6 +328,11 @@ public class RummyGUI extends JFrame implements ActionListener {
         mainMenuScreen();
     }
 
+    /**************************************************************************************************************************************************************************************
+ 	 * 
+	 * The mainMenuScreen() method creates the main menu screen.
+     * 
+ 	 */
     public void mainMenuScreen() {
         // Creating menu bar
         menu = new JMenuBar();
@@ -483,6 +484,11 @@ public class RummyGUI extends JFrame implements ActionListener {
         hasSetClicks = false;
     }
 
+    /**************************************************************************************************************************************************************************************
+ 	 * 
+	 * The gameScreen() method creates the game screen.
+     * 
+ 	 */
     public void gameScreen() {
         // Creating menu bar
         menu = new JMenuBar();
@@ -795,6 +801,11 @@ public class RummyGUI extends JFrame implements ActionListener {
         currentScreen = GAME;
     }
 
+    /**************************************************************************************************************************************************************************************
+ 	 * 
+	 * The settingsScreen() method creates the settings screen.
+     * 
+ 	 */
     public void settingsScreen() {
         // Creating menu bar
         menu = new JMenuBar();
@@ -883,16 +894,12 @@ public class RummyGUI extends JFrame implements ActionListener {
     /**************************************************************************************************************************************************************************************
      * 
      * The actionPerformed(ActionEvent) method allows the user to click different
-     * menu items.
-     * The method also allows the user to click an itme in the table and rent/return
-     * an item
-     * from that given row.
+     * menu items, buttons, and cards.
      *
      * @param e - The ActionEvent e parameter receives input from the user depending
      *          on where they click within the GUI screens/menus.
      * 
      */
-
     public void actionPerformed(ActionEvent e) {
         Object action = e.getSource();
 

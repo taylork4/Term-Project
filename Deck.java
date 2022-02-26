@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Deck {
         /**************************************************************************************************************************************************************************************
-         * 
          * The Deck class constructs a deck of cards, as well as allows for cards to be
          * removed and added from deck to deck. It also is capable of shuffling the card
          * deck.
@@ -11,20 +10,15 @@ public class Deck {
          * @author Owen Carroll
          * @author Kyle Taylor
          * @version 2/28/2022
-         * 
          */
 
         /**************************************************************************************************************************************************************************************
-         * 
          * Instance Variables
-         * 
          */
         public ArrayList<Card> cardArr = new ArrayList<Card>();
 
         /**************************************************************************************************************************************************************************************
-         * 
          * Default constructor of the Card class.
-         * 
          */
         public Deck() {
                 int value = 1;
@@ -110,11 +104,9 @@ public class Deck {
         }
 
         /**************************************************************************************************************************************************************************************
-         * 
          * Constructor of the Card class that takes an integer as a parameter.
          * 
          * @param zero - Integer value that ???
-         * 
          */
         public Deck(int zero) {
         }
@@ -125,7 +117,6 @@ public class Deck {
          * as an argument, or it will break.
          * 
          * @param c - Card to be added.
-         * 
          */
         public void add(Card c) {
                 // if(this.searchByFields(c.getValue(), c.getSuit()) != -1) //if card is not
@@ -139,7 +130,6 @@ public class Deck {
          * as an argument, or it will break.
          * 
          * @param c - Card to be removed.
-         * 
          */
         public void remove(Card c) {
                 this.cardArr.remove(c);
@@ -154,7 +144,6 @@ public class Deck {
          * @param d1 - Deck that Card c is being moved FROM
          * @param d2 - Deck that Card c is being moved TO
          * @param c  - Card that is being moved
-         * 
          */
         public static void move(Deck d1, Deck d2, Card c) {
                 d2.add(c);
@@ -162,18 +151,14 @@ public class Deck {
         }
 
         /**************************************************************************************************************************************************************************************
-         * 
          * The shuffle() method shuffles a deck of cards
-         * 
          */
         public void shuffle() {
                 Collections.shuffle(this.cardArr);
         }
 
         /**************************************************************************************************************************************************************************************
-         * 
          * Methods no longer in use
-         * 
          */
 
         // /**************************************************************************************************************************************************************************************
