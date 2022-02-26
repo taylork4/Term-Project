@@ -13,193 +13,81 @@ import java.util.GregorianCalendar;
 
 public class RummyGUI extends JFrame implements ActionListener {
     /**************************************************************************************************************************************************************************************
-     * 
-     * The RummyGUI class is an extension of JFrame that also implements the ActionListener class.
-     * Within this class, the program creates a usable menu that allows for the changing of screens,
-     * changing game modes, changing the number of players, changing settings, and closing the GUI.
+     * The RummyGUI class is an extension of JFrame that also implements the
+     * ActionListener class. Within this class, the program creates a usable
+     * menu that allows for the changing of screens, game modes, number of
+     * players, settings, and closing the GUI.
      * 
      * @author Noah Arden
      * @author Owen Carroll
      * @author Kyle Taylor
-     * @version 1/30/2022
-     * 
+     * @version 2/28/2022
      */
 
+    /**************************************************************************************************************************************************************************************
+     * Instance Variables
+     */
     // JFrame declarations
-    private JFrame mainMenuFrame;
-    private JFrame gameFrame;
-    private JFrame settingsFrame;
+    private JFrame mainMenuFrame, gameFrame, settingsFrame;
 
     // JMenuBar declarations
     private JMenuBar menu;
 
     // JMenu declarations
-    private JMenu options;
-    private JMenu tutorial;
+    private JMenu options, tutorial;
 
     // JMenuItem declarations
-    private JMenuItem returnMenu;
-    private JMenuItem returnGame;
-    private JMenuItem rummyHow;
-    private JMenuItem lakersRummyHow;
-    private JMenuItem settings;
-    private JMenuItem exit;
+    private JMenuItem returnMenu, returnGame, rummyHow, lakersRummyHow,
+            settings, exit;
 
     // JButton declarations
-    private JButton playButton;
-    private JButton rummyButton;
-    private JButton lakersRummyButton;
-    private JButton onePlayerButton;
-    private JButton twoPlayerButton;
-    private JButton threePlayerButton;
-    private JButton fourPlayerButton;
+    private JButton playButton, rummyButton, lakersRummyButton;
+    private JButton onePlayerButton, twoPlayerButton, threePlayerButton, // Number of players buttons
+            fourPlayerButton;
 
     // JLabel declarations
-    private JLabel title;
-    private JLabel cardDeck;
-    private JLabel cardAnchorA;
-    private JLabel cardAnchor2;
-    private JLabel cardAnchor3;
-    private JLabel cardAnchor4;
-    private JLabel cardAnchor5;
-    private JLabel cardAnchor6;
-    private JLabel cardAnchor7;
-    private JLabel cardAnchor8;
-    private JLabel cardAnchor9;
-    private JLabel cardAnchor10;
-    private JLabel cardAnchorJ;
-    private JLabel cardAnchorQ;
-    private JLabel cardAnchorK;
-    private JLabel cardClockTowA;
-    private JLabel cardClockTow2;
-    private JLabel cardClockTow3;
-    private JLabel cardClockTow4;
-    private JLabel cardClockTow5;
-    private JLabel cardClockTow6;
-    private JLabel cardClockTow7;
-    private JLabel cardClockTow8;
-    private JLabel cardClockTow9;
-    private JLabel cardClockTow10;
-    private JLabel cardClockTowJ;
-    private JLabel cardClockTowQ;
-    private JLabel cardClockTowK;
-    private JLabel cardGVLogoA;
-    private JLabel cardGVLogo2;
-    private JLabel cardGVLogo3;
-    private JLabel cardGVLogo4;
-    private JLabel cardGVLogo5;
-    private JLabel cardGVLogo6;
-    private JLabel cardGVLogo7;
-    private JLabel cardGVLogo8;
-    private JLabel cardGVLogo9;
-    private JLabel cardGVLogo10;
-    private JLabel cardGVLogoJ;
-    private JLabel cardGVLogoQ;
-    private JLabel cardGVLogoK;
-    private JLabel cardSailorA;
-    private JLabel cardSailor2;
-    private JLabel cardSailor3;
-    private JLabel cardSailor4;
-    private JLabel cardSailor5;
-    private JLabel cardSailor6;
-    private JLabel cardSailor7;
-    private JLabel cardSailor8;
-    private JLabel cardSailor9;
-    private JLabel cardSailor10;
-    private JLabel cardSailorJ;
-    private JLabel cardSailorQ;
-    private JLabel cardSailorK;
+    private JLabel title, cardDeck;
+    private JLabel cardAnchorA, cardAnchor2, cardAnchor3, cardAnchor4, // Anchor label for suit
+            cardAnchor5, cardAnchor6, cardAnchor7, cardAnchor8, cardAnchor9,
+            cardAnchor10, cardAnchorJ, cardAnchorQ, cardAnchorK;
+    private JLabel cardClockTowA, cardClockTow2, cardClockTow3, cardClockTow4, // Clock Tower label for suit
+            cardClockTow5, cardClockTow6, cardClockTow7, cardClockTow8,
+            cardClockTow9, cardClockTow10, cardClockTowJ, cardClockTowQ,
+            cardClockTowK;
+    private JLabel cardGVLogoA, cardGVLogo2, cardGVLogo3, cardGVLogo4, // GVLogo label for suit
+            cardGVLogo5, cardGVLogo6, cardGVLogo7, cardGVLogo8, cardGVLogo9,
+            cardGVLogo10, cardGVLogoJ, cardGVLogoQ, cardGVLogoK;
+    private JLabel cardSailorA, cardSailor2, cardSailor3, cardSailor4, // Sailor label for suit
+            cardSailor5, cardSailor6, cardSailor7, cardSailor8, cardSailor9,
+            cardSailor10, cardSailorJ, cardSailorQ, cardSailorK;
 
     // ImageIcon declarations
-    private ImageIcon settingsGear;
-    private ImageIcon redX;
-    private ImageIcon backOfCardLR;
-    private ImageIcon how2Play;
-    private ImageIcon returnBack;
-    private ImageIcon anchorA;
-    private ImageIcon anchor2;
-    private ImageIcon anchor3;
-    private ImageIcon anchor4;
-    private ImageIcon anchor5;
-    private ImageIcon anchor6;
-    private ImageIcon anchor7;
-    private ImageIcon anchor8;
-    private ImageIcon anchor9;
-    private ImageIcon anchor10;
-    private ImageIcon anchorJ;
-    private ImageIcon anchorQ;
-    private ImageIcon anchorK;
-    private ImageIcon clockTowA;
-    private ImageIcon clockTow2;
-    private ImageIcon clockTow3;
-    private ImageIcon clockTow4;
-    private ImageIcon clockTow5;
-    private ImageIcon clockTow6;
-    private ImageIcon clockTow7;
-    private ImageIcon clockTow8;
-    private ImageIcon clockTow9;
-    private ImageIcon clockTow10;
-    private ImageIcon clockTowJ;
-    private ImageIcon clockTowQ;
-    private ImageIcon clockTowK;
-    private ImageIcon logoGVA;
-    private ImageIcon logoGV2;
-    private ImageIcon logoGV3;
-    private ImageIcon logoGV4;
-    private ImageIcon logoGV5;
-    private ImageIcon logoGV6;
-    private ImageIcon logoGV7;
-    private ImageIcon logoGV8;
-    private ImageIcon logoGV9;
-    private ImageIcon logoGV10;
-    private ImageIcon logoGVJ;
-    private ImageIcon logoGVQ;
-    private ImageIcon logoGVK;
-    private ImageIcon sailorA;
-    private ImageIcon sailor2;
-    private ImageIcon sailor3;
-    private ImageIcon sailor4;
-    private ImageIcon sailor5;
-    private ImageIcon sailor6;
-    private ImageIcon sailor7;
-    private ImageIcon sailor8;
-    private ImageIcon sailor9;
-    private ImageIcon sailor10;
-    private ImageIcon sailorJ;
-    private ImageIcon sailorQ;
-    private ImageIcon sailorK;
+    private ImageIcon settingsGear, redX, backOfCardLR, how2Play, returnBack;
+    private ImageIcon anchorA, anchor2, anchor3, anchor4, anchor5, // Anchor suit images
+            anchor6, anchor7, anchor8, anchor9, anchor10, anchorJ,
+            anchorQ, anchorK;
+    private ImageIcon clockTowA, clockTow2, clockTow3, clockTow4, // Clock Tower suit images
+            clockTow5, clockTow6, clockTow7, clockTow8, clockTow9,
+            clockTow10, clockTowJ, clockTowQ, clockTowK;
+    private ImageIcon logoGVA, logoGV2, logoGV3, logoGV4, logoGV5, // GV Logo card suit images
+            logoGV6, logoGV7, logoGV8, logoGV9, logoGV10, logoGVJ,
+            logoGVQ, logoGVK;
+    private ImageIcon sailorA, sailor2, sailor3, sailor4, sailor5, // Sailor card suit images
+            sailor6, sailor7, sailor8, sailor9, sailor10, sailorJ,
+            sailorQ, sailorK;
 
     // Font declarations
-    private Font titleFont;
-    private Font menuFont;
-    private Font subMenuFont;
-    private Font playButtonFont;
-    private Font gameButtonFont;
-    private Font numPlayersButtonFont;
+    private Font titleFont, menuFont, subMenuFont, playButtonFont,
+            gameButtonFont, numPlayersButtonFont;
 
     // LineBorder declarations
-    private LineBorder cardBorder;
-    private LineBorder cardHighlightBorder;
-    private LineBorder menuBorder;
-    private LineBorder buttonBorder;
+    private LineBorder cardBorder, cardHighlightBorder, menuBorder,
+            buttonBorder;
 
     // Color declarations
-    private Color black;
-    private Color white;
-    private Color yellow;
-    private Color blue;
-    private Color aquaBlue;
-    private Color red;
-    private Color pink;
-    private Color magenta;
-    private Color green;
-    private Color orange;
-    private Color brightOrange;
-    private Color tan;
-    private Color cyan;
-    private Color grey;
-    private Color lightGrey;
-    private Color darkGrey;
+    private Color black, darkGrey, grey, lightGrey, white,
+            red, orange, brightOrange, yellow, green, blue,
+            aquaBlue, cyan, magenta, pink, tan;
 
     // Container declarations
     private Container pane;
@@ -208,24 +96,14 @@ public class RummyGUI extends JFrame implements ActionListener {
     private Insets insets;
 
     // Game status variable declarations
-    private int whichGame;
-    private int numPlayers;
-    private int currentScreen;
-    private final int MENU;
-    private final int GAME;
-    private final int SETTINGS;
-    private boolean gameInProg;
-    private boolean deckClick;
-    private boolean handCardClick;
-    private boolean hasSetClicks;
+    private final int MENU, GAME, SETTINGS;
+    private int whichGame, numPlayers, currentScreen;
+    private boolean gameInProg, deckClick, handCardClick, hasSetClicks;
 
     /**************************************************************************************************************************************************************************************
-     * 
      * The default constructor for the RummyGUI() class. Within this constructor,
      * a menu bars is created allowing for access to the settings as well as the
      * ability to close out of the game.
-     * 
-     * 
      */
     public RummyGUI() {
         // Creating image icons
@@ -289,21 +167,21 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Creating colors
         black = Color.BLACK;
-        white = Color.WHITE;
-        yellow = Color.YELLOW;
-        blue = Color.BLUE;
-        aquaBlue = new Color(5, 195, 228);
-        red = Color.RED;
-        pink = Color.PINK;
-        magenta = Color.MAGENTA;
-        green = Color.GREEN;
-        orange = Color.ORANGE;
-        brightOrange = new Color(255, 135, 0);
-        tan = new Color(255, 215, 175);
-        cyan = Color.CYAN;
+        darkGrey = Color.DARK_GRAY;
         grey = Color.GRAY;
         lightGrey = Color.LIGHT_GRAY;
-        darkGrey = Color.DARK_GRAY;
+        white = Color.WHITE;
+        red = Color.RED;
+        orange = Color.ORANGE;
+        brightOrange = new Color(255, 135, 0);
+        yellow = Color.YELLOW;
+        green = Color.GREEN;
+        blue = Color.BLUE;
+        aquaBlue = new Color(5, 195, 228);
+        cyan = Color.CYAN;
+        magenta = Color.MAGENTA;
+        pink = Color.PINK;
+        tan = new Color(255, 215, 175);
 
         // Creating fonts
         titleFont = new Font("Segoe Script", Font.BOLD, 120);
@@ -329,10 +207,8 @@ public class RummyGUI extends JFrame implements ActionListener {
     }
 
     /**************************************************************************************************************************************************************************************
- 	 * 
-	 * The mainMenuScreen() method creates the main menu screen.
-     * 
- 	 */
+     * The mainMenuScreen() method creates the main menu screen.
+     */
     public void mainMenuScreen() {
         // Creating menu bar
         menu = new JMenuBar();
@@ -485,10 +361,8 @@ public class RummyGUI extends JFrame implements ActionListener {
     }
 
     /**************************************************************************************************************************************************************************************
- 	 * 
-	 * The gameScreen() method creates the game screen.
-     * 
- 	 */
+     * The gameScreen() method creates the game screen.
+     */
     public void gameScreen() {
         // Creating menu bar
         menu = new JMenuBar();
@@ -802,10 +676,8 @@ public class RummyGUI extends JFrame implements ActionListener {
     }
 
     /**************************************************************************************************************************************************************************************
- 	 * 
-	 * The settingsScreen() method creates the settings screen.
-     * 
- 	 */
+     * The settingsScreen() method creates the settings screen.
+     */
     public void settingsScreen() {
         // Creating menu bar
         menu = new JMenuBar();
@@ -821,7 +693,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         title = new JLabel("Settings");
 
         // Creating buttons
-        //playButton = new JButton("Play");
+        // playButton = new JButton("Play");
 
         // Creating menus
         options = new JMenu("Options");
@@ -850,7 +722,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
-        //title.setBounds(400 + insets.left, 100 + insets.top, 1000, 150);
+        // title.setBounds(400 + insets.left, 100 + insets.top, 1000, 150);
 
         // Adding elements to menubar
         menu.add(options);
@@ -869,11 +741,11 @@ public class RummyGUI extends JFrame implements ActionListener {
         settingsFrame.add(pane);
 
         // Adding elements to pane
-        //pane.add(title);
+        // pane.add(title);
 
         // Addiing action listeners to elements
         exit.addActionListener(this);
-        if (gameInProg){
+        if (gameInProg) {
             returnGame.addActionListener(this);
         } else {
             returnMenu.addActionListener(this);
@@ -892,13 +764,11 @@ public class RummyGUI extends JFrame implements ActionListener {
     }
 
     /**************************************************************************************************************************************************************************************
-     * 
      * The actionPerformed(ActionEvent) method allows the user to click different
      * menu items, buttons, and cards.
-     *
+     * 
      * @param e - The ActionEvent e parameter receives input from the user depending
      *          on where they click within the GUI screens/menus.
-     * 
      */
     public void actionPerformed(ActionEvent e) {
         Object action = e.getSource();
@@ -1056,14 +926,11 @@ public class RummyGUI extends JFrame implements ActionListener {
     }
 
     /**************************************************************************************************************************************************************************************
-     * 
      * The main(String[] args) method allows for the RummyGUI class to be ran.
      * 
      * @param args - A String[] array representing the arguments being passed to
      *             main.
-     * 
      */
-
     public static void main(String[] args) {
         new RummyGUI();
     }
