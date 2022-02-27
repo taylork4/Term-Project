@@ -46,7 +46,7 @@ public class RummyGUI extends JFrame implements ActionListener {
             fourPlayerButton;
 
     // JLabel declarations
-    private JLabel title, cardDeck;
+    private JLabel title, cardDeck, rectangleLabel;
     private JLabel cardAnchorA, cardAnchor2, cardAnchor3, cardAnchor4, // Anchor label for suit
             cardAnchor5, cardAnchor6, cardAnchor7, cardAnchor8, cardAnchor9,
             cardAnchor10, cardAnchorJ, cardAnchorQ, cardAnchorK;
@@ -62,7 +62,8 @@ public class RummyGUI extends JFrame implements ActionListener {
             cardSailor10, cardSailorJ, cardSailorQ, cardSailorK;
 
     // ImageIcon declarations
-    private ImageIcon settingsGear, redX, backOfCardLR, how2Play, returnBack;
+    private ImageIcon settingsGear, redX, backOfCardLR, how2Play, returnBack,
+            rectangle;
     private ImageIcon anchorA, anchor2, anchor3, anchor4, anchor5, // Anchor suit images
             anchor6, anchor7, anchor8, anchor9, anchor10, anchorJ,
             anchorQ, anchorK;
@@ -87,7 +88,7 @@ public class RummyGUI extends JFrame implements ActionListener {
     // Color declarations
     private Color black, darkGrey, grey, lightGrey, white,
             red, orange, brightOrange, yellow, green, blue,
-            aquaBlue, cyan, magenta, pink, tan;
+            aquaBlue, cyan, magenta, pink, darkTan, tan;
 
     // Container declarations
     private Container pane;
@@ -107,6 +108,7 @@ public class RummyGUI extends JFrame implements ActionListener {
      */
     public RummyGUI() {
         // Creating image icons
+        rectangle = new ImageIcon("images/gameBackgroundTan.png");
         settingsGear = new ImageIcon("images/settings-gear.png");
         redX = new ImageIcon("images/red-x.png");
         how2Play = new ImageIcon("images/how2Play.png");
@@ -181,6 +183,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         cyan = Color.CYAN;
         magenta = Color.MAGENTA;
         pink = Color.PINK;
+        darkTan = new Color(255, 190, 130);
         tan = new Color(255, 215, 175);
 
         // Creating fonts
@@ -373,8 +376,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Creating pane
         pane = new Container();
         pane.setLayout(null);
-
+        
         // Creating labels
+        rectangleLabel = new JLabel(rectangle);
         cardDeck = new JLabel(backOfCardLR);
         cardAnchorA = new JLabel(anchorA);
         cardAnchor2 = new JLabel(anchor2);
@@ -429,9 +433,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         cardSailorQ = new JLabel(sailorQ);
         cardSailorK = new JLabel(sailorK);
 
-        // Creating buttons
-        playButton = new JButton("Play");
-
         // Creating menus
         options = new JMenu("Options");
         tutorial = new JMenu(" How to Play");
@@ -466,6 +467,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         lakersRummyHow.setFont(subMenuFont);
 
         // Setting borders
+        rectangleLabel.setBorder(buttonBorder);
         cardDeck.setBorder(cardBorder);
         cardAnchorA.setBorder(cardBorder);
         cardAnchor2.setBorder(cardBorder);
@@ -522,8 +524,9 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
-        cardDeck.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        cardAnchorA.setBounds(550 + insets.left, 400 + insets.top, 135, 190);
+        rectangleLabel.setBounds(0 + insets.left, 0 + insets.top, 215, 655);
+        cardDeck.setBounds(25 + insets.left, 20 + insets.top, 135, 190);
+        cardAnchorA.setBounds(25 + insets.left, 435 + insets.top, 135, 190);
         // cardAnchor2.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         // cardAnchor3.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         // cardAnchor4.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
@@ -648,6 +651,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(cardSailorJ);
         pane.add(cardSailorQ);
         pane.add(cardSailorK);
+        pane.add(rectangleLabel);
 
         // Addiing action listeners to elements
         settings.addActionListener(this);

@@ -18,7 +18,7 @@ public class Deck {
         public ArrayList<Card> cardArr = new ArrayList<Card>();
 
         /**************************************************************************************************************************************************************************************
-         * Default constructor of the Card class.
+         * Default constructor of the Card class that creates a full deck.
          */
         public Deck() {
                 int value = 1;
@@ -104,7 +104,8 @@ public class Deck {
         }
 
         /**************************************************************************************************************************************************************************************
-         * Constructor of the Card class that takes an integer as a parameter.
+         * Constructor of the Card class that takes an integer as a parameter to
+         * create an empty deck.
          * 
          * @param zero - Integer value that ???
          */
