@@ -48,7 +48,7 @@ public class RummyGUI extends JFrame implements ActionListener {
     // JLabel declarations
     private JLabel titleLabel, p1Label, p2Label, p3Label, p4Label, cardDeckLabel,
             dash1Label, dash2Label, dash3Label, rectangleLeftLabel, octopusLabel,
-            rectangleRightLabel, seaGullLabel, whaleLabel;
+            rectangleRightLabel, seaGullLabel, whaleLabel, anchorFallLabel, crabLabel;
     private JLabel cardAnchorA, cardAnchor2, cardAnchor3, cardAnchor4, // Anchor label for suit
             cardAnchor5, cardAnchor6, cardAnchor7, cardAnchor8, cardAnchor9,
             cardAnchor10, cardAnchorJ, cardAnchorQ, cardAnchorK;
@@ -113,6 +113,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         avatar1 = new ImageIcon("images/seaGull.jpg");
         avatar2 = new ImageIcon("images/whale.jpg");
         avatar3 = new ImageIcon("images/octopus.jpg");
+        avatar4 = new ImageIcon("images/crab.jpg");
         rectangleLeft = new ImageIcon("images/gameBackgroundTan.png");
         rectangleRight = new ImageIcon("images/gameBackgroundTan.png");
         settingsGear = new ImageIcon("images/settings-gear.png");
@@ -388,7 +389,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         seaGullLabel = new JLabel(avatar1);
         whaleLabel = new JLabel(avatar2);
         octopusLabel = new JLabel(avatar3);
-        //Label = new JLabel(avatar4);
+        crabLabel = new JLabel(avatar4);
         p1Label = new JLabel("Cards in hand: ");
         p2Label = new JLabel("Cards in hand: ");
         p3Label = new JLabel("Cards in hand: ");
@@ -500,7 +501,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         lakersRummyHow.setFont(subMenuFont);
 
         // Setting borders
-        //Label.setBorder(cardBorder);
+        crabLabel.setBorder(cardBorder);
         octopusLabel.setBorder(cardBorder);
         whaleLabel.setBorder(cardBorder);
         seaGullLabel.setBorder(cardBorder);
@@ -565,7 +566,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         seaGullLabel.setBounds(1090 + insets.left, 20 + insets.top, 145, 105);
         whaleLabel.setBounds(1090 + insets.left, 180 + insets.top, 145, 110);
         octopusLabel.setBounds(1090 + insets.left, 350 + insets.top, 145, 110);
-        //.setBounds(1090 + insets.left, 125 + insets.top, 145, 100);
+        crabLabel.setBounds(1090 + insets.left, 510 + insets.top, 145, 110);
         p1Label.setBounds(1090 + insets.left, 120 + insets.top, 200, 50);
         p2Label.setBounds(1090 + insets.left, 285 + insets.top, 200, 50);
         p3Label.setBounds(1090 + insets.left, 450 + insets.top, 200, 50);
@@ -649,7 +650,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(seaGullLabel);
         pane.add(whaleLabel);
         pane.add(octopusLabel);
-        //pane.add();
+        pane.add(crabLabel);
         pane.add(p1Label);
         pane.add(p2Label);
         pane.add(p3Label);
