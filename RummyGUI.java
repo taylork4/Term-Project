@@ -46,7 +46,9 @@ public class RummyGUI extends JFrame implements ActionListener {
             fourPlayerButton;
 
     // JLabel declarations
-    private JLabel title, cardDeck, rectangleLabel;
+    private JLabel titleLabel, p1Label, p2Label, p3Label, p4Label, cardDeckLabel,
+            dash1Label, dash2Label, dash3Label, dash4Label, rectangleLeftLabel,
+            rectangleRightLabel;
     private JLabel cardAnchorA, cardAnchor2, cardAnchor3, cardAnchor4, // Anchor label for suit
             cardAnchor5, cardAnchor6, cardAnchor7, cardAnchor8, cardAnchor9,
             cardAnchor10, cardAnchorJ, cardAnchorQ, cardAnchorK;
@@ -63,7 +65,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     // ImageIcon declarations
     private ImageIcon settingsGear, redX, backOfCardLR, how2Play, returnBack,
-            rectangle;
+            rectangleLeft, rectangleRight, avatar1, avatar2, avatar3, avatar4;
     private ImageIcon anchorA, anchor2, anchor3, anchor4, anchor5, // Anchor suit images
             anchor6, anchor7, anchor8, anchor9, anchor10, anchorJ,
             anchorQ, anchorK;
@@ -79,7 +81,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     // Font declarations
     private Font titleFont, menuFont, subMenuFont, playButtonFont,
-            gameButtonFont, numPlayersButtonFont;
+            gameButtonFont, numPlayersButtonFont, avatarFont;
 
     // LineBorder declarations
     private LineBorder cardBorder, cardHighlightBorder, menuBorder,
@@ -108,7 +110,8 @@ public class RummyGUI extends JFrame implements ActionListener {
      */
     public RummyGUI() {
         // Creating image icons
-        rectangle = new ImageIcon("images/gameBackgroundTan.png");
+        rectangleLeft = new ImageIcon("images/gameBackgroundTan.png");
+        rectangleRight = new ImageIcon("images/gameBackgroundTan.png");
         settingsGear = new ImageIcon("images/settings-gear.png");
         redX = new ImageIcon("images/red-x.png");
         how2Play = new ImageIcon("images/how2Play.png");
@@ -190,6 +193,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         titleFont = new Font("Segoe Script", Font.BOLD, 120);
         menuFont = new Font("Georgia", Font.PLAIN, 21);
         subMenuFont = new Font("Cooper Black", Font.PLAIN, 21);
+        avatarFont = new Font("Georgia", Font.ITALIC, 15);
         playButtonFont = new Font("Courier", Font.BOLD, 50);
         gameButtonFont = new Font("Courier", Font.BOLD, 40);
         numPlayersButtonFont = new Font("Courier", Font.BOLD, 30);
@@ -224,7 +228,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.setLayout(null);
 
         // Creating labels
-        title = new JLabel("Lakers Rummy");
+        titleLabel = new JLabel("Lakers Rummy");
 
         // Creating buttons
         playButton = new JButton("Play");
@@ -257,7 +261,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         UIManager.put("MenuBar.background", lightGrey);
 
         // Setting foreground colors
-        title.setForeground(black);
+        titleLabel.setForeground(black);
         options.setForeground(black);
         tutorial.setForeground(black);
         exit.setForeground(black);
@@ -273,7 +277,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         fourPlayerButton.setForeground(lightGrey);
 
         // Setting fonts
-        title.setFont(titleFont);
+        titleLabel.setFont(titleFont);
         options.setFont(menuFont);
         tutorial.setFont(menuFont);
         exit.setFont(subMenuFont);
@@ -299,7 +303,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
-        title.setBounds(175 + insets.left, 10 + insets.top, 1000, 150);
+        titleLabel.setBounds(175 + insets.left, 10 + insets.top, 1000, 150);
         playButton.setBounds(520 + insets.left, 150 + insets.top, 200, 120);
         rummyButton.setBounds(285 + insets.left, 300 + insets.top, 275, 130);
         lakersRummyButton.setBounds(675 + insets.left, 300 + insets.top, 325, 130);
@@ -324,7 +328,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         mainMenuFrame.add(pane);
 
         // Adding elements to pane
-        pane.add(title);
+        pane.add(titleLabel);
         pane.add(playButton);
         pane.add(rummyButton);
         pane.add(lakersRummyButton);
@@ -378,8 +382,17 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.setLayout(null);
         
         // Creating labels
-        rectangleLabel = new JLabel(rectangle);
-        cardDeck = new JLabel(backOfCardLR);
+        p1Label = new JLabel("Cards in hand: ");
+        p2Label = new JLabel("Cards in hand: ");
+        p3Label = new JLabel("Cards in hand: ");
+        p4Label = new JLabel("Cards in hand: ");
+        dash1Label = new JLabel("_______");
+        dash2Label = new JLabel("_______");
+        dash3Label = new JLabel("_______");
+        dash4Label = new JLabel("_______");
+        rectangleLeftLabel = new JLabel(rectangleLeft);
+        rectangleRightLabel = new JLabel(rectangleRight);
+        cardDeckLabel = new JLabel(backOfCardLR);
         cardAnchorA = new JLabel(anchorA);
         cardAnchor2 = new JLabel(anchor2);
         cardAnchor3 = new JLabel(anchor3);
@@ -449,6 +462,14 @@ public class RummyGUI extends JFrame implements ActionListener {
         UIManager.put("MenuBar.background", lightGrey);
 
         // Setting foreground colors
+        p1Label.setForeground(black);
+        p2Label.setForeground(black);
+        p3Label.setForeground(black);
+        p4Label.setForeground(black);
+        dash1Label.setForeground(black);
+        dash2Label.setForeground(black);
+        dash3Label.setForeground(black);
+        dash4Label.setForeground(black);
         options.setForeground(black);
         tutorial.setForeground(black);
         returnMenu.setForeground(black);
@@ -458,6 +479,14 @@ public class RummyGUI extends JFrame implements ActionListener {
         lakersRummyHow.setForeground(black);
 
         // Setting fonts
+        p1Label.setFont(avatarFont);
+        p2Label.setFont(avatarFont);
+        p3Label.setFont(avatarFont);
+        p4Label.setFont(avatarFont);
+        dash1Label.setFont(playButtonFont);
+        dash2Label.setFont(playButtonFont);
+        dash3Label.setFont(playButtonFont);
+        dash4Label.setFont(playButtonFont);
         options.setFont(menuFont);
         tutorial.setFont(menuFont);
         exit.setFont(subMenuFont);
@@ -467,8 +496,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         lakersRummyHow.setFont(subMenuFont);
 
         // Setting borders
-        rectangleLabel.setBorder(buttonBorder);
-        cardDeck.setBorder(cardBorder);
+        rectangleLeftLabel.setBorder(buttonBorder);
+        rectangleRightLabel.setBorder(buttonBorder);
+        cardDeckLabel.setBorder(cardBorder);
         cardAnchorA.setBorder(cardBorder);
         cardAnchor2.setBorder(cardBorder);
         cardAnchor3.setBorder(cardBorder);
@@ -524,8 +554,16 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
-        rectangleLabel.setBounds(0 + insets.left, 0 + insets.top, 215, 655);
-        cardDeck.setBounds(25 + insets.left, 20 + insets.top, 135, 190);
+        p1Label.setBounds(1090 + insets.left, 115 + insets.top, 200, 50);
+        p2Label.setBounds(1090 + insets.left, 280 + insets.top, 200, 50);
+        p3Label.setBounds(1090 + insets.left, 435 + insets.top, 200, 50);
+        p4Label.setBounds(1090 + insets.left, 600 + insets.top, 200, 50);
+        dash1Label.setBounds(1055 + insets.left, 100 + insets.top, 300, 75);
+        dash2Label.setBounds(1055 + insets.left, 267 + insets.top, 300, 75);
+        dash3Label.setBounds(1055 + insets.left, 422 + insets.top, 300, 75);
+        rectangleLeftLabel.setBounds(0 + insets.left, 0 + insets.top, 215, 655);
+        rectangleRightLabel.setBounds(1054 + insets.left, 0 + insets.top, 215, 655);
+        cardDeckLabel.setBounds(25 + insets.left, 20 + insets.top, 135, 190);
         cardAnchorA.setBounds(25 + insets.left, 435 + insets.top, 135, 190);
         // cardAnchor2.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         // cardAnchor3.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
@@ -578,8 +616,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         // cardSailorJ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         // cardSailorQ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         // cardSailorK.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // title.setVerticalAlignment(JLabel.NORTH);
-        // title.setHorizontalAlignment(JLabel).CENTER);
 
         // Adding elements to menubar
         menu.add(options);
@@ -598,7 +634,15 @@ public class RummyGUI extends JFrame implements ActionListener {
         gameFrame.add(pane);
 
         // Adding elements to pane
-        pane.add(cardDeck);
+        pane.add(p1Label);
+        pane.add(p2Label);
+        pane.add(p3Label);
+        pane.add(p4Label);
+        pane.add(dash1Label);
+        pane.add(dash2Label);
+        pane.add(dash3Label);
+        pane.add(dash4Label);
+        pane.add(cardDeckLabel);
         pane.add(cardAnchorA);
         pane.add(cardAnchor2);
         pane.add(cardAnchor3);
@@ -651,17 +695,18 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(cardSailorJ);
         pane.add(cardSailorQ);
         pane.add(cardSailorK);
-        pane.add(rectangleLabel);
+        pane.add(rectangleLeftLabel);
+        pane.add(rectangleRightLabel);
 
         // Addiing action listeners to elements
         settings.addActionListener(this);
         tutorial.addActionListener(this);
         returnMenu.addActionListener(this);
         exit.addActionListener(this);
-        cardDeck.addMouseListener(new MouseAdapter() {
+        cardDeckLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                cardDeck.setBorder(cardHighlightBorder);
+                cardDeckLabel.setBorder(cardHighlightBorder);
             }
         });
 
@@ -694,7 +739,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.setLayout(null);
 
         // Creating labels
-        title = new JLabel("Settings");
+        titleLabel = new JLabel("Settings");
 
         // Creating buttons
         // playButton = new JButton("Play");
@@ -726,7 +771,6 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
-        // title.setBounds(400 + insets.left, 100 + insets.top, 1000, 150);
 
         // Adding elements to menubar
         menu.add(options);
@@ -745,7 +789,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         settingsFrame.add(pane);
 
         // Adding elements to pane
-        // pane.add(title);
 
         // Addiing action listeners to elements
         exit.addActionListener(this);
