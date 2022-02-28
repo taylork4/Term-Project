@@ -149,6 +149,15 @@ public class Rummy {
         }
     }
 
+    /**
+     * 
+     * @param index index of the card to be returned
+     * @return the card at the passed in index
+     */
+    public Card getCard(int index){
+        return this.deck.cardArr.get(index);
+    }
+
     /**************************************************************************************************************************************************************************************
      * The main method for Rummy.
      * 
