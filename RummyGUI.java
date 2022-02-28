@@ -48,8 +48,9 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     // JLabel declarations
     private JLabel titleLabel, p1Label, p2Label, p3Label, p4Label, cardDeckLabel,
-            dash1Label, dash2Label, dash3Label, rectangleLeftLabel,
-            rectangleRightLabel, seaGullLabel, whaleLabel;
+            dash1Label, dash2Label, dash3Label, rectangleLeftLabel, octopusLabel,
+            rectangleRightLabel, seaGullLabel, whaleLabel, crabLabel, underWLabel,
+            crabGIFLabel;
     private JLabel cardAnchorA, cardAnchor2, cardAnchor3, cardAnchor4, // Anchor label for suit
             cardAnchor5, cardAnchor6, cardAnchor7, cardAnchor8, cardAnchor9,
             cardAnchor10, cardAnchorJ, cardAnchorQ, cardAnchorK;
@@ -68,7 +69,8 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     // ImageIcon declarations
     private ImageIcon settingsGear, redX, backOfCardLR, how2Play, returnBack,
-            rectangleLeft, rectangleRight, avatar1, avatar2, avatar3, avatar4;
+            rectangleLeft, rectangleRight, avatar1, avatar2, avatar3, avatar4,
+            underWater, crabGIF, GValleyJava;
     private ImageIcon anchorA, anchor2, anchor3, anchor4, anchor5, // Anchor suit images
             anchor6, anchor7, anchor8, anchor9, anchor10, anchorJ,
             anchorQ, anchorK;
@@ -115,8 +117,13 @@ public class RummyGUI extends JFrame implements ActionListener {
      */
     public RummyGUI() {
         // Creating image icons
+        GValleyJava = new ImageIcon("images/GValleyJava.png");
         avatar1 = new ImageIcon("images/seaGull.jpg");
         avatar2 = new ImageIcon("images/whale.jpg");
+        avatar3 = new ImageIcon("images/octopus.jpg");
+        avatar4 = new ImageIcon("images/crab.jpg");
+        crabGIF = new ImageIcon("images/crabGif.gif");
+        underWater = new ImageIcon("images/underWater.png");
         rectangleLeft = new ImageIcon("images/gameBackgroundTan.png");
         rectangleRight = new ImageIcon("images/gameBackgroundTan.png");
         settingsGear = new ImageIcon("images/settings-gear.png");
@@ -236,6 +243,8 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Creating labels
         titleLabel = new JLabel("Lakers Rummy");
+        underWLabel = new JLabel(underWater);
+        crabGIFLabel = new JLabel(crabGIF);
 
         // Creating buttons
         playButton = new JButton("Play");
@@ -255,6 +264,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         exit = new JMenuItem(" Exit", redX);
         rummyHow = new JMenuItem(" Rummy", how2Play);
         lakersRummyHow = new JMenuItem(" Lakers Rummy", how2Play);
+
+        // Setting frame icon
+        mainMenuFrame.setIconImage(GValleyJava.getImage());
 
         // Setting background colors
         exit.setBackground(yellow);
@@ -310,7 +322,9 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
-        titleLabel.setBounds(175 + insets.left, 10 + insets.top, 1000, 150);
+        crabGIFLabel.setBounds(565 + insets.left, 75 + insets.top, 100, 75);
+        underWLabel.setBounds(0 + insets.left, 0 + insets.top, 1500, 700);
+        titleLabel.setBounds(185 + insets.left, 10 + insets.top, 1000, 150);
         playButton.setBounds(520 + insets.left, 150 + insets.top, 200, 120);
         rummyButton.setBounds(285 + insets.left, 300 + insets.top, 275, 130);
         lakersRummyButton.setBounds(675 + insets.left, 300 + insets.top, 325, 130);
@@ -336,6 +350,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Adding elements to pane
         pane.add(titleLabel);
+        pane.add(crabGIFLabel);
         pane.add(playButton);
         pane.add(rummyButton);
         pane.add(lakersRummyButton);
@@ -343,6 +358,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(twoPlayerButton);
         pane.add(threePlayerButton);
         pane.add(fourPlayerButton);
+        pane.add(underWLabel);
 
         // Addiing action listeners to elements
         settings.addActionListener(this);
@@ -391,8 +407,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Creating labels
         seaGullLabel = new JLabel(avatar1);
         whaleLabel = new JLabel(avatar2);
-        //Label = new JLabel(avatar3);
-        //Label = new JLabel(avatar4);
+        octopusLabel = new JLabel(avatar3);
+        crabLabel = new JLabel(avatar4);
         p1Label = new JLabel("Cards in hand: ");
         p2Label = new JLabel("Cards in hand: ");
         p3Label = new JLabel("Cards in hand: ");
@@ -470,6 +486,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         rummyHow = new JMenuItem(" Rummy", how2Play);
         lakersRummyHow = new JMenuItem(" Lakers Rummy", how2Play);
 
+        // Setting frame icon
+        gameFrame.setIconImage(GValleyJava.getImage());
+
         // Setting background colors
         exit.setBackground(yellow);
         UIManager.put("MenuBar.background", lightGrey);
@@ -507,8 +526,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         lakersRummyHow.setFont(subMenuFont);
 
         // Setting borders
-        //Label.setBorder(cardBorder);
-        //Label.setBorder(cardBorder);
+        crabLabel.setBorder(cardBorder);
+        octopusLabel.setBorder(cardBorder);
         whaleLabel.setBorder(cardBorder);
         seaGullLabel.setBorder(cardBorder);
         rectangleLeftLabel.setBorder(buttonBorder);
@@ -571,15 +590,15 @@ public class RummyGUI extends JFrame implements ActionListener {
         insets = pane.getInsets();
         seaGullLabel.setBounds(1090 + insets.left, 20 + insets.top, 145, 105);
         whaleLabel.setBounds(1090 + insets.left, 180 + insets.top, 145, 110);
-        //.setBounds(1090 + insets.left, 125 + insets.top, 145, 100);
-        //.setBounds(1090 + insets.left, 125 + insets.top, 145, 100);
-        p1Label.setBounds(1090 + insets.left, 115 + insets.top, 200, 50);
-        p2Label.setBounds(1090 + insets.left, 280 + insets.top, 200, 50);
-        p3Label.setBounds(1090 + insets.left, 435 + insets.top, 200, 50);
-        p4Label.setBounds(1090 + insets.left, 600 + insets.top, 200, 50);
+        octopusLabel.setBounds(1090 + insets.left, 350 + insets.top, 145, 110);
+        crabLabel.setBounds(1090 + insets.left, 510 + insets.top, 145, 110);
+        p1Label.setBounds(1090 + insets.left, 120 + insets.top, 200, 50);
+        p2Label.setBounds(1090 + insets.left, 285 + insets.top, 200, 50);
+        p3Label.setBounds(1090 + insets.left, 450 + insets.top, 200, 50);
+        p4Label.setBounds(1090 + insets.left, 605 + insets.top, 200, 50);
         dash1Label.setBounds(1055 + insets.left, 100 + insets.top, 300, 75);
         dash2Label.setBounds(1055 + insets.left, 267 + insets.top, 300, 75);
-        dash3Label.setBounds(1055 + insets.left, 422 + insets.top, 300, 75);
+        dash3Label.setBounds(1055 + insets.left, 428 + insets.top, 300, 75);
         rectangleLeftLabel.setBounds(0 + insets.left, 0 + insets.top, 215, 655);
         rectangleRightLabel.setBounds(1054 + insets.left, 0 + insets.top, 215, 655);
         cardDeckLabel.setBounds(25 + insets.left, 20 + insets.top, 135, 190);
@@ -658,6 +677,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Adding elements to pane
         pane.add(seaGullLabel);
         pane.add(whaleLabel);
+        pane.add(octopusLabel);
+        pane.add(crabLabel);
         pane.add(p1Label);
         pane.add(p2Label);
         pane.add(p3Label);
@@ -847,6 +868,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         returnMenu = new JMenuItem(" Return to Menu", returnBack);
         exit = new JMenuItem(" Exit", redX);
 
+        // Setting frame icon
+        settingsFrame.setIconImage(GValleyJava.getImage());
+        
         // Setting background colors
         exit.setBackground(yellow);
         UIManager.put("MenuBar.background", lightGrey);
