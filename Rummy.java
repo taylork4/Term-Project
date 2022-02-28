@@ -150,6 +150,15 @@ public class Rummy {
     }
 
     /**
+     * getter for array of players
+     * @param playerNum number of player to be returned
+     * @return player at passed in index
+     */
+    public Player getPlayer(int playerNum){
+        return players.get(playerNum);
+    }
+
+    /**
      * 
      * @param index index of the card to be returned
      * @return the card at the passed in index
