@@ -48,7 +48,8 @@ public class RummyGUI extends JFrame implements ActionListener {
     // JLabel declarations
     private JLabel titleLabel, p1Label, p2Label, p3Label, p4Label, cardDeckLabel,
             dash1Label, dash2Label, dash3Label, rectangleLeftLabel, octopusLabel,
-            rectangleRightLabel, seaGullLabel, whaleLabel, anchorFallLabel, crabLabel;
+            rectangleRightLabel, seaGullLabel, whaleLabel, crabLabel, underWLabel,
+            crabGIFLabel;
     private JLabel cardAnchorA, cardAnchor2, cardAnchor3, cardAnchor4, // Anchor label for suit
             cardAnchor5, cardAnchor6, cardAnchor7, cardAnchor8, cardAnchor9,
             cardAnchor10, cardAnchorJ, cardAnchorQ, cardAnchorK;
@@ -65,7 +66,8 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     // ImageIcon declarations
     private ImageIcon settingsGear, redX, backOfCardLR, how2Play, returnBack,
-            rectangleLeft, rectangleRight, avatar1, avatar2, avatar3, avatar4;
+            rectangleLeft, rectangleRight, avatar1, avatar2, avatar3, avatar4,
+            underWater, crabGIF, GValleyJava;
     private ImageIcon anchorA, anchor2, anchor3, anchor4, anchor5, // Anchor suit images
             anchor6, anchor7, anchor8, anchor9, anchor10, anchorJ,
             anchorQ, anchorK;
@@ -110,10 +112,13 @@ public class RummyGUI extends JFrame implements ActionListener {
      */
     public RummyGUI() {
         // Creating image icons
+        GValleyJava = new ImageIcon("images/GValleyJava.png");
         avatar1 = new ImageIcon("images/seaGull.jpg");
         avatar2 = new ImageIcon("images/whale.jpg");
         avatar3 = new ImageIcon("images/octopus.jpg");
         avatar4 = new ImageIcon("images/crab.jpg");
+        crabGIF = new ImageIcon("images/crabGif.gif");
+        underWater = new ImageIcon("images/underWater.png");
         rectangleLeft = new ImageIcon("images/gameBackgroundTan.png");
         rectangleRight = new ImageIcon("images/gameBackgroundTan.png");
         settingsGear = new ImageIcon("images/settings-gear.png");
@@ -233,6 +238,8 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Creating labels
         titleLabel = new JLabel("Lakers Rummy");
+        underWLabel = new JLabel(underWater);
+        crabGIFLabel = new JLabel(crabGIF);
 
         // Creating buttons
         playButton = new JButton("Play");
@@ -252,6 +259,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         exit = new JMenuItem(" Exit", redX);
         rummyHow = new JMenuItem(" Rummy", how2Play);
         lakersRummyHow = new JMenuItem(" Lakers Rummy", how2Play);
+
+        // Setting frame icon
+        mainMenuFrame.setIconImage(GValleyJava.getImage());
 
         // Setting background colors
         exit.setBackground(yellow);
@@ -307,7 +317,9 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
-        titleLabel.setBounds(175 + insets.left, 10 + insets.top, 1000, 150);
+        crabGIFLabel.setBounds(565 + insets.left, 75 + insets.top, 100, 75);
+        underWLabel.setBounds(0 + insets.left, 0 + insets.top, 1500, 700);
+        titleLabel.setBounds(185 + insets.left, 10 + insets.top, 1000, 150);
         playButton.setBounds(520 + insets.left, 150 + insets.top, 200, 120);
         rummyButton.setBounds(285 + insets.left, 300 + insets.top, 275, 130);
         lakersRummyButton.setBounds(675 + insets.left, 300 + insets.top, 325, 130);
@@ -333,6 +345,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Adding elements to pane
         pane.add(titleLabel);
+        pane.add(crabGIFLabel);
         pane.add(playButton);
         pane.add(rummyButton);
         pane.add(lakersRummyButton);
@@ -340,6 +353,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(twoPlayerButton);
         pane.add(threePlayerButton);
         pane.add(fourPlayerButton);
+        pane.add(underWLabel);
 
         // Addiing action listeners to elements
         settings.addActionListener(this);
@@ -463,6 +477,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         exit = new JMenuItem(" Exit", redX);
         rummyHow = new JMenuItem(" Rummy", how2Play);
         lakersRummyHow = new JMenuItem(" Lakers Rummy", how2Play);
+
+        // Setting frame icon
+        gameFrame.setIconImage(GValleyJava.getImage());
 
         // Setting background colors
         exit.setBackground(yellow);
@@ -767,6 +784,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         returnGame = new JMenuItem(" Return to Game", returnBack);
         returnMenu = new JMenuItem(" Return to Menu", returnBack);
         exit = new JMenuItem(" Exit", redX);
+
+        // Setting frame icon
+        settingsFrame.setIconImage(GValleyJava.getImage());
 
         // Setting background colors
         exit.setBackground(yellow);
