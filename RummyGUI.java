@@ -71,7 +71,7 @@ public class RummyGUI extends JFrame implements ActionListener {
             cardSailor5, cardSailor6, cardSailor7, cardSailor8, cardSailor9,
             cardSailor10, cardSailorJ, cardSailorQ, cardSailorK;
     private JLabel hand1, hand2, hand3, hand4, hand5, hand6, hand7;
-    private JLabel[] handLabels = {hand1, hand2, hand3, hand4, hand5, hand6, hand7};
+    private JLabel[] handLabels = { hand1, hand2, hand3, hand4, hand5, hand6, hand7 };
 
     // ImageIcon declarations
     private ImageIcon settingsGear, redX, backOfCardLR, how2Play, returnBack,
@@ -409,7 +409,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Creating pane
         pane = new Container();
         pane.setLayout(null);
-        
+
         // Creating labels
         seaGullLabel = new JLabel(avatar1);
         whaleLabel = new JLabel(avatar2);
@@ -477,7 +477,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         cardSailorJ = new JLabel(sailorJ);
         cardSailorQ = new JLabel(sailorQ);
         cardSailorK = new JLabel(sailorK);
-        for(int i = 0; i < 7; i++){
+        for (int i = 0; i < 7; i++) {
             handLabels[i] = new JLabel("TEST");
         }
 
@@ -660,8 +660,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         // cardSailorJ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         // cardSailorQ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         // cardSailorK.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        for(int i = 0; i < 7 * 120; i += 120){  //loop to add cards in hand to bottom of screen
-            handLabels[i/120].setBounds(220 + i + insets.left, 500 + insets.bottom, 186, 135);
+        for (int i = 0; i < 7 * 120; i += 120) { // loop to add cards in hand to bottom of screen
+            handLabels[i / 120].setBounds(220 + i + insets.left, 500 + insets.bottom, 186, 135);
         }
 
         // Adding elements to menubar
@@ -747,7 +747,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(cardSailorK);
         pane.add(rectangleLeftLabel);
         pane.add(rectangleRightLabel);
-        for(int i = 0; i < 7; i++){
+        for (int i = 0; i < 7; i++) {
             pane.add(handLabels[i]);
         }
 
@@ -776,7 +776,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         gameInProg = true;
         currentScreen = GAME;
 
-        //adding players, dealing, and populating cardmap
+        // adding players, dealing, and populating cardmap
         rummy.addPlayer(numPlayers);
         rummy.deal();
 
@@ -833,19 +833,21 @@ public class RummyGUI extends JFrame implements ActionListener {
         cardMap.put(rummy.getCard(50), cardGVLogoK);
         cardMap.put(rummy.getCard(51), cardSailorK);
 
-        //this.updateHand(0);
+        // this.updateHand(0);
     }
 
     /**
      * populates the bottom of the screen with the cards in the player's hand
+     * 
      * @param playerNum number of player whose cards are shown
      */
-    private void updateHand(int playerNum){
-        //for(int i = 0; i < rummy.getPlayer(playerNum).hand.cardArr.size(); i++){
-            //hand1 = cardMap.get(rummy.getPlayer(playerNum).hand.cardArr.get(0));
-        //}
+    private void updateHand(int playerNum) {
+        // for(int i = 0; i < rummy.getPlayer(playerNum).hand.cardArr.size(); i++){
+        // hand1 = cardMap.get(rummy.getPlayer(playerNum).hand.cardArr.get(0));
+        // }
 
     }
+
     /**************************************************************************************************************************************************************************************
      * The settingsScreen() method creates the settings screen.
      */
@@ -876,7 +878,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting frame icon
         settingsFrame.setIconImage(GValleyJava.getImage());
-        
+
         // Setting background colors
         exit.setBackground(yellow);
         UIManager.put("MenuBar.background", lightGrey);
