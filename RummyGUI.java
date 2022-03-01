@@ -620,6 +620,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         for(int i = 0; i < 7; i++){
             handLabels[i] = cardMap.get(rummy.getPlayer(0).hand.cardArr.get(i));
+        }
         cardAnchorAS = new JLabel(anchorAS);
         cardAnchor2S = new JLabel(anchor2S);
         cardAnchor3S = new JLabel(anchor3S);
@@ -672,10 +673,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         cardSailorJS = new JLabel(sailorJS);
         cardSailorQS = new JLabel(sailorQS);
         cardSailorKS = new JLabel(sailorKS);
-
-        for (int j = 0; j < 7; j++) {
-            handLabels[j] = new JLabel("Text");
-        }
 
         // Creating menus
         options = new JMenu("Options");
@@ -922,8 +919,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         // cardSailorJ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         // cardSailorQ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         // cardSailorK.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        for (int i = 0; i < 7 * 120; i += 120) { // loop to add cards in hand to bottom of screen
-            handLabels[i / 120].setBounds(220 + i + insets.left, 500 + insets.bottom, 186, 135);
+        for (int j = 0; j < 7 * 120; j += 120) { // loop to add cards in hand to bottom of screen
+            handLabels[j / 120].setBounds(220 + j + insets.left, 500 + insets.bottom, 186, 135);
         }
 
         // Adding elements to menubar
@@ -1064,8 +1061,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(rectangleLeftLabel);
         pane.add(rectangleRightLabel);
 
-        for (int i = 0; i < 7; i++) {
-            pane.add(handLabels[i]);
+        for (int j = 0; j < 7; j++) {
+            pane.add(handLabels[j]);
         }
 
         // Addiing action listeners to elements
@@ -1092,17 +1089,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Setting game as in progress
         gameInProg = true;
         currentScreen = GAME;
-
-    }
-
-    /**
-     * populates the bottom of the screen with the cards in the player's hand
-     * @param playerNum number of player whose cards are shown
-     */
-    private void updateHand(int playerNum){
-        for(int i = 0; i < rummy.getPlayer(playerNum).hand.cardArr.size(); i++){
-            handLabels[i] = cardMap.get(rummy.getPlayer(playerNum).hand.cardArr.get(i));
-        }
     }
     /**************************************************************************************************************************************************************************************
      * The settingsScreen() method creates the settings screen.
