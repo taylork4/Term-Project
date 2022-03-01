@@ -1,7 +1,7 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 
 public class TestCard {
     /**************************************************************************************************************************************************************************************
@@ -51,7 +51,7 @@ public class TestCard {
             Card cBadParam = new Card(1, "apples");
             Card cBadParam2 = new Card(-1, "spades");
             Card cBadParam3 = new Card(0, "clubs");
-            Card cBadParam4 = new Card(54, "spades"); 
+            Card cBadParam4 = new Card(54, "spades");
         });
     }
 }

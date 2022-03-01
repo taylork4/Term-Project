@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.ArrayList;
 
 //https://github.com/nivedk/Rummy/blob/master/Game.java
 //Reference for general structure ^^
@@ -152,10 +152,11 @@ public class Rummy {
 
     /**
      * getter for array of players
+     * 
      * @param playerNum number of player to be returned
      * @return player at passed in index
      */
-    public Player getPlayer(int playerNum){
+    public Player getPlayer(int playerNum) {
         return players.get(playerNum);
     }
 
@@ -164,7 +165,7 @@ public class Rummy {
      * @param index index of the card to be returned
      * @return the card at the passed in index
      */
-    public Card getCard(int index){
+    public Card getCard(int index) {
         return this.deck.cardArr.get(index);
     }
 

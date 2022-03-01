@@ -1,16 +1,24 @@
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleConstants.FontConstants;
-import java.util.HashMap;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseAdapter;
-import java.util.GregorianCalendar;
+import java.awt.event.MouseEvent;
+import java.nio.Buffer;
+import java.util.HashMap;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.UIManager;
+import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicBorders;
 
 public class RummyGUI extends JFrame implements ActionListener {
     /**************************************************************************************************************************************************************************************
@@ -42,14 +50,16 @@ public class RummyGUI extends JFrame implements ActionListener {
             settings, exit;
 
     // JButton declarations
-    private JButton playButton, rummyButton, lakersRummyButton;
+    private JButton playButton, rummyButton, lakersRummyButton, makeMeldButton,
+            addToMeldButton;
     private JButton onePlayerButton, twoPlayerButton, threePlayerButton, // Number of players buttons
             fourPlayerButton;
 
     // JLabel declarations
     private JLabel titleLabel, p1Label, p2Label, p3Label, p4Label, cardDeckLabel,
-            dash1Label, dash2Label, dash3Label, rectangleLeftLabel,
-            rectangleRightLabel, seaGullLabel, whaleLabel;
+            dash1Label, dash2Label, dash3Label, rectangleLeftLabel, octopusLabel,
+            rectangleRightLabel, seaGullLabel, whaleLabel, crabLabel, underWLabel,
+            crabGIFLabel;
     private JLabel cardAnchorA, cardAnchor2, cardAnchor3, cardAnchor4, // Anchor label for suit
             cardAnchor5, cardAnchor6, cardAnchor7, cardAnchor8, cardAnchor9,
             cardAnchor10, cardAnchorJ, cardAnchorQ, cardAnchorK;
@@ -63,12 +73,26 @@ public class RummyGUI extends JFrame implements ActionListener {
     private JLabel cardSailorA, cardSailor2, cardSailor3, cardSailor4, // Sailor label for suit
             cardSailor5, cardSailor6, cardSailor7, cardSailor8, cardSailor9,
             cardSailor10, cardSailorJ, cardSailorQ, cardSailorK;
+    private JLabel cardAnchorAS, cardAnchor2S, cardAnchor3S, cardAnchor4S, // Anchor label for suit (Small)
+            cardAnchor5S, cardAnchor6S, cardAnchor7S, cardAnchor8S, cardAnchor9S,
+            cardAnchor10S, cardAnchorJS, cardAnchorQS, cardAnchorKS;
+    private JLabel cardClockTowAS, cardClockTow2S, cardClockTow3S, cardClockTow4S, // Clock Tower label for suit (Small)
+            cardClockTow5S, cardClockTow6S, cardClockTow7S, cardClockTow8S,
+            cardClockTow9S, cardClockTow10S, cardClockTowJS, cardClockTowQS,
+            cardClockTowKS;
+    private JLabel cardGVLogoAS, cardGVLogo2S, cardGVLogo3S, cardGVLogo4S, // GVLogo label for suit (Small)
+            cardGVLogo5S, cardGVLogo6S, cardGVLogo7S, cardGVLogo8S, cardGVLogo9S,
+            cardGVLogo10S, cardGVLogoJS, cardGVLogoQS, cardGVLogoKS;
+    private JLabel cardSailorAS, cardSailor2S, cardSailor3S, cardSailor4S, // Sailor label for suit (Small)
+            cardSailor5S, cardSailor6S, cardSailor7S, cardSailor8S, cardSailor9S,
+            cardSailor10S, cardSailorJS, cardSailorQS, cardSailorKS;
     private JLabel hand1, hand2, hand3, hand4, hand5, hand6, hand7;
-    private JLabel[] handLabels = {hand1, hand2, hand3, hand4, hand5, hand6, hand7};
+    private JLabel[] handLabels = { hand1, hand2, hand3, hand4, hand5, hand6, hand7 };
 
     // ImageIcon declarations
     private ImageIcon settingsGear, redX, backOfCardLR, how2Play, returnBack,
-            rectangleLeft, rectangleRight, avatar1, avatar2, avatar3, avatar4;
+            rectangleLeft, rectangleRight, avatar1, avatar2, avatar3, avatar4,
+            underWater, crabGIF, GValleyJava;
     private ImageIcon anchorA, anchor2, anchor3, anchor4, anchor5, // Anchor suit images
             anchor6, anchor7, anchor8, anchor9, anchor10, anchorJ,
             anchorQ, anchorK;
@@ -81,6 +105,18 @@ public class RummyGUI extends JFrame implements ActionListener {
     private ImageIcon sailorA, sailor2, sailor3, sailor4, sailor5, // Sailor card suit images
             sailor6, sailor7, sailor8, sailor9, sailor10, sailorJ,
             sailorQ, sailorK;
+    private ImageIcon anchorAS, anchor2S, anchor3S, anchor4S, anchor5S, // Anchor suit images (Small)
+            anchor6S, anchor7S, anchor8S, anchor9S, anchor10S, anchorJS,
+            anchorQS, anchorKS;
+    private ImageIcon clockTowAS, clockTow2S, clockTow3S, clockTow4S, // Clock Tower suit images (Small)
+            clockTow5S, clockTow6S, clockTow7S, clockTow8S, clockTow9S,
+            clockTow10S, clockTowJS, clockTowQS, clockTowKS;
+    private ImageIcon logoGVAS, logoGV2S, logoGV3S, logoGV4S, logoGV5S, // GV Logo card suit images (Small)
+            logoGV6S, logoGV7S, logoGV8S, logoGV9S, logoGV10S, logoGVJS,
+            logoGVQS, logoGVKS;
+    private ImageIcon sailorAS, sailor2S, sailor3S, sailor4S, sailor5S, // Sailor card suit images (Small)
+            sailor6S, sailor7S, sailor8S, sailor9S, sailor10S, sailorJS,
+            sailorQS, sailorKS;
 
     // Font declarations
     private Font titleFont, menuFont, subMenuFont, playButtonFont,
@@ -88,7 +124,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     // LineBorder declarations
     private LineBorder cardBorder, cardHighlightBorder, menuBorder,
-            buttonBorder;
+            buttonBorder, meldBorder;
 
     // Color declarations
     private Color black, darkGrey, grey, lightGrey, white,
@@ -117,8 +153,13 @@ public class RummyGUI extends JFrame implements ActionListener {
      */
     public RummyGUI() {
         // Creating image icons
+        GValleyJava = new ImageIcon("images/GValleyJava.png");
         avatar1 = new ImageIcon("images/seaGull.jpg");
         avatar2 = new ImageIcon("images/whale.jpg");
+        avatar3 = new ImageIcon("images/octopus.jpg");
+        avatar4 = new ImageIcon("images/crab.jpg");
+        crabGIF = new ImageIcon("images/crabGif.gif");
+        underWater = new ImageIcon("images/underWater.png");
         rectangleLeft = new ImageIcon("images/gameBackgroundTan.png");
         rectangleRight = new ImageIcon("images/gameBackgroundTan.png");
         settingsGear = new ImageIcon("images/settings-gear.png");
@@ -178,6 +219,58 @@ public class RummyGUI extends JFrame implements ActionListener {
         sailorJ = new ImageIcon("images/LR_Cards/Sailor/JackSailor");
         sailorQ = new ImageIcon("images/LR_Cards/Sailor/QueenSailor");
         sailorK = new ImageIcon("images/LR_Cards/Sailor/KingSailor");
+        anchorAS = new ImageIcon("images/LR_Cards/AnchorsS/AceAnchorS.jpg");
+        anchor2S = new ImageIcon("images/LR_Cards/AnchorsS/2AnchorS.jpg");
+        anchor3S = new ImageIcon("images/LR_Cards/AnchorsS/3AnchorS.jpg");
+        anchor4S = new ImageIcon("images/LR_Cards/AnchorsS/4AnchorS.jpg");
+        anchor5S = new ImageIcon("images/LR_Cards/AnchorsS/5AnchorS.jpg");
+        anchor6S = new ImageIcon("images/LR_Cards/AnchorsS/6AnchorS.jpg");
+        anchor7S = new ImageIcon("images/LR_Cards/AnchorsS/7AnchorS.jpg");
+        anchor8S = new ImageIcon("images/LR_Cards/AnchorsS/8AnchorS.jpg");
+        anchor9S = new ImageIcon("images/LR_Cards/AnchorsS/9AnchorS.jpg");
+        anchor10S = new ImageIcon("images/LR_Cards/AnchorsS/10AnchorS.jpg");
+        anchorJS = new ImageIcon("images/LR_Cards/AnchorsS/JackAnchorS.jpg");
+        anchorQS = new ImageIcon("images/LR_Cards/AnchorsS/QueenAnchorS.jpg");
+        anchorKS = new ImageIcon("images/LR_Cards/AnchorsS/KingAnchorS.jpg");
+        clockTowAS = new ImageIcon("images/LR_Cards/ClockTowersS/AceCTS.jpg");
+        clockTow2S = new ImageIcon("images/LR_Cards/ClockTowersS/2CTS.jpg");
+        clockTow3S = new ImageIcon("images/LR_Cards/ClockTowersS/3CTS.jpg");
+        clockTow4S = new ImageIcon("images/LR_Cards/ClockTowersS/4CTS.jpg");
+        clockTow5S = new ImageIcon("images/LR_Cards/ClockTowersS/5CTS.jpg");
+        clockTow6S = new ImageIcon("images/LR_Cards/ClockTowersS/6CTS.jpg");
+        clockTow7S = new ImageIcon("images/LR_Cards/ClockTowersS/7CTS.jpg");
+        clockTow8S = new ImageIcon("images/LR_Cards/ClockTowersS/8CTS.jpg");
+        clockTow9S = new ImageIcon("images/LR_Cards/ClockTowersS/9CTS.jpg");
+        clockTow10S = new ImageIcon("images/LR_Cards/ClockTowersS/10CTS.jpg");
+        clockTowJS = new ImageIcon("images/LR_Cards/ClockTowersS/JackCTS.jpg");
+        clockTowQS = new ImageIcon("images/LR_Cards/ClockTowersS/QueenCTS.jpg");
+        clockTowKS = new ImageIcon("images/LR_Cards/ClockTowersS/KingCTS.jpg");
+        logoGVAS = new ImageIcon("images/LR_Cards/GVLogoS/AceGVLogoS.jpg");
+        logoGV2S = new ImageIcon("images/LR_Cards/GVLogoS/2GVLogoS.jpg");
+        logoGV3S = new ImageIcon("images/LR_Cards/GVLogoS/3GVLogoS.jpg");
+        logoGV4S = new ImageIcon("images/LR_Cards/GVLogoS/4GVLogoS.jpg");
+        logoGV5S = new ImageIcon("images/LR_Cards/GVLogoS/5GVLogoS.jpg");
+        logoGV6S = new ImageIcon("images/LR_Cards/GVLogoS/6GVLogoS.jpg");
+        logoGV7S = new ImageIcon("images/LR_Cards/GVLogoS/7GVLogoS.jpg");
+        logoGV8S = new ImageIcon("images/LR_Cards/GVLogoS/8GVLogoS.jpg");
+        logoGV9S = new ImageIcon("images/LR_Cards/GVLogoS/9GVLogoS.jpg");
+        logoGV10S = new ImageIcon("images/LR_Cards/GVLogoS/10GVLogoS.jpg");
+        logoGVJS = new ImageIcon("images/LR_Cards/GVLogoS/JackGVLogoS.jpg");
+        logoGVQS = new ImageIcon("images/LR_Cards/GVLogoS/QueenGVLogoS.jpg");
+        logoGVKS = new ImageIcon("images/LR_Cards/GVLogoS/KingGVLogoS.jpg");
+        sailorAS = new ImageIcon("images/LR_Cards/SailorS/AceSailorS");
+        sailor2S = new ImageIcon("images/LR_Cards/SailorS/2SailorS");
+        sailor3S = new ImageIcon("images/LR_Cards/SailorS/3SailorS");
+        sailor4S = new ImageIcon("images/LR_Cards/SailorS/4SailorS");
+        sailor5S = new ImageIcon("images/LR_Cards/SailorS/5SailorS");
+        sailor6S = new ImageIcon("images/LR_Cards/SailorS/6SailorS");
+        sailor7S = new ImageIcon("images/LR_Cards/SailorS/7SailorS");
+        sailor8S = new ImageIcon("images/LR_Cards/SailorS/8SailorS");
+        sailor9S = new ImageIcon("images/LR_Cards/SailorS/9SailorS");
+        sailor10S = new ImageIcon("images/LR_Cards/SailorS/10SailorS");
+        sailorJS = new ImageIcon("images/LR_Cards/SailorS/JackSailorS");
+        sailorQS = new ImageIcon("images/LR_Cards/SailorS/QueenSailorS");
+        sailorKS = new ImageIcon("images/LR_Cards/SailorS/KingSailorS");
 
         // Creating colors
         black = Color.BLACK;
@@ -210,6 +303,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Creating borders
         cardBorder = new LineBorder(black, 2);
         cardHighlightBorder = new LineBorder(magenta, 3);
+        meldBorder = new LineBorder(black, 3);
         menuBorder = new LineBorder(black, 1);
         buttonBorder = new LineBorder(black, 5);
 
@@ -238,6 +332,8 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Creating labels
         titleLabel = new JLabel("Lakers Rummy");
+        underWLabel = new JLabel(underWater);
+        crabGIFLabel = new JLabel(crabGIF);
 
         // Creating buttons
         playButton = new JButton("Play");
@@ -257,6 +353,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         exit = new JMenuItem(" Exit", redX);
         rummyHow = new JMenuItem(" Rummy", how2Play);
         lakersRummyHow = new JMenuItem(" Lakers Rummy", how2Play);
+
+        // Setting frame icon
+        mainMenuFrame.setIconImage(GValleyJava.getImage());
 
         // Setting background colors
         exit.setBackground(yellow);
@@ -312,7 +411,9 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
-        titleLabel.setBounds(175 + insets.left, 10 + insets.top, 1000, 150);
+        crabGIFLabel.setBounds(565 + insets.left, 75 + insets.top, 100, 75);
+        underWLabel.setBounds(0 + insets.left, 0 + insets.top, 1500, 700);
+        titleLabel.setBounds(185 + insets.left, 10 + insets.top, 1000, 150);
         playButton.setBounds(520 + insets.left, 150 + insets.top, 200, 120);
         rummyButton.setBounds(285 + insets.left, 300 + insets.top, 275, 130);
         lakersRummyButton.setBounds(675 + insets.left, 300 + insets.top, 325, 130);
@@ -338,6 +439,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Adding elements to pane
         pane.add(titleLabel);
+        pane.add(crabGIFLabel);
         pane.add(playButton);
         pane.add(rummyButton);
         pane.add(lakersRummyButton);
@@ -345,6 +447,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(twoPlayerButton);
         pane.add(threePlayerButton);
         pane.add(fourPlayerButton);
+        pane.add(underWLabel);
 
         // Addiing action listeners to elements
         settings.addActionListener(this);
@@ -389,12 +492,12 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Creating pane
         pane = new Container();
         pane.setLayout(null);
-        
+
         // Creating labels
         seaGullLabel = new JLabel(avatar1);
         whaleLabel = new JLabel(avatar2);
-        //Label = new JLabel(avatar3);
-        //Label = new JLabel(avatar4);
+        octopusLabel = new JLabel(avatar3);
+        crabLabel = new JLabel(avatar4);
         p1Label = new JLabel("Cards in hand: ");
         p2Label = new JLabel("Cards in hand: ");
         p3Label = new JLabel("Cards in hand: ");
@@ -517,6 +620,61 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         for(int i = 0; i < 7; i++){
             handLabels[i] = cardMap.get(rummy.getPlayer(0).hand.cardArr.get(i));
+        cardAnchorAS = new JLabel(anchorAS);
+        cardAnchor2S = new JLabel(anchor2S);
+        cardAnchor3S = new JLabel(anchor3S);
+        cardAnchor4S = new JLabel(anchor4S);
+        cardAnchor5S = new JLabel(anchor5S);
+        cardAnchor6S = new JLabel(anchor6S);
+        cardAnchor7S = new JLabel(anchor7S);
+        cardAnchor8S = new JLabel(anchor8S);
+        cardAnchor9S = new JLabel(anchor9S);
+        cardAnchor10S = new JLabel(anchor10S);
+        cardAnchorJS = new JLabel(anchorJS);
+        cardAnchorQS = new JLabel(anchorQS);
+        cardAnchorKS = new JLabel(anchorKS);
+        cardClockTowAS = new JLabel(clockTowAS);
+        cardClockTow2S = new JLabel(clockTow2S);
+        cardClockTow3S = new JLabel(clockTow3S);
+        cardClockTow4S = new JLabel(clockTow4S);
+        cardClockTow5S = new JLabel(clockTow5S);
+        cardClockTow6S = new JLabel(clockTow6S);
+        cardClockTow7S = new JLabel(clockTow7S);
+        cardClockTow8S = new JLabel(clockTow8S);
+        cardClockTow9S = new JLabel(clockTow9S);
+        cardClockTow10S = new JLabel(clockTow10S);
+        cardClockTowJS = new JLabel(clockTowJS);
+        cardClockTowQS = new JLabel(clockTowQS);
+        cardClockTowKS = new JLabel(clockTowKS);
+        cardGVLogoAS = new JLabel(logoGVAS);
+        cardGVLogo2S = new JLabel(logoGV2S);
+        cardGVLogo3S = new JLabel(logoGV3S);
+        cardGVLogo4S = new JLabel(logoGV4S);
+        cardGVLogo5S = new JLabel(logoGV5S);
+        cardGVLogo6S = new JLabel(logoGV6S);
+        cardGVLogo7S = new JLabel(logoGV7S);
+        cardGVLogo8S = new JLabel(logoGV8S);
+        cardGVLogo9S = new JLabel(logoGV9S);
+        cardGVLogo10S = new JLabel(logoGV10S);
+        cardGVLogoJS = new JLabel(logoGVJS);
+        cardGVLogoQS = new JLabel(logoGVQS);
+        cardGVLogoKS = new JLabel(logoGVKS);
+        cardSailorAS = new JLabel(sailorAS);
+        cardSailor2S = new JLabel(sailor2S);
+        cardSailor3S = new JLabel(sailor3S);
+        cardSailor4S = new JLabel(sailor4S);
+        cardSailor5S = new JLabel(sailor5S);
+        cardSailor6S = new JLabel(sailor6S);
+        cardSailor7S = new JLabel(sailor7S);
+        cardSailor8S = new JLabel(sailor8S);
+        cardSailor9S = new JLabel(sailor9S);
+        cardSailor10S = new JLabel(sailor10S);
+        cardSailorJS = new JLabel(sailorJS);
+        cardSailorQS = new JLabel(sailorQS);
+        cardSailorKS = new JLabel(sailorKS);
+
+        for (int j = 0; j < 7; j++) {
+            handLabels[j] = new JLabel("Text");
         }
 
         // Creating menus
@@ -530,11 +688,22 @@ public class RummyGUI extends JFrame implements ActionListener {
         rummyHow = new JMenuItem(" Rummy", how2Play);
         lakersRummyHow = new JMenuItem(" Lakers Rummy", how2Play);
 
+        // Creating buttons
+        makeMeldButton = new JButton("Make Meld");
+        addToMeldButton = new JButton("Add to Meld");
+
+        // Setting frame icon
+        gameFrame.setIconImage(GValleyJava.getImage());
+
         // Setting background colors
         exit.setBackground(yellow);
+        makeMeldButton.setBackground(orange);
+        addToMeldButton.setBackground(orange);
         UIManager.put("MenuBar.background", lightGrey);
 
         // Setting foreground colors
+        makeMeldButton.setForeground(black);
+        addToMeldButton.setForeground(black);
         p1Label.setForeground(black);
         p2Label.setForeground(black);
         p3Label.setForeground(black);
@@ -551,6 +720,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         lakersRummyHow.setForeground(black);
 
         // Setting fonts
+        makeMeldButton.setFont(menuFont);
+        addToMeldButton.setFont(menuFont);
         p1Label.setFont(avatarFont);
         p2Label.setFont(avatarFont);
         p3Label.setFont(avatarFont);
@@ -567,8 +738,10 @@ public class RummyGUI extends JFrame implements ActionListener {
         lakersRummyHow.setFont(subMenuFont);
 
         // Setting borders
-        //Label.setBorder(cardBorder);
-        //Label.setBorder(cardBorder);
+        makeMeldButton.setBorder(meldBorder);
+        addToMeldButton.setBorder(meldBorder);
+        crabLabel.setBorder(cardBorder);
+        octopusLabel.setBorder(cardBorder);
         whaleLabel.setBorder(cardBorder);
         seaGullLabel.setBorder(cardBorder);
         rectangleLeftLabel.setBorder(buttonBorder);
@@ -626,24 +799,78 @@ public class RummyGUI extends JFrame implements ActionListener {
         cardSailorJ.setBorder(cardBorder);
         cardSailorQ.setBorder(cardBorder);
         cardSailorK.setBorder(cardBorder);
+        cardAnchorAS.setBorder(cardBorder);
+        cardAnchor2S.setBorder(cardBorder);
+        cardAnchor3S.setBorder(cardBorder);
+        cardAnchor4S.setBorder(cardBorder);
+        cardAnchor5S.setBorder(cardBorder);
+        cardAnchor6S.setBorder(cardBorder);
+        cardAnchor7S.setBorder(cardBorder);
+        cardAnchor8S.setBorder(cardBorder);
+        cardAnchor9S.setBorder(cardBorder);
+        cardAnchor10S.setBorder(cardBorder);
+        cardAnchorJS.setBorder(cardBorder);
+        cardAnchorQS.setBorder(cardBorder);
+        cardAnchorKS.setBorder(cardBorder);
+        cardClockTowAS.setBorder(cardBorder);
+        cardClockTow2S.setBorder(cardBorder);
+        cardClockTow3S.setBorder(cardBorder);
+        cardClockTow4S.setBorder(cardBorder);
+        cardClockTow5S.setBorder(cardBorder);
+        cardClockTow6S.setBorder(cardBorder);
+        cardClockTow7S.setBorder(cardBorder);
+        cardClockTow8S.setBorder(cardBorder);
+        cardClockTow9S.setBorder(cardBorder);
+        cardClockTow10S.setBorder(cardBorder);
+        cardClockTowJS.setBorder(cardBorder);
+        cardClockTowQS.setBorder(cardBorder);
+        cardClockTowKS.setBorder(cardBorder);
+        cardGVLogoAS.setBorder(cardBorder);
+        cardGVLogo2S.setBorder(cardBorder);
+        cardGVLogo3S.setBorder(cardBorder);
+        cardGVLogo4S.setBorder(cardBorder);
+        cardGVLogo5S.setBorder(cardBorder);
+        cardGVLogo6S.setBorder(cardBorder);
+        cardGVLogo7S.setBorder(cardBorder);
+        cardGVLogo8S.setBorder(cardBorder);
+        cardGVLogo9S.setBorder(cardBorder);
+        cardGVLogo10S.setBorder(cardBorder);
+        cardGVLogoJS.setBorder(cardBorder);
+        cardGVLogoQS.setBorder(cardBorder);
+        cardGVLogoKS.setBorder(cardBorder);
+        cardSailorAS.setBorder(cardBorder);
+        cardSailor2S.setBorder(cardBorder);
+        cardSailor3S.setBorder(cardBorder);
+        cardSailor4S.setBorder(cardBorder);
+        cardSailor5S.setBorder(cardBorder);
+        cardSailor6S.setBorder(cardBorder);
+        cardSailor7S.setBorder(cardBorder);
+        cardSailor8S.setBorder(cardBorder);
+        cardSailor9S.setBorder(cardBorder);
+        cardSailor10S.setBorder(cardBorder);
+        cardSailorJS.setBorder(cardBorder);
+        cardSailorQS.setBorder(cardBorder);
+        cardSailorKS.setBorder(cardBorder);
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
+        makeMeldButton.setBounds(35 + insets.left, 250 + insets.top, 145, 50);
+        addToMeldButton.setBounds(35 + insets.left, 340 + insets.top, 145, 50);
         seaGullLabel.setBounds(1090 + insets.left, 20 + insets.top, 145, 105);
         whaleLabel.setBounds(1090 + insets.left, 180 + insets.top, 145, 110);
-        //.setBounds(1090 + insets.left, 125 + insets.top, 145, 100);
-        //.setBounds(1090 + insets.left, 125 + insets.top, 145, 100);
-        p1Label.setBounds(1090 + insets.left, 115 + insets.top, 200, 50);
-        p2Label.setBounds(1090 + insets.left, 280 + insets.top, 200, 50);
-        p3Label.setBounds(1090 + insets.left, 435 + insets.top, 200, 50);
-        p4Label.setBounds(1090 + insets.left, 600 + insets.top, 200, 50);
+        octopusLabel.setBounds(1090 + insets.left, 350 + insets.top, 145, 110);
+        crabLabel.setBounds(1090 + insets.left, 510 + insets.top, 145, 110);
+        p1Label.setBounds(1090 + insets.left, 120 + insets.top, 200, 50);
+        p2Label.setBounds(1090 + insets.left, 285 + insets.top, 200, 50);
+        p3Label.setBounds(1090 + insets.left, 450 + insets.top, 200, 50);
+        p4Label.setBounds(1090 + insets.left, 605 + insets.top, 200, 50);
         dash1Label.setBounds(1055 + insets.left, 100 + insets.top, 300, 75);
         dash2Label.setBounds(1055 + insets.left, 267 + insets.top, 300, 75);
-        dash3Label.setBounds(1055 + insets.left, 422 + insets.top, 300, 75);
+        dash3Label.setBounds(1055 + insets.left, 428 + insets.top, 300, 75);
         rectangleLeftLabel.setBounds(0 + insets.left, 0 + insets.top, 215, 655);
         rectangleRightLabel.setBounds(1054 + insets.left, 0 + insets.top, 215, 655);
-        cardDeckLabel.setBounds(25 + insets.left, 20 + insets.top, 135, 190);
-        cardAnchorA.setBounds(25 + insets.left, 435 + insets.top, 135, 190);
+        cardDeckLabel.setBounds(40 + insets.left, 20 + insets.top, 135, 190);
+        cardAnchorA.setBounds(40 + insets.left, 435 + insets.top, 135, 190);
         // cardAnchor2.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         // cardAnchor3.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         // cardAnchor4.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
@@ -695,8 +922,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         // cardSailorJ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         // cardSailorQ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         // cardSailorK.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        for(int i = 0; i < 7 * 120; i += 120){  //loop to add cards in hand to bottom of screen
-            handLabels[i/120].setBounds(220 + i + insets.left, 500 + insets.bottom, 135, 190);
+        for (int i = 0; i < 7 * 120; i += 120) { // loop to add cards in hand to bottom of screen
+            handLabels[i / 120].setBounds(220 + i + insets.left, 500 + insets.bottom, 186, 135);
         }
 
         // Adding elements to menubar
@@ -716,8 +943,12 @@ public class RummyGUI extends JFrame implements ActionListener {
         gameFrame.add(pane);
 
         // Adding elements to pane
+        pane.add(makeMeldButton);
+        pane.add(addToMeldButton);
         pane.add(seaGullLabel);
         pane.add(whaleLabel);
+        pane.add(octopusLabel);
+        pane.add(crabLabel);
         pane.add(p1Label);
         pane.add(p2Label);
         pane.add(p3Label);
@@ -778,9 +1009,62 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(cardSailorJ);
         pane.add(cardSailorQ);
         pane.add(cardSailorK);
+        pane.add(cardAnchorAS);
+        pane.add(cardAnchor2S);
+        pane.add(cardAnchor3S);
+        pane.add(cardAnchor4S);
+        pane.add(cardAnchor5S);
+        pane.add(cardAnchor6S);
+        pane.add(cardAnchor7S);
+        pane.add(cardAnchor8S);
+        pane.add(cardAnchor9S);
+        pane.add(cardAnchor10S);
+        pane.add(cardAnchorJS);
+        pane.add(cardAnchorQS);
+        pane.add(cardAnchorKS);
+        pane.add(cardClockTowAS);
+        pane.add(cardClockTow2S);
+        pane.add(cardClockTow3S);
+        pane.add(cardClockTow4S);
+        pane.add(cardClockTow5S);
+        pane.add(cardClockTow6S);
+        pane.add(cardClockTow7S);
+        pane.add(cardClockTow8S);
+        pane.add(cardClockTow9S);
+        pane.add(cardClockTow10S);
+        pane.add(cardClockTowJS);
+        pane.add(cardClockTowQS);
+        pane.add(cardClockTowKS);
+        pane.add(cardGVLogoAS);
+        pane.add(cardGVLogo2S);
+        pane.add(cardGVLogo3S);
+        pane.add(cardGVLogo4S);
+        pane.add(cardGVLogo5S);
+        pane.add(cardGVLogo6S);
+        pane.add(cardGVLogo7S);
+        pane.add(cardGVLogo8S);
+        pane.add(cardGVLogo9S);
+        pane.add(cardGVLogo10S);
+        pane.add(cardGVLogoJS);
+        pane.add(cardGVLogoQS);
+        pane.add(cardGVLogoKS);
+        pane.add(cardSailorAS);
+        pane.add(cardSailor2S);
+        pane.add(cardSailor3S);
+        pane.add(cardSailor4S);
+        pane.add(cardSailor5S);
+        pane.add(cardSailor6S);
+        pane.add(cardSailor7S);
+        pane.add(cardSailor8S);
+        pane.add(cardSailor9S);
+        pane.add(cardSailor10S);
+        pane.add(cardSailorJS);
+        pane.add(cardSailorQS);
+        pane.add(cardSailorKS);
         pane.add(rectangleLeftLabel);
         pane.add(rectangleRightLabel);
-        for(int i = 0; i < 7; i++){
+
+        for (int i = 0; i < 7; i++) {
             pane.add(handLabels[i]);
         }
 
@@ -847,6 +1131,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         returnGame = new JMenuItem(" Return to Game", returnBack);
         returnMenu = new JMenuItem(" Return to Menu", returnBack);
         exit = new JMenuItem(" Exit", redX);
+
+        // Setting frame icon
+        settingsFrame.setIconImage(GValleyJava.getImage());
 
         // Setting background colors
         exit.setBackground(yellow);
@@ -946,7 +1233,6 @@ public class RummyGUI extends JFrame implements ActionListener {
             } else if (currentScreen == MENU) { // Changes from menu screen to settings screen
                 mainMenuFrame.dispose();
                 settingsScreen();
-
             }
         }
 
@@ -1073,6 +1359,18 @@ public class RummyGUI extends JFrame implements ActionListener {
             rummy.addPlayer(numPlayers);
             turn = 0;
         }
+    }
+
+    /**************************************************************************************************************************************************************************************
+     * The updateHand(int playerNum) method populates the bottom of the screen with
+     * the cards in the player's hand
+     * 
+     * @param playerNum number of player whose cards are shown
+     */
+    private void updateHand(int playerNum) {
+        // for(int i = 0; i < rummy.getPlayer(playerNum).hand.cardArr.size(); i++){
+        // hand1 = cardMap.get(rummy.getPlayer(playerNum).hand.cardArr.get(0));
+        // }
 
     }
 
