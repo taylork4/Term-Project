@@ -33,6 +33,7 @@ public class Rummy {
         deck = new Deck();
         discard = new Deck(0);
         melds = new ArrayList<Deck>();
+        players = new ArrayList<Player>();
         gameInProg = true;
         setupComplete = false;
     }

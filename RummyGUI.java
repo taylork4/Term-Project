@@ -103,10 +103,12 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     // Game status variable declarations
     private final int MENU, GAME, SETTINGS;
-    private int whichGame, numPlayers, currentScreen;
+    private int whichGame, numPlayers, currentScreen, turn;
     private boolean gameInProg, deckClick, handCardClick, hasSetClicks;
     private Rummy rummy = new Rummy();
     private HashMap<Card, JLabel> cardMap = new HashMap<Card, JLabel>();
+
+    
 
     /**************************************************************************************************************************************************************************************
      * The default constructor for the RummyGUI() class. Within this constructor,
@@ -163,7 +165,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         logoGVJ = new ImageIcon("images/LR_Cards/GVLogo/JackGVLogo.jpg");
         logoGVQ = new ImageIcon("images/LR_Cards/GVLogo/QueenGVLogo.jpg");
         logoGVK = new ImageIcon("images/LR_Cards/GVLogo/KingGVLogo.jpg");
-        sailorA = new ImageIcon("images/LR_Cards/Sailor/AceSailor");
+        sailorA = new ImageIcon("images/LR_Cards/Sailor/AceSailor.jpg");
         sailor2 = new ImageIcon("images/LR_Cards/Sailor/2Sailor");
         sailor3 = new ImageIcon("images/LR_Cards/Sailor/3Sailor");
         sailor4 = new ImageIcon("images/LR_Cards/Sailor/4Sailor");
@@ -455,8 +457,66 @@ public class RummyGUI extends JFrame implements ActionListener {
         cardSailorJ = new JLabel(sailorJ);
         cardSailorQ = new JLabel(sailorQ);
         cardSailorK = new JLabel(sailorK);
+        
+        //populating hashmap 
+        cardMap.put(rummy.getCard(0), cardAnchorA);
+        cardMap.put(rummy.getCard(1), cardClockTowA);
+        cardMap.put(rummy.getCard(2), cardGVLogoA);
+        cardMap.put(rummy.getCard(3), cardSailorA);
+        cardMap.put(rummy.getCard(4), cardAnchor2);
+        cardMap.put(rummy.getCard(5), cardClockTow2);
+        cardMap.put(rummy.getCard(6), cardGVLogo2);
+        cardMap.put(rummy.getCard(7), cardSailor2);
+        cardMap.put(rummy.getCard(8), cardAnchor3);
+        cardMap.put(rummy.getCard(9), cardClockTow3);
+        cardMap.put(rummy.getCard(10), cardGVLogo3);
+        cardMap.put(rummy.getCard(11), cardSailor3);
+        cardMap.put(rummy.getCard(12), cardAnchor4);
+        cardMap.put(rummy.getCard(13), cardClockTow4);
+        cardMap.put(rummy.getCard(14), cardGVLogo4);
+        cardMap.put(rummy.getCard(15), cardSailor4);
+        cardMap.put(rummy.getCard(16), cardAnchor5);
+        cardMap.put(rummy.getCard(17), cardClockTow5);
+        cardMap.put(rummy.getCard(18), cardGVLogo5);
+        cardMap.put(rummy.getCard(19), cardSailor5);
+        cardMap.put(rummy.getCard(20), cardAnchor6);
+        cardMap.put(rummy.getCard(21), cardClockTow6);
+        cardMap.put(rummy.getCard(22), cardGVLogo6);
+        cardMap.put(rummy.getCard(23), cardSailor6);
+        cardMap.put(rummy.getCard(24), cardAnchor7);
+        cardMap.put(rummy.getCard(25), cardClockTow7);
+        cardMap.put(rummy.getCard(26), cardGVLogo7);
+        cardMap.put(rummy.getCard(27), cardSailor7);
+        cardMap.put(rummy.getCard(28), cardAnchor8);
+        cardMap.put(rummy.getCard(29), cardClockTow8);
+        cardMap.put(rummy.getCard(30), cardGVLogo8);
+        cardMap.put(rummy.getCard(31), cardSailor8);
+        cardMap.put(rummy.getCard(32), cardAnchor9);
+        cardMap.put(rummy.getCard(33), cardClockTow9);
+        cardMap.put(rummy.getCard(34), cardGVLogo9);
+        cardMap.put(rummy.getCard(35), cardSailor9);
+        cardMap.put(rummy.getCard(36), cardAnchor10);
+        cardMap.put(rummy.getCard(37), cardClockTow10);
+        cardMap.put(rummy.getCard(38), cardGVLogo10);
+        cardMap.put(rummy.getCard(39), cardSailor10);
+        cardMap.put(rummy.getCard(40), cardAnchorJ);
+        cardMap.put(rummy.getCard(41), cardClockTowJ);
+        cardMap.put(rummy.getCard(42), cardGVLogoJ);
+        cardMap.put(rummy.getCard(43), cardSailorJ);
+        cardMap.put(rummy.getCard(44), cardAnchorQ);
+        cardMap.put(rummy.getCard(45), cardClockTowQ);
+        cardMap.put(rummy.getCard(46), cardGVLogoQ);
+        cardMap.put(rummy.getCard(47), cardSailorQ);
+        cardMap.put(rummy.getCard(48), cardAnchorK);
+        cardMap.put(rummy.getCard(49), cardClockTowK);
+        cardMap.put(rummy.getCard(50), cardGVLogoK);
+        cardMap.put(rummy.getCard(51), cardSailorK);
+
+        //rummy.shuffle(); for testing purposes, did not shuffle yet
+        rummy.deal();
+
         for(int i = 0; i < 7; i++){
-            handLabels[i] = new JLabel("TEST");
+            handLabels[i] = cardMap.get(rummy.getPlayer(0).hand.cardArr.get(i));
         }
 
         // Creating menus
@@ -636,7 +696,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         // cardSailorQ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         // cardSailorK.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         for(int i = 0; i < 7 * 120; i += 120){  //loop to add cards in hand to bottom of screen
-            handLabels[i/120].setBounds(220 + i + insets.left, 500 + insets.bottom, 186, 135);
+            handLabels[i/120].setBounds(220 + i + insets.left, 500 + insets.bottom, 135, 190);
         }
 
         // Adding elements to menubar
@@ -749,64 +809,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         gameInProg = true;
         currentScreen = GAME;
 
-        //adding players, dealing, and populating cardmap
-        rummy.addPlayer(numPlayers);
-        rummy.deal();
-
-        cardMap.put(rummy.getCard(0), cardAnchorA);
-        cardMap.put(rummy.getCard(1), cardClockTowA);
-        cardMap.put(rummy.getCard(2), cardGVLogoA);
-        cardMap.put(rummy.getCard(3), cardSailorA);
-        cardMap.put(rummy.getCard(4), cardAnchor2);
-        cardMap.put(rummy.getCard(5), cardClockTow2);
-        cardMap.put(rummy.getCard(6), cardGVLogo2);
-        cardMap.put(rummy.getCard(7), cardSailor2);
-        cardMap.put(rummy.getCard(8), cardAnchor3);
-        cardMap.put(rummy.getCard(9), cardClockTow3);
-        cardMap.put(rummy.getCard(10), cardGVLogo3);
-        cardMap.put(rummy.getCard(11), cardSailor3);
-        cardMap.put(rummy.getCard(12), cardAnchor4);
-        cardMap.put(rummy.getCard(13), cardClockTow4);
-        cardMap.put(rummy.getCard(14), cardGVLogo4);
-        cardMap.put(rummy.getCard(15), cardSailor4);
-        cardMap.put(rummy.getCard(16), cardAnchor5);
-        cardMap.put(rummy.getCard(17), cardClockTow5);
-        cardMap.put(rummy.getCard(18), cardGVLogo5);
-        cardMap.put(rummy.getCard(19), cardSailor5);
-        cardMap.put(rummy.getCard(20), cardAnchor6);
-        cardMap.put(rummy.getCard(21), cardClockTow6);
-        cardMap.put(rummy.getCard(22), cardGVLogo6);
-        cardMap.put(rummy.getCard(23), cardSailor6);
-        cardMap.put(rummy.getCard(24), cardAnchor7);
-        cardMap.put(rummy.getCard(25), cardClockTow7);
-        cardMap.put(rummy.getCard(26), cardGVLogo7);
-        cardMap.put(rummy.getCard(27), cardSailor7);
-        cardMap.put(rummy.getCard(28), cardAnchor8);
-        cardMap.put(rummy.getCard(29), cardClockTow8);
-        cardMap.put(rummy.getCard(30), cardGVLogo8);
-        cardMap.put(rummy.getCard(31), cardSailor8);
-        cardMap.put(rummy.getCard(32), cardAnchor9);
-        cardMap.put(rummy.getCard(33), cardClockTow9);
-        cardMap.put(rummy.getCard(34), cardGVLogo9);
-        cardMap.put(rummy.getCard(35), cardSailor9);
-        cardMap.put(rummy.getCard(36), cardAnchor10);
-        cardMap.put(rummy.getCard(37), cardClockTow10);
-        cardMap.put(rummy.getCard(38), cardGVLogo10);
-        cardMap.put(rummy.getCard(39), cardSailor10);
-        cardMap.put(rummy.getCard(40), cardAnchorJ);
-        cardMap.put(rummy.getCard(41), cardClockTowJ);
-        cardMap.put(rummy.getCard(42), cardGVLogoJ);
-        cardMap.put(rummy.getCard(43), cardSailorJ);
-        cardMap.put(rummy.getCard(44), cardAnchorQ);
-        cardMap.put(rummy.getCard(45), cardClockTowQ);
-        cardMap.put(rummy.getCard(46), cardGVLogoQ);
-        cardMap.put(rummy.getCard(47), cardSailorQ);
-        cardMap.put(rummy.getCard(48), cardAnchorK);
-        cardMap.put(rummy.getCard(49), cardClockTowK);
-        cardMap.put(rummy.getCard(50), cardGVLogoK);
-        cardMap.put(rummy.getCard(51), cardSailorK);
-
-        //this.updateHand(0);
     }
 
     /**
@@ -814,10 +816,9 @@ public class RummyGUI extends JFrame implements ActionListener {
      * @param playerNum number of player whose cards are shown
      */
     private void updateHand(int playerNum){
-        //for(int i = 0; i < rummy.getPlayer(playerNum).hand.cardArr.size(); i++){
-            //hand1 = cardMap.get(rummy.getPlayer(playerNum).hand.cardArr.get(0));
-        //}
-
+        for(int i = 0; i < rummy.getPlayer(playerNum).hand.cardArr.size(); i++){
+            handLabels[i] = cardMap.get(rummy.getPlayer(playerNum).hand.cardArr.get(i));
+        }
     }
     /**************************************************************************************************************************************************************************************
      * The settingsScreen() method creates the settings screen.
@@ -1009,6 +1010,8 @@ public class RummyGUI extends JFrame implements ActionListener {
 
             // Setting numPlayers
             numPlayers = 1;
+            rummy.addPlayer(numPlayers);
+            turn = 0;
         }
 
         // twoPlayerButton button is clicked
@@ -1027,6 +1030,8 @@ public class RummyGUI extends JFrame implements ActionListener {
 
             // Setting numPlayers
             numPlayers = 2;
+            rummy.addPlayer(numPlayers);
+            turn = 0;
         }
 
         // threePlayerButton button is clicked
@@ -1045,6 +1050,8 @@ public class RummyGUI extends JFrame implements ActionListener {
 
             // Setting numPlayers
             numPlayers = 3;
+            rummy.addPlayer(numPlayers);
+            turn = 0;
         }
 
         // fourPlayerButton button is clicked
@@ -1063,6 +1070,8 @@ public class RummyGUI extends JFrame implements ActionListener {
 
             // Setting numPlayers
             numPlayers = 4;
+            rummy.addPlayer(numPlayers);
+            turn = 0;
         }
 
     }
