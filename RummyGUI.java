@@ -140,7 +140,7 @@ public class RummyGUI extends JFrame implements ActionListener {
     // Game status variable declarations
     private final int MENU, GAME, SETTINGS;
     private int whichGame, numPlayers, currentScreen, turn;
-    private boolean gameInProg, deckClick, handCardClick, hasSetClicks;
+    private boolean gameInProg, deckClick, handCardClick, hasSetClicks, makeMeld, addToMeld, drawn = false, setup = true;
     private Rummy rummy = new Rummy();
     private HashMap<Card, JLabel> cardMap = new HashMap<Card, JLabel>();
     private HashMap<Card, JLabel> cardMapSmall = new HashMap<Card, JLabel>();
@@ -208,18 +208,18 @@ public class RummyGUI extends JFrame implements ActionListener {
         logoGVQ = new ImageIcon("images/LR_Cards/GVLogo/QueenGVLogo.jpg");
         logoGVK = new ImageIcon("images/LR_Cards/GVLogo/KingGVLogo.jpg");
         sailorA = new ImageIcon("images/LR_Cards/Sailor/AceSailor.jpg");
-        sailor2 = new ImageIcon("images/LR_Cards/Sailor/2Sailor");
-        sailor3 = new ImageIcon("images/LR_Cards/Sailor/3Sailor");
-        sailor4 = new ImageIcon("images/LR_Cards/Sailor/4Sailor");
-        sailor5 = new ImageIcon("images/LR_Cards/Sailor/5Sailor");
-        sailor6 = new ImageIcon("images/LR_Cards/Sailor/6Sailor");
-        sailor7 = new ImageIcon("images/LR_Cards/Sailor/7Sailor");
-        sailor8 = new ImageIcon("images/LR_Cards/Sailor/8Sailor");
-        sailor9 = new ImageIcon("images/LR_Cards/Sailor/9Sailor");
-        sailor10 = new ImageIcon("images/LR_Cards/Sailor/10Sailor");
-        sailorJ = new ImageIcon("images/LR_Cards/Sailor/JackSailor");
-        sailorQ = new ImageIcon("images/LR_Cards/Sailor/QueenSailor");
-        sailorK = new ImageIcon("images/LR_Cards/Sailor/KingSailor");
+        sailor2 = new ImageIcon("images/LR_Cards/Sailor/2Sailor.jpg");
+        sailor3 = new ImageIcon("images/LR_Cards/Sailor/3Sailor.jpg");
+        sailor4 = new ImageIcon("images/LR_Cards/Sailor/4Sailor.jpg");
+        sailor5 = new ImageIcon("images/LR_Cards/Sailor/5Sailor.jpg");
+        sailor6 = new ImageIcon("images/LR_Cards/Sailor/6Sailor.jpg");
+        sailor7 = new ImageIcon("images/LR_Cards/Sailor/7Sailor.jpg");
+        sailor8 = new ImageIcon("images/LR_Cards/Sailor/8Sailor.jpg");
+        sailor9 = new ImageIcon("images/LR_Cards/Sailor/9Sailor.jpg");
+        sailor10 = new ImageIcon("images/LR_Cards/Sailor/10Sailor.jpg");
+        sailorJ = new ImageIcon("images/LR_Cards/Sailor/JackSailor.jpg");
+        sailorQ = new ImageIcon("images/LR_Cards/Sailor/QueenSailor.jpg");
+        sailorK = new ImageIcon("images/LR_Cards/Sailor/KingSailor.jpg");
         anchorAS = new ImageIcon("images/LR_Cards/AnchorsS/AceAnchorS.jpg");
         anchor2S = new ImageIcon("images/LR_Cards/AnchorsS/2AnchorS.jpg");
         anchor3S = new ImageIcon("images/LR_Cards/AnchorsS/3AnchorS.jpg");
@@ -260,18 +260,18 @@ public class RummyGUI extends JFrame implements ActionListener {
         logoGVQS = new ImageIcon("images/LR_Cards/GVLogoS/QueenGVLogoS.jpg");
         logoGVKS = new ImageIcon("images/LR_Cards/GVLogoS/KingGVLogoS.jpg");
         sailorAS = new ImageIcon("images/LR_Cards/SailorS/AceSailorS.jpg");
-        sailor2S = new ImageIcon("images/LR_Cards/SailorS/2SailorS");
-        sailor3S = new ImageIcon("images/LR_Cards/SailorS/3SailorS");
-        sailor4S = new ImageIcon("images/LR_Cards/SailorS/4SailorS");
-        sailor5S = new ImageIcon("images/LR_Cards/SailorS/5SailorS");
-        sailor6S = new ImageIcon("images/LR_Cards/SailorS/6SailorS");
-        sailor7S = new ImageIcon("images/LR_Cards/SailorS/7SailorS");
-        sailor8S = new ImageIcon("images/LR_Cards/SailorS/8SailorS");
-        sailor9S = new ImageIcon("images/LR_Cards/SailorS/9SailorS");
-        sailor10S = new ImageIcon("images/LR_Cards/SailorS/10SailorS");
-        sailorJS = new ImageIcon("images/LR_Cards/SailorS/JackSailorS");
-        sailorQS = new ImageIcon("images/LR_Cards/SailorS/QueenSailorS");
-        sailorKS = new ImageIcon("images/LR_Cards/SailorS/KingSailorS");
+        sailor2S = new ImageIcon("images/LR_Cards/SailorS/2SailorS.jpg");
+        sailor3S = new ImageIcon("images/LR_Cards/SailorS/3SailorS.jpg");
+        sailor4S = new ImageIcon("images/LR_Cards/SailorS/4SailorS.jpg");
+        sailor5S = new ImageIcon("images/LR_Cards/SailorS/5SailorS.jpg");
+        sailor6S = new ImageIcon("images/LR_Cards/SailorS/6SailorS.jpg");
+        sailor7S = new ImageIcon("images/LR_Cards/SailorS/7SailorS.jpg");
+        sailor8S = new ImageIcon("images/LR_Cards/SailorS/8SailorS.jpg");
+        sailor9S = new ImageIcon("images/LR_Cards/SailorS/9SailorS.jpg");
+        sailor10S = new ImageIcon("images/LR_Cards/SailorS/10SailorS.jpg");
+        sailorJS = new ImageIcon("images/LR_Cards/SailorS/JackSailorS.jpg");
+        sailorQS = new ImageIcon("images/LR_Cards/SailorS/QueenSailorS.jpg");
+        sailorKS = new ImageIcon("images/LR_Cards/SailorS/KingSailorS.jpg");
 
         // Creating colors
         black = Color.BLACK;
@@ -487,7 +487,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Booleans for making a meld, adding to meld, and drawing a card.
         boolean makeMeld = false;
         boolean addToMeld = false;
-        boolean drawn = false;
 
         // Creating menu bar
         menu = new JMenuBar();
@@ -621,65 +620,67 @@ public class RummyGUI extends JFrame implements ActionListener {
         cardSailorQS = new JLabel(sailorQS);
         cardSailorKS = new JLabel(sailorKS);
         
+        if(setup == true){
         //populating hashmap 
-        cardMap.put(rummy.getCard(0), cardAnchorAS);
-        cardMap.put(rummy.getCard(1), cardClockTowAS);
-        cardMap.put(rummy.getCard(2), cardGVLogoAS);
-        cardMap.put(rummy.getCard(3), cardSailorAS);
-        cardMap.put(rummy.getCard(4), cardAnchor2S);
-        cardMap.put(rummy.getCard(5), cardClockTow2S);
-        cardMap.put(rummy.getCard(6), cardGVLogo2S);
-        cardMap.put(rummy.getCard(7), cardSailor2S);
-        cardMap.put(rummy.getCard(8), cardAnchor3S);
-        cardMap.put(rummy.getCard(9), cardClockTow3S);
-        cardMap.put(rummy.getCard(10), cardGVLogo3S);
-        cardMap.put(rummy.getCard(11), cardSailor3S);
-        cardMap.put(rummy.getCard(12), cardAnchor4S);
-        cardMap.put(rummy.getCard(13), cardClockTow4S);
-        cardMap.put(rummy.getCard(14), cardGVLogo4S);
-        cardMap.put(rummy.getCard(15), cardSailor4S);
-        cardMap.put(rummy.getCard(16), cardAnchor5S);
-        cardMap.put(rummy.getCard(17), cardClockTow5S);
-        cardMap.put(rummy.getCard(18), cardGVLogo5S);
-        cardMap.put(rummy.getCard(19), cardSailor5S);
-        cardMap.put(rummy.getCard(20), cardAnchor6S);
-        cardMap.put(rummy.getCard(21), cardClockTow6S);
-        cardMap.put(rummy.getCard(22), cardGVLogo6S);
-        cardMap.put(rummy.getCard(23), cardSailor6S);
-        cardMap.put(rummy.getCard(24), cardAnchor7S);
-        cardMap.put(rummy.getCard(25), cardClockTow7S);
-        cardMap.put(rummy.getCard(26), cardGVLogo7S);
-        cardMap.put(rummy.getCard(27), cardSailor7S);
-        cardMap.put(rummy.getCard(28), cardAnchor8S);
-        cardMap.put(rummy.getCard(29), cardClockTow8S);
-        cardMap.put(rummy.getCard(30), cardGVLogo8S);
-        cardMap.put(rummy.getCard(31), cardSailor8S);
-        cardMap.put(rummy.getCard(32), cardAnchor9S);
-        cardMap.put(rummy.getCard(33), cardClockTow9S);
-        cardMap.put(rummy.getCard(34), cardGVLogo9S);
-        cardMap.put(rummy.getCard(35), cardSailor9S);
-        cardMap.put(rummy.getCard(36), cardAnchor10S);
-        cardMap.put(rummy.getCard(37), cardClockTow10S);
-        cardMap.put(rummy.getCard(38), cardGVLogo10S);
-        cardMap.put(rummy.getCard(39), cardSailor10S);
-        cardMap.put(rummy.getCard(40), cardAnchorJS);
-        cardMap.put(rummy.getCard(41), cardClockTowJS);
-        cardMap.put(rummy.getCard(42), cardGVLogoJS);
-        cardMap.put(rummy.getCard(43), cardSailorJS);
-        cardMap.put(rummy.getCard(44), cardAnchorQS);
-        cardMap.put(rummy.getCard(45), cardClockTowQS);
-        cardMap.put(rummy.getCard(46), cardGVLogoQS);
-        cardMap.put(rummy.getCard(47), cardSailorQS);
-        cardMap.put(rummy.getCard(48), cardAnchorKS);
-        cardMap.put(rummy.getCard(49), cardClockTowKS);
-        cardMap.put(rummy.getCard(50), cardGVLogoKS);
-        cardMap.put(rummy.getCard(51), cardSailorKS);
+            cardMap.put(rummy.getCard(0), cardAnchorAS);
+            cardMap.put(rummy.getCard(1), cardClockTowAS);
+            cardMap.put(rummy.getCard(2), cardGVLogoAS);
+            cardMap.put(rummy.getCard(3), cardSailorAS);
+            cardMap.put(rummy.getCard(4), cardAnchor2S);
+            cardMap.put(rummy.getCard(5), cardClockTow2S);
+            cardMap.put(rummy.getCard(6), cardGVLogo2S);
+            cardMap.put(rummy.getCard(7), cardSailor2S);
+            cardMap.put(rummy.getCard(8), cardAnchor3S);
+            cardMap.put(rummy.getCard(9), cardClockTow3S);
+            cardMap.put(rummy.getCard(10), cardGVLogo3S);
+            cardMap.put(rummy.getCard(11), cardSailor3S);
+            cardMap.put(rummy.getCard(12), cardAnchor4S);
+            cardMap.put(rummy.getCard(13), cardClockTow4S);
+            cardMap.put(rummy.getCard(14), cardGVLogo4S);
+            cardMap.put(rummy.getCard(15), cardSailor4S);
+            cardMap.put(rummy.getCard(16), cardAnchor5S);
+            cardMap.put(rummy.getCard(17), cardClockTow5S);
+            cardMap.put(rummy.getCard(18), cardGVLogo5S);
+            cardMap.put(rummy.getCard(19), cardSailor5S);
+            cardMap.put(rummy.getCard(20), cardAnchor6S);
+            cardMap.put(rummy.getCard(21), cardClockTow6S);
+            cardMap.put(rummy.getCard(22), cardGVLogo6S);
+            cardMap.put(rummy.getCard(23), cardSailor6S);
+            cardMap.put(rummy.getCard(24), cardAnchor7S);
+            cardMap.put(rummy.getCard(25), cardClockTow7S);
+            cardMap.put(rummy.getCard(26), cardGVLogo7S);
+            cardMap.put(rummy.getCard(27), cardSailor7S);
+            cardMap.put(rummy.getCard(28), cardAnchor8S);
+            cardMap.put(rummy.getCard(29), cardClockTow8S);
+            cardMap.put(rummy.getCard(30), cardGVLogo8S);
+            cardMap.put(rummy.getCard(31), cardSailor8S);
+            cardMap.put(rummy.getCard(32), cardAnchor9S);
+            cardMap.put(rummy.getCard(33), cardClockTow9S);
+            cardMap.put(rummy.getCard(34), cardGVLogo9S);
+            cardMap.put(rummy.getCard(35), cardSailor9S);
+            cardMap.put(rummy.getCard(36), cardAnchor10S);
+            cardMap.put(rummy.getCard(37), cardClockTow10S);
+            cardMap.put(rummy.getCard(38), cardGVLogo10S);
+            cardMap.put(rummy.getCard(39), cardSailor10S);
+            cardMap.put(rummy.getCard(40), cardAnchorJS);
+            cardMap.put(rummy.getCard(41), cardClockTowJS);
+            cardMap.put(rummy.getCard(42), cardGVLogoJS);
+            cardMap.put(rummy.getCard(43), cardSailorJS);
+            cardMap.put(rummy.getCard(44), cardAnchorQS);
+            cardMap.put(rummy.getCard(45), cardClockTowQS);
+            cardMap.put(rummy.getCard(46), cardGVLogoQS);
+            cardMap.put(rummy.getCard(47), cardSailorQS);
+            cardMap.put(rummy.getCard(48), cardAnchorKS);
+            cardMap.put(rummy.getCard(49), cardClockTowKS);
+            cardMap.put(rummy.getCard(50), cardGVLogoKS);
+            cardMap.put(rummy.getCard(51), cardSailorKS);
 
-        //rummy.shuffle(); for testing purposes, did not shuffle yet
-        rummy.deal();
-
+            rummy.deck.shuffle(); //for testing purposes, did not shuffle yet
+            rummy.deal();
+        }    
         Player current = rummy.getPlayer(turn % numPlayers);
-        for(int i = 0; i < handLabels.length; i++){           // adding cards in hand to be displayed
+        final int maxHandSize = 8;
+        for(int i = 0; i < maxHandSize; i++){           // adding cards in hand to be displayed
             if(i < current.hand.cardArr.size())
                 handLabels[i] = cardMap.get(current.hand.cardArr.get(i));
             else
@@ -985,10 +986,10 @@ public class RummyGUI extends JFrame implements ActionListener {
         // cardSailorK.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         for (int j = 0; j < 7 * 120; j += 120) { // loop to add cards in hand to bottom of screen
             if(handLabels[j/120] != null)
-                handLabels[j / 120].setBounds(220 + j + insets.left, 500 + insets.bottom, 186, 135);
+                handLabels[j / 120].setBounds(180 + j + insets.left, 500 + insets.bottom, 186, 135);
         }
-        if(handLabels[7] != null)
-            handLabels[7].setBounds(220 + (7*120) + insets.left, 500 + 190 + insets.bottom, 186, 135);
+        if(handLabels[7] != null)   
+            handLabels[7].setBounds((int) handLabels[6].getLocation().getX(), (int) handLabels[6].getLocation().getY() - 150, 186, 135);
 
         // Adding elements to menubar
         menu.add(options);
@@ -1128,7 +1129,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(rectangleLeftLabel);
         pane.add(rectangleRightLabel);
 
-        for (int j = 0; j < 7; j++) {
+        for (int j = 0; j < 8; j++) {
             if(handLabels[j] != null)
                 pane.add(handLabels[j]);
         }
@@ -1142,6 +1143,13 @@ public class RummyGUI extends JFrame implements ActionListener {
             @Override
             public void mouseReleased(MouseEvent e) {
                 cardDeckLabel.setBorder(cardHighlightBorder);
+                if(!drawn){
+                    rummy.draw(rummy.deck, rummy.getPlayer(turn % numPlayers).hand);
+                    gameFrame.dispose();
+                    setup = false;
+                    drawn = true;
+                    gameScreen();
+                }
             }
         });
 
@@ -1415,8 +1423,33 @@ public class RummyGUI extends JFrame implements ActionListener {
         }
 
         // ---------- GAMEPLAY ACTIONS ------------
+        if(action == cardDeckLabel){
+            if(!drawn){
+                rummy.draw(rummy.deck, rummy.getPlayer(turn % numPlayers).hand);
+                gameFrame.dispose();
+                gameScreen();
+            }
+        }
 
-        if(action == )
+        if(action == makeMeldButton){
+            
+        }
+
+        if(action == addToMeldButton){
+            
+        }
+
+        if(action == hand1){
+            if(makeMeld){
+                
+            } else if(addToMeld){
+
+            } else {    // if card is clicked and not trying to make a new meld or add to meld, discard
+                if(drawn){
+                    rummy.discard(rummy.getPlayer(turn % numPlayers), rummy.getPlayer(turn % numPlayers).hand.cardArr.get(0));
+                }
+            }
+        }
     }
 
     /**************************************************************************************************************************************************************************************

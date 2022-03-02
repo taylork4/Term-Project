@@ -18,7 +18,7 @@ public class Rummy {
     /**************************************************************************************************************************************************************************************
      * Instance Variables
      */
-    private Deck deck; // the full game deck
+    public Deck deck; // the full game deck
     private Deck discard; // an empty deck (discard pile)
     private boolean gameInProg;
     private boolean setupComplete;
