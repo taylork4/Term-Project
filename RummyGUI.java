@@ -1300,6 +1300,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // playButton button is clicked
         if (action == playButton) {
+            rummy.addPlayer(numPlayers);
             mainMenuFrame.dispose();
             gameScreen();
         }
@@ -1358,7 +1359,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
             // Setting numPlayers
             numPlayers = 1;
-            rummy.addPlayer(numPlayers);
+            //rummy.addPlayer(numPlayers);
             turn = 0;
         }
 
@@ -1378,7 +1379,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
             // Setting numPlayers
             numPlayers = 2;
-            rummy.addPlayer(numPlayers);
+            //rummy.addPlayer(numPlayers);
             turn = 0;
         }
 
@@ -1398,7 +1399,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
             // Setting numPlayers
             numPlayers = 3;
-            rummy.addPlayer(numPlayers);
+            //rummy.addPlayer(numPlayers);
             turn = 0;
         }
 
@@ -1418,7 +1419,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
             // Setting numPlayers
             numPlayers = 4;
-            rummy.addPlayer(numPlayers);
+            //rummy.addPlayer(numPlayers);
             turn = 0;
         }
 
