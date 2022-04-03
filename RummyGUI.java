@@ -7,7 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.nio.Buffer;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -140,7 +142,7 @@ public class RummyGUI extends JFrame implements ActionListener {
     // Game status variable declarations
     private final int MENU, GAME, SETTINGS;
     private int whichGame, numPlayers, currentScreen, turn;
-    private boolean gameInProg, deckClick, handCardClick, hasSetClicks, makeMeld, addToMeld, drawn = false, setup = true;
+    private boolean gameInProg, deckClick, handCardClick, hasSetClicks, makeMeld, addToMeld, drawn = false, setup = true, discard = true;
     private Rummy rummy = new Rummy();
     private HashMap<Card, JLabel> cardMap = new HashMap<Card, JLabel>();
     private HashMap<Card, JLabel> cardMapSmall = new HashMap<Card, JLabel>();
@@ -619,7 +621,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         cardSailorJS = new JLabel(sailorJS);
         cardSailorQS = new JLabel(sailorQS);
         cardSailorKS = new JLabel(sailorKS);
-        
+
         if(setup == true){
         //populating hashmap 
             cardMap.put(rummy.getCard(0), cardAnchorAS);
@@ -681,10 +683,26 @@ public class RummyGUI extends JFrame implements ActionListener {
         Player current = rummy.getPlayer(turn % numPlayers);
         final int maxHandSize = 8;
         for(int i = 0; i < maxHandSize; i++){           // adding cards in hand to be displayed
-            if(i < current.hand.cardArr.size())
+            if(i < current.hand.cardArr.size()){
+                final int CARD_NUM = i;  // workaround: can't reference i in inner loop because it is a lambda function. must be final
                 handLabels[i] = cardMap.get(current.hand.cardArr.get(i));
-            else
+                handLabels[i].addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        // DISCARDING
+                        if(discard && drawn){   //have to make sure they want to discard, and that they've drawn already
+                            rummy.discard(current, current.hand.cardArr.get(CARD_NUM));
+                            gameFrame.dispose();
+                            turn++;
+                            drawn = false;
+                            gameScreen();
+                        }
+                    }
+                });
+            }
+            else {
                 handLabels[i] = null;
+            }
         }
         cardAnchorAS = new JLabel(anchorAS);
         cardAnchor2S = new JLabel(anchor2S);
