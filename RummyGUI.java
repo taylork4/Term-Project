@@ -123,7 +123,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     // Font declarations
     private Font titleFont, menuFont, subMenuFont, playButtonFont,
-            gameButtonFont, numPlayersButtonFont, avatarFont;
+            gameButtonFont, numPlayersButtonFont, avatarFont, howTitleFont;
 
     // LineBorder declarations
     private LineBorder cardBorder, cardHighlightBorder, menuBorder,
@@ -302,6 +302,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         playButtonFont = new Font("Courier", Font.BOLD, 50);
         gameButtonFont = new Font("Courier", Font.BOLD, 40);
         numPlayersButtonFont = new Font("Courier", Font.BOLD, 30);
+        howTitleFont = new Font("Segoe Script", Font.BOLD, 80);
 
         // Creating borders
         cardBorder = new LineBorder(black, 2);
@@ -1365,7 +1366,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane = new Container();
         pane.setLayout(null);
 
-        // Creating labels
+        // Creating Title
         titleLabel = new JLabel("Settings");
 
         // Creating buttons
@@ -1387,11 +1388,13 @@ public class RummyGUI extends JFrame implements ActionListener {
         UIManager.put("MenuBar.background", lightGrey);
 
         // Setting foreground colors
+        titleLabel.setForeground(black);
         options.setForeground(black);
         exit.setForeground(black);
         settings.setForeground(black);
 
         // Setting fonts
+        titleLabel.setFont(titleFont);
         returnMenu.setFont(subMenuFont);
         returnGame.setFont(subMenuFont);
         exit.setFont(subMenuFont);
@@ -1401,6 +1404,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
+        titleLabel.setBounds(250 + insets.left, 10 + insets.top, 1000, 150);
 
         // Adding elements to menubar
         menu.add(options);
@@ -1419,6 +1423,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         settingsFrame.add(pane);
 
         // Adding elements to pane
+        pane.add(titleLabel);
 
         // Addiing action listeners to elements
         exit.addActionListener(this);
@@ -1432,7 +1437,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Setting elements compatible with the frame
         settingsFrame.pack();
         settingsFrame.setVisible(true);
-        settingsFrame.setSize(800, 600);
+        settingsFrame.setSize(1000, 800);
         settingsFrame.setJMenuBar(menu);
         settingsFrame.getContentPane().setBackground(lightGrey);
 
@@ -1454,8 +1459,11 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane = new Container();
         pane.setLayout(null);
 
-        // Creating labels
+        // Creating Title
         titleLabel = new JLabel("How to Play");
+
+        // Creating Labels
+        dash1Label = new JLabel("______________________________________");
 
         // Creating buttons
         // playButton = new JButton("Play");
@@ -1476,11 +1484,15 @@ public class RummyGUI extends JFrame implements ActionListener {
         UIManager.put("MenuBar.background", lightGrey);
 
         // Setting foreground colors
+        titleLabel.setForeground(black);
+        dash1Label.setForeground(black);
         options.setForeground(black);
         exit.setForeground(black);
         settings.setForeground(black);
 
         // Setting fonts
+        titleLabel.setFont(howTitleFont);
+        dash1Label.setFont(playButtonFont);
         returnMenu.setFont(subMenuFont);
         returnGame.setFont(subMenuFont);
         exit.setFont(subMenuFont);
@@ -1490,6 +1502,8 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
+        titleLabel.setBounds(225 + insets.left, 10 + insets.top, 600, 100);
+        dash1Label.setBounds(0 + insets.left, 50 + insets.top, 1300, 100);
 
         // Adding elements to menubar
         menu.add(options);
@@ -1508,6 +1522,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         rummyHowFrame.add(pane);
 
         // Adding elements to pane
+        pane.add(titleLabel);
+        pane.add(dash1Label);
 
         // Addiing action listeners to elements
         exit.addActionListener(this);
@@ -1521,7 +1537,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Setting elements compatible with the frame
         rummyHowFrame.pack();
         rummyHowFrame.setVisible(true);
-        rummyHowFrame.setSize(800, 600);
+        rummyHowFrame.setSize(1000, 800);
         rummyHowFrame.setJMenuBar(menu);
         rummyHowFrame.getContentPane().setBackground(lightGrey);
 
