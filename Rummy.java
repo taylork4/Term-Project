@@ -105,6 +105,14 @@ public class Rummy {
         Deck.move(p.hand, this.discard, c);
     }
 
+    /**
+     * getter for discard pile
+     * @return the discard pile
+     */
+    public Deck getDiscard() {
+        return this.discard;
+    }
+
     /**************************************************************************************************************************************************************************************
      * The checkMeld(Deck d) method checks if a Deck is a meld.
      * NOTE: MELDS MUST BE IN ORDER FROM LOWEST CARD VALUE TO HIGHEST CARD VALUE
