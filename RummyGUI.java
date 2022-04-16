@@ -62,7 +62,9 @@ public class RummyGUI extends JFrame implements ActionListener {
     private JLabel titleLabel, p1Label, p2Label, p3Label, p4Label, cardDeckLabel,
             dash1Label, dash2Label, dash3Label, rectangleLeftLabel, octopusLabel,
             rectangleRightLabel, seaGullLabel, whaleLabel, crabLabel, underWLabel,
-            crabGIFLabel, coolSquare1Label, coolSquare2Label;
+            crabGIFLabel, coolSquare1Label, coolSquare2Label, ex1Label, ex2Label,
+            ex3Label, ex4Label, ex5Label, ex6Label, ex7Label, ex8Label, ex9Label,
+            ex10Label, ex11Label, ex12Label, ex13Label;
     private JLabel cardAnchorA, cardAnchor2, cardAnchor3, cardAnchor4, // Anchor label for suit
             cardAnchor5, cardAnchor6, cardAnchor7, cardAnchor8, cardAnchor9,
             cardAnchor10, cardAnchorJ, cardAnchorQ, cardAnchorK;
@@ -1092,57 +1094,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         rectangleRightLabel.setBounds(1054 + insets.left, 0 + insets.top, 215, 655);
         cardDeckLabel.setBounds(40 + insets.left, 20 + insets.top, 135, 190);
         cardAnchorA.setBounds(40 + insets.left, 435 + insets.top, 135, 190);
-        // cardAnchor2.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardAnchor3.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardAnchor4.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardAnchor5.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardAnchor6.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardAnchor7.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardAnchor8.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardAnchor9.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardAnchor10.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardAnchorJ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardAnchorQ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardAnchorK.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardClockTowA.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardClockTow2.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardClockTow3.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardClockTow4.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardClockTow5.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardClockTow6.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardClockTow7.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardClockTow8.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardClockTow9.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardClockTow10.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardClockTowJ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardClockTowQ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardClockTowK.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardGVLogoA.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardGVLogo2.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardGVLogo3.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardGVLogo4.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardGVLogo5.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardGVLogo6.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardGVLogo7.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardGVLogo8.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardGVLogo9.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardGVLogo10.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardGVLogoJ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardGVLogoQ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardGVLogoK.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardSailorA.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardSailor2.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardSailor3.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardSailor4.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardSailor5.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardSailor6.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardSailor7.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardSailor8.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardSailor9.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardSailor10.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardSailorJ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardSailorQ.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
-        // cardSailorK.setBounds(650 + insets.left, 300 + insets.top, 135, 190);
         for (int j = 0; j < 7 * 120; j += 120) { // loop to add cards in hand to bottom of screen
             if (handLabels[j / 120] != null)
                 handLabels[j / 120].setBounds(180 + j + insets.left, 500 + insets.bottom, 186, 135);
@@ -1466,7 +1417,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Setting elements compatible with the frame
         settingsFrame.pack();
         settingsFrame.setVisible(true);
-        settingsFrame.setSize(1000, 800);
+        settingsFrame.setSize(1000, 720);
         settingsFrame.setJMenuBar(menu);
         settingsFrame.getContentPane().setBackground(tan);
 
@@ -1492,11 +1443,21 @@ public class RummyGUI extends JFrame implements ActionListener {
         titleLabel = new JLabel("How to Play");
 
         // Creating Labels
-        dash1Label = new JLabel("________________________________________");
-        dash2Label = new JLabel("________________________________________");
-        dash3Label = new JLabel("________________________________________");
         coolSquare1Label = new JLabel("⬛⬛⬛⬛⬛⬛");
         coolSquare2Label = new JLabel("⬛⬛⬛⬛⬛⬛");
+        dash1Label = new JLabel("________________________________________");
+        ex1Label = new JLabel("Making Melds:");
+        ex2Label = new JLabel("In a game of Rummy, so long as it is the Player's turn and they have 3 or more of the");
+        ex3Label = new JLabel("same card value ~OR~ 4 or more sequential cards of the suit, they can make a meld.");
+        dash2Label = new JLabel("----------------------------------------");
+        ex4Label = new JLabel("How are points awarded?");
+        ex5Label = new JLabel("In Rummy, the less points you have, the better. If a round ends, all players except");
+        ex6Label = new JLabel("for the player who plays all of their cards receive points that reflect what is left");
+        ex7Label = new JLabel("over in their hand.");
+        ex8Label = new JLabel("- Numbered Cards --> # on card = points received");
+        ex9Label = new JLabel("- J,K,Q,A --> 10 points each");
+        dash3Label = new JLabel("----------------------------------------");
+        ex10Label = new JLabel("The Lakers Rummy 'Twist' to Rummy");
 
         // Creating buttons
         // playButton = new JButton("Play");
@@ -1519,8 +1480,19 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Setting foreground colors
         titleLabel.setForeground(black);
         dash1Label.setForeground(black);
-        dash2Label.setForeground(black);
-        dash3Label.setForeground(black);
+        dash2Label.setForeground(darkGrey);
+        dash3Label.setForeground(darkGrey);
+        ex1Label.setForeground(black);
+        ex2Label.setForeground(black);
+        ex3Label.setForeground(black);
+        ex4Label.setForeground(black);
+        ex5Label.setForeground(black);
+        ex6Label.setForeground(black);
+        ex7Label.setForeground(black);
+        ex8Label.setForeground(black);
+        ex9Label.setForeground(black);
+        ex10Label.setForeground(black);
+        // ex11Label.setForeground(black);
         coolSquare1Label.setForeground(orange);
         coolSquare2Label.setForeground(brightOrange);
         options.setForeground(black);
@@ -1532,6 +1504,15 @@ public class RummyGUI extends JFrame implements ActionListener {
         dash1Label.setFont(playButtonFont);
         dash2Label.setFont(playButtonFont);
         dash3Label.setFont(playButtonFont);
+        ex1Label.setFont(playButtonFont);
+        ex2Label.setFont(subMenuFont);
+        ex3Label.setFont(subMenuFont);
+        ex4Label.setFont(playButtonFont);
+        ex5Label.setFont(subMenuFont);
+        ex6Label.setFont(subMenuFont);
+        ex7Label.setFont(subMenuFont);
+        ex8Label.setFont(subMenuFont);
+        ex9Label.setFont(subMenuFont);
         coolSquare1Label.setFont(coolSquareFont);
         coolSquare2Label.setFont(coolSquareFont);
         returnMenu.setFont(subMenuFont);
@@ -1545,8 +1526,17 @@ public class RummyGUI extends JFrame implements ActionListener {
         insets = pane.getInsets();
         titleLabel.setBounds(225 + insets.left, 10 + insets.top, 600, 100);
         dash1Label.setBounds(0 + insets.left, 50 + insets.top, 1300, 100);
-        dash2Label.setBounds(0 + insets.left, 200 + insets.top, 1300, 100);
+        dash2Label.setBounds(0 + insets.left, 185 + insets.top, 1300, 100);
         dash3Label.setBounds(0 + insets.left, 350 + insets.top, 1300, 100);
+        ex1Label.setBounds(20 + insets.left, 110 + insets.top, 600, 100);
+        ex2Label.setBounds(10 + insets.left, 145 + insets.top, 1000, 100);
+        ex3Label.setBounds(10 + insets.left, 165 + insets.top, 1000, 100);
+        ex4Label.setBounds(20 + insets.left, 215 + insets.top, 1000, 100);
+        ex5Label.setBounds(10 + insets.left, 250 + insets.top, 1000, 100);
+        ex6Label.setBounds(10 + insets.left, 270 + insets.top, 1000, 100);
+        ex7Label.setBounds(10 + insets.left, 290 + insets.top, 1000, 100);
+        ex8Label.setBounds(10 + insets.left, 310 + insets.top, 1000, 100);
+        ex9Label.setBounds(10 + insets.left, 330 + insets.top, 1000, 100);
         coolSquare1Label.setBounds(-30 + insets.left, -40 + insets.top, 1300, 200);
         coolSquare2Label.setBounds(10 + insets.left, -40 + insets.top, 1300, 200);
 
@@ -1569,8 +1559,18 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Adding elements to pane
         pane.add(titleLabel);
         pane.add(dash1Label);
-        // pane.add(dash2Label);
-        // pane.add(dash3Label);
+        pane.add(dash2Label);
+        pane.add(dash3Label);
+        pane.add(ex1Label);
+        pane.add(ex2Label);
+        pane.add(ex3Label);
+        pane.add(ex4Label);
+        pane.add(ex5Label);
+        pane.add(ex6Label);
+        pane.add(ex7Label);
+        pane.add(ex8Label);
+        pane.add(ex9Label);
+        pane.add(ex10Label);
         pane.add(coolSquare1Label);
         pane.add(coolSquare2Label);
 
@@ -1586,7 +1586,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Setting elements compatible with the frame
         rummyHowFrame.pack();
         rummyHowFrame.setVisible(true);
-        rummyHowFrame.setSize(1000, 800);
+        rummyHowFrame.setSize(1000, 720);
         rummyHowFrame.setJMenuBar(menu);
         rummyHowFrame.getContentPane().setBackground(tan);
         // Setting current screen location
