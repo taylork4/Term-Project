@@ -1457,7 +1457,11 @@ public class RummyGUI extends JFrame implements ActionListener {
         ex8Label = new JLabel("- Numbered Cards --> # on card = points received");
         ex9Label = new JLabel("- J,K,Q,A --> 10 points each");
         dash3Label = new JLabel("----------------------------------------");
-        ex10Label = new JLabel("The Lakers Rummy 'Twist' to Rummy");
+        ex10Label = new JLabel("The Lakers Rummy 'Twist':");
+        ex11Label = new JLabel("Lakers Rummy, while mostly the same as rummy, allows a player to cheat. If a player");
+        ex12Label = new JLabel("can get away with a cheat without another player noticing within a turn, the player");
+        ex13Label = new JLabel(
+                "will go unpunished. Otherwise, the player receives 10 points every time they are caught.");
 
         // Creating buttons
         // playButton = new JButton("Play");
@@ -1492,7 +1496,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         ex8Label.setForeground(black);
         ex9Label.setForeground(black);
         ex10Label.setForeground(black);
-        // ex11Label.setForeground(black);
+        ex11Label.setForeground(black);
+        ex12Label.setForeground(black);
+        ex13Label.setForeground(black);
         coolSquare1Label.setForeground(orange);
         coolSquare2Label.setForeground(brightOrange);
         options.setForeground(black);
@@ -1513,6 +1519,10 @@ public class RummyGUI extends JFrame implements ActionListener {
         ex7Label.setFont(subMenuFont);
         ex8Label.setFont(subMenuFont);
         ex9Label.setFont(subMenuFont);
+        ex10Label.setFont(playButtonFont);
+        ex11Label.setFont(subMenuFont);
+        ex12Label.setFont(subMenuFont);
+        ex13Label.setFont(subMenuFont);
         coolSquare1Label.setFont(coolSquareFont);
         coolSquare2Label.setFont(coolSquareFont);
         returnMenu.setFont(subMenuFont);
@@ -1537,6 +1547,10 @@ public class RummyGUI extends JFrame implements ActionListener {
         ex7Label.setBounds(10 + insets.left, 290 + insets.top, 1000, 100);
         ex8Label.setBounds(10 + insets.left, 310 + insets.top, 1000, 100);
         ex9Label.setBounds(10 + insets.left, 330 + insets.top, 1000, 100);
+        ex10Label.setBounds(20 + insets.left, 380 + insets.top, 1000, 100);
+        ex11Label.setBounds(10 + insets.left, 415 + insets.top, 1000, 100);
+        ex12Label.setBounds(10 + insets.left, 435 + insets.top, 1000, 100);
+        ex13Label.setBounds(10 + insets.left, 455 + insets.top, 1000, 100);
         coolSquare1Label.setBounds(-30 + insets.left, -40 + insets.top, 1300, 200);
         coolSquare2Label.setBounds(10 + insets.left, -40 + insets.top, 1300, 200);
 
@@ -1571,6 +1585,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(ex8Label);
         pane.add(ex9Label);
         pane.add(ex10Label);
+        pane.add(ex11Label);
+        pane.add(ex12Label);
+        pane.add(ex13Label);
         pane.add(coolSquare1Label);
         pane.add(coolSquare2Label);
 
