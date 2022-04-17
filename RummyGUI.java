@@ -48,7 +48,7 @@ public class RummyGUI extends JFrame implements ActionListener {
     private JMenu options, tutorial;
 
     // JMenuItem declarations
-    private JMenuItem returnMenu, returnGame, rummyHow, settings, exit;
+    private JMenuItem returnMenu, rummyHow, settings, exit;
 
     // JButton declarations
     private JButton playButton, rummyButton, lakersRummyButton, makeMeldButton,
@@ -777,13 +777,9 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Creating menus
         options = new JMenu("Options");
-        tutorial = new JMenu(" How to Play");
 
         // Creating menu items
-        settings = new JMenuItem(" Settings", settingsGear);
-        returnMenu = new JMenuItem(" Return to Menu", returnBack);
         exit = new JMenuItem(" Exit", redX);
-        rummyHow = new JMenuItem(" Rummy", how2Play);
 
         // Creating buttons
         makeMeldButton = new JButton("Make Meld");
@@ -817,11 +813,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         dash2Label.setForeground(black);
         dash3Label.setForeground(black);
         options.setForeground(black);
-        tutorial.setForeground(black);
         returnMenu.setForeground(black);
         exit.setForeground(black);
-        settings.setForeground(black);
-        rummyHow.setForeground(black);
 
         // Setting fonts
         makeMeldButton.setFont(menuFont);
@@ -842,11 +835,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         dash2Label.setFont(playButtonFont);
         dash3Label.setFont(playButtonFont);
         options.setFont(menuFont);
-        tutorial.setFont(menuFont);
         exit.setFont(subMenuFont);
-        returnMenu.setFont(subMenuFont);
-        settings.setFont(subMenuFont);
-        rummyHow.setFont(subMenuFont);
 
         // Setting borders
         makeMeldButton.setBorder(meldBorder);
@@ -1025,14 +1014,9 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Adding elements to menubar
         menu.add(options);
-        menu.add(tutorial);
 
         // Adding elements to menu items
-        options.add(settings);
-        options.add(returnMenu);
-        options.addSeparator();
         options.add(exit);
-        tutorial.add(rummyHow);
 
         // Adding elements to frame
         gameFrame.add(menu);
@@ -1115,10 +1099,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         setHandButtons(current); // adding discard buttons
 
         // Addiing action listeners to elements
-        settings.addActionListener(this);
-        tutorial.addActionListener(this);
-        returnMenu.addActionListener(this);
-        rummyHow.addActionListener(this);
         exit.addActionListener(this);
         cardDeckLabel.addMouseListener(new MouseAdapter() {
             @Override
@@ -1184,7 +1164,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         options = new JMenu("Options");
 
         // Creating menu items
-        returnGame = new JMenuItem(" Return to Game", returnBack);
         returnMenu = new JMenuItem(" Return to Menu", returnBack);
         exit = new JMenuItem(" Exit", redX);
 
@@ -1196,16 +1175,36 @@ public class RummyGUI extends JFrame implements ActionListener {
         UIManager.put("MenuBar.background", lightGrey);
 
         // Setting foreground colors
-        blGreenButton.setBackground(darkGrey);
-        dGreenButton.setBackground(darkGrey);
-        lTanButton.setBackground(yellow);
+        if (gameColor == LTAN) {
+            blGreenButton.setBackground(darkGrey);
+            dGreenButton.setBackground(darkGrey);
+            lTanButton.setBackground(yellow);
+        } else if (gameColor == DGREEN) {
+            blGreenButton.setBackground(darkGrey);
+            dGreenButton.setBackground(yellow);
+            lTanButton.setBackground(darkGrey);
+        } else if (gameColor == BLGREEN) {
+            blGreenButton.setBackground(yellow);
+            dGreenButton.setBackground(darkGrey);
+            lTanButton.setBackground(darkGrey);
+        }
 
         // Setting foreground colors
+        if (gameColor == LTAN) {
+            blGreenButton.setForeground(lightGrey);
+            dGreenButton.setForeground(lightGrey);
+            lTanButton.setForeground(black);
+        } else if (gameColor == DGREEN) {
+            blGreenButton.setForeground(lightGrey);
+            dGreenButton.setForeground(black);
+            lTanButton.setForeground(lightGrey);
+        } else if (gameColor == BLGREEN) {
+            blGreenButton.setForeground(black);
+            dGreenButton.setForeground(lightGrey);
+            lTanButton.setForeground(lightGrey);
+        }
         titleLabel.setForeground(black);
         ex1Label.setForeground(black);
-        blGreenButton.setForeground(lightGrey);
-        dGreenButton.setForeground(lightGrey);
-        lTanButton.setForeground(black);
         dash1Label.setForeground(black);
         coolSquare1Label.setForeground(yellow);
         coolSquare2Label.setForeground(green);
@@ -1224,7 +1223,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         coolSquare1Label.setFont(coolSquareFont);
         coolSquare2Label.setFont(coolSquareFont);
         returnMenu.setFont(subMenuFont);
-        returnGame.setFont(subMenuFont);
         exit.setFont(subMenuFont);
 
         // Setting borders
@@ -1247,11 +1245,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         menu.add(options);
 
         // Adding elements to menu items
-        if (gameInProg) {
-            options.add(returnGame);
-        } else {
-            options.add(returnMenu);
-        }
+        options.add(returnMenu);
         options.addSeparator();
         options.add(exit);
 
@@ -1274,11 +1268,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         blGreenButton.addActionListener(this);
         dGreenButton.addActionListener(this);
         lTanButton.addActionListener(this);
-        if (gameInProg) {
-            returnGame.addActionListener(this);
-        } else {
-            returnMenu.addActionListener(this);
-        }
+        returnMenu.addActionListener(this);
         settingsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Setting elements compatible with the frame
@@ -1343,7 +1333,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         options = new JMenu("Options");
 
         // Creating menu items
-        returnGame = new JMenuItem(" Return to Game", returnBack);
         returnMenu = new JMenuItem(" Return to Menu", returnBack);
         exit = new JMenuItem(" Exit", redX);
 
@@ -1400,7 +1389,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         coolSquare1Label.setFont(coolSquareFont);
         coolSquare2Label.setFont(coolSquareFont);
         returnMenu.setFont(subMenuFont);
-        returnGame.setFont(subMenuFont);
         exit.setFont(subMenuFont);
 
         // Setting borders
@@ -1432,11 +1420,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         menu.add(options);
 
         // Adding elements to menu items
-        if (gameInProg) {
-            options.add(returnGame);
-        } else {
-            options.add(returnMenu);
-        }
+        options.add(returnMenu);
         options.addSeparator();
         options.add(exit);
 
@@ -1467,7 +1451,6 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Addiing action listeners to elements
         exit.addActionListener(this);
-        returnGame.addActionListener(this);
         returnMenu.addActionListener(this);
         rummyHowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -1498,10 +1481,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // returnMenu menu item is clicked
         if (action == returnMenu) {
-            if (currentScreen == GAME) { // Returns to menu from game screen
-                gameFrame.dispose();
-                mainMenuScreen();
-            } else if (currentScreen == SETTINGS) { // Returns to menu from settings screen
+            if (currentScreen == SETTINGS) { // Returns to menu from settings screen
                 settingsFrame.dispose();
                 mainMenuScreen();
             } else if (currentScreen == RUMMYHOW) { // Returns to menu from how to play screen
@@ -1510,22 +1490,9 @@ public class RummyGUI extends JFrame implements ActionListener {
             }
         }
 
-        // returnGame menu item is clicked
-        if (action == returnGame) {
-            if (currentScreen == SETTINGS) { // Returns to game from settings screen
-                settingsFrame.dispose();
-                gameScreen();
-            } else if (currentScreen == RUMMYHOW) { // Returns to game from how to play screen
-                rummyHowFrame.dispose();
-                gameScreen();
-            }
-        }
         // settings menu item is clicked
         if (action == settings) {
-            if (currentScreen == GAME) { // Changes from game screen to settings screen
-                gameFrame.dispose();
-                settingsScreen();
-            } else if (currentScreen == MENU) { // Changes from menu screen to settings screen
+            if (currentScreen == MENU) { // Changes from menu screen to settings screen
                 mainMenuFrame.dispose();
                 settingsScreen();
             }
@@ -1533,10 +1500,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // how to play menu item is clicked
         if (action == rummyHow) {
-            if (currentScreen == GAME) { // Changes from game screen to how to play screen
-                gameFrame.dispose();
-                rummyHowScreen();
-            } else if (currentScreen == MENU) { // Changes from menu screen to how to play screen
+            if (currentScreen == MENU) { // Changes from menu screen to how to play screen
                 mainMenuFrame.dispose();
                 rummyHowScreen();
             }
