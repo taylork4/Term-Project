@@ -160,71 +160,10 @@ public class RummyGUI extends JFrame implements ActionListener {
     public RummyGUI() {
         // Creating image icons
         GValleyJava = new ImageIcon("images/GValleyJava.png");
-        avatar1 = new ImageIcon("images/seaGull.jpg");
-        avatar2 = new ImageIcon("images/whale.jpg");
-        avatar3 = new ImageIcon("images/octopus.jpg");
-        avatar4 = new ImageIcon("images/crab.jpg");
-        crabGIF = new ImageIcon("images/crabGif.gif");
-        underWater = new ImageIcon("images/underWater.png");
-        rectangleLeft = new ImageIcon("images/gameBackgroundTan.png");
-        rectangleRight = new ImageIcon("images/gameBackgroundTan.png");
         settingsGear = new ImageIcon("images/settings-gear.png");
         redX = new ImageIcon("images/red-x.png");
-        how2Play = new ImageIcon("images/how2Play.png");
         returnBack = new ImageIcon("images/returnBack.png");
-        backOfCardLR = new ImageIcon("images/LR_Cards/LRBackCardDesign.jpg");
-        anchorA = new ImageIcon("images/LR_Cards/Anchors/AceAnchor.jpg");
-        anchor2 = new ImageIcon("images/LR_Cards/Anchors/2Anchor.jpg");
-        anchor3 = new ImageIcon("images/LR_Cards/Anchors/3Anchor.jpg");
-        anchor4 = new ImageIcon("images/LR_Cards/Anchors/4Anchor.jpg");
-        anchor5 = new ImageIcon("images/LR_Cards/Anchors/5Anchor.jpg");
-        anchor6 = new ImageIcon("images/LR_Cards/Anchors/6Anchor.jpg");
-        anchor7 = new ImageIcon("images/LR_Cards/Anchors/7Anchor.jpg");
-        anchor8 = new ImageIcon("images/LR_Cards/Anchors/8Anchor.jpg");
-        anchor9 = new ImageIcon("images/LR_Cards/Anchors/9Anchor.jpg");
-        anchor10 = new ImageIcon("images/LR_Cards/Anchors/10Anchor.jpg");
-        anchorJ = new ImageIcon("images/LR_Cards/Anchors/JackAnchor.jpg");
-        anchorQ = new ImageIcon("images/LR_Cards/Anchors/QueenAnchor.jpg");
-        anchorK = new ImageIcon("images/LR_Cards/Anchors/KingAnchor.jpg");
-        clockTowA = new ImageIcon("images/LR_Cards/ClockTowers/AceCT.jpg");
-        clockTow2 = new ImageIcon("images/LR_Cards/ClockTowers/2CT.jpg");
-        clockTow3 = new ImageIcon("images/LR_Cards/ClockTowers/3CT.jpg");
-        clockTow4 = new ImageIcon("images/LR_Cards/ClockTowers/4CT.jpg");
-        clockTow5 = new ImageIcon("images/LR_Cards/ClockTowers/5CT.jpg");
-        clockTow6 = new ImageIcon("images/LR_Cards/ClockTowers/6CT.jpg");
-        clockTow7 = new ImageIcon("images/LR_Cards/ClockTowers/7CT.jpg");
-        clockTow8 = new ImageIcon("images/LR_Cards/ClockTowers/8CT.jpg");
-        clockTow9 = new ImageIcon("images/LR_Cards/ClockTowers/9CT.jpg");
-        clockTow10 = new ImageIcon("images/LR_Cards/ClockTowers/10CT.jpg");
-        clockTowJ = new ImageIcon("images/LR_Cards/ClockTowers/JackCT.jpg");
-        clockTowQ = new ImageIcon("images/LR_Cards/ClockTowers/QueenCT.jpg");
-        clockTowK = new ImageIcon("images/LR_Cards/ClockTowers/KingCT.jpg");
-        logoGVA = new ImageIcon("images/LR_Cards/GVLogo/AceGVLogo.jpg");
-        logoGV2 = new ImageIcon("images/LR_Cards/GVLogo/2GVLogo.jpg");
-        logoGV3 = new ImageIcon("images/LR_Cards/GVLogo/3GVLogo.jpg");
-        logoGV4 = new ImageIcon("images/LR_Cards/GVLogo/4GVLogo.jpg");
-        logoGV5 = new ImageIcon("images/LR_Cards/GVLogo/5GVLogo.jpg");
-        logoGV6 = new ImageIcon("images/LR_Cards/GVLogo/6GVLogo.jpg");
-        logoGV7 = new ImageIcon("images/LR_Cards/GVLogo/7GVLogo.jpg");
-        logoGV8 = new ImageIcon("images/LR_Cards/GVLogo/8GVLogo.jpg");
-        logoGV9 = new ImageIcon("images/LR_Cards/GVLogo/9GVLogo.jpg");
-        logoGV10 = new ImageIcon("images/LR_Cards/GVLogo/10GVLogo.jpg");
-        logoGVJ = new ImageIcon("images/LR_Cards/GVLogo/JackGVLogo.jpg");
-        logoGVQ = new ImageIcon("images/LR_Cards/GVLogo/QueenGVLogo.jpg");
-        logoGVK = new ImageIcon("images/LR_Cards/GVLogo/KingGVLogo.jpg");
-        sailorA = new ImageIcon("images/LR_Cards/Sailor/AceSailor.jpg");
-        sailor2 = new ImageIcon("images/LR_Cards/Sailor/2Sailor.jpg");
-        sailor3 = new ImageIcon("images/LR_Cards/Sailor/3Sailor.jpg");
-        sailor4 = new ImageIcon("images/LR_Cards/Sailor/4Sailor.jpg");
-        sailor5 = new ImageIcon("images/LR_Cards/Sailor/5Sailor.jpg");
-        sailor6 = new ImageIcon("images/LR_Cards/Sailor/6Sailor.jpg");
-        sailor7 = new ImageIcon("images/LR_Cards/Sailor/7Sailor.jpg");
-        sailor8 = new ImageIcon("images/LR_Cards/Sailor/8Sailor.jpg");
-        sailor9 = new ImageIcon("images/LR_Cards/Sailor/9Sailor.jpg");
-        sailor10 = new ImageIcon("images/LR_Cards/Sailor/10Sailor.jpg");
-        sailorJ = new ImageIcon("images/LR_Cards/Sailor/JackSailor.jpg");
-        sailorQ = new ImageIcon("images/LR_Cards/Sailor/QueenSailor.jpg");
-        sailorK = new ImageIcon("images/LR_Cards/Sailor/KingSailor.jpg");
+        how2Play = new ImageIcon("images/how2Play.png");
         anchorAS = new ImageIcon("images/LR_Cards/AnchorsS/AceAnchorS.jpg");
         anchor2S = new ImageIcon("images/LR_Cards/AnchorsS/2AnchorS.jpg");
         anchor3S = new ImageIcon("images/LR_Cards/AnchorsS/3AnchorS.jpg");
@@ -277,6 +216,69 @@ public class RummyGUI extends JFrame implements ActionListener {
         sailorJS = new ImageIcon("images/LR_Cards/SailorS/JackSailorS.jpg");
         sailorQS = new ImageIcon("images/LR_Cards/SailorS/QueenSailorS.jpg");
         sailorKS = new ImageIcon("images/LR_Cards/SailorS/KingSailorS.jpg");
+
+        // Creating Labels
+        underWLabel = new JLabel(underWater = new ImageIcon("images/underWater.png"));
+        crabGIFLabel = new JLabel(crabGIF = new ImageIcon("images/crabGif.gif"));
+        seaGullLabel = new JLabel(avatar1 = new ImageIcon("images/seaGull.jpg"));
+        whaleLabel = new JLabel(avatar2 = new ImageIcon("images/whale.jpg"));
+        octopusLabel = new JLabel(avatar3 = new ImageIcon("images/octopus.jpg"));
+        crabLabel = new JLabel(avatar4 = new ImageIcon("images/crab.jpg"));
+        rectangleLeftLabel = new JLabel(rectangleLeft = new ImageIcon("images/gameBackgroundTan.png"));
+        rectangleRightLabel = new JLabel(rectangleRight = new ImageIcon("images/gameBackgroundTan.png"));
+        cardDeckLabel = new JLabel(backOfCardLR = new ImageIcon("images/LR_Cards/LRBackCardDesign.jpg"));
+        cardAnchorA = new JLabel(anchorA = new ImageIcon("images/LR_Cards/Anchors/2Anchor.jpg"));
+        cardAnchor2 = new JLabel(anchor2 = new ImageIcon("images/LR_Cards/Anchors/2Anchor.jpg"));
+        cardAnchor3 = new JLabel(anchor3 = new ImageIcon("images/LR_Cards/Anchors/3Anchor.jpg"));
+        cardAnchor4 = new JLabel(anchor4 = new ImageIcon("images/LR_Cards/Anchors/4Anchor.jpg"));
+        cardAnchor5 = new JLabel(anchor5 = new ImageIcon("images/LR_Cards/Anchors/5Anchor.jpg"));
+        cardAnchor6 = new JLabel(anchor6 = new ImageIcon("images/LR_Cards/Anchors/6Anchor.jpg"));
+        cardAnchor7 = new JLabel(anchor7 = new ImageIcon("images/LR_Cards/Anchors/7Anchor.jpg"));
+        cardAnchor8 = new JLabel(anchor8 = new ImageIcon("images/LR_Cards/Anchors/8Anchor.jpg"));
+        cardAnchor9 = new JLabel(anchor9 = new ImageIcon("images/LR_Cards/Anchors/9Anchor.jpg"));
+        cardAnchor10 = new JLabel(anchor10 = new ImageIcon("images/LR_Cards/Anchors/10Anchor.jpg"));
+        cardAnchorJ = new JLabel(anchorJ = new ImageIcon("images/LR_Cards/Anchors/JackAnchor.jpg"));
+        cardAnchorQ = new JLabel(anchorQ = new ImageIcon("images/LR_Cards/Anchors/QueenAnchor.jpg"));
+        cardAnchorK = new JLabel(anchorK = new ImageIcon("images/LR_Cards/Anchors/KingAnchor.jpg"));
+        cardClockTowA = new JLabel(clockTowA = new ImageIcon("images/LR_Cards/ClockTowers/AceCT.jpg"));
+        cardClockTow2 = new JLabel(clockTow2 = new ImageIcon("images/LR_Cards/ClockTowers/2CT.jpg"));
+        cardClockTow3 = new JLabel(clockTow3 = new ImageIcon("images/LR_Cards/ClockTowers/3CT.jpg"));
+        cardClockTow4 = new JLabel(clockTow4 = new ImageIcon("images/LR_Cards/ClockTowers/4CT.jpg"));
+        cardClockTow5 = new JLabel(clockTow5 = new ImageIcon("images/LR_Cards/ClockTowers/5CT.jpg"));
+        cardClockTow6 = new JLabel(clockTow6 = new ImageIcon("images/LR_Cards/ClockTowers/6CT.jpg"));
+        cardClockTow7 = new JLabel(clockTow7 = new ImageIcon("images/LR_Cards/ClockTowers/7CT.jpg"));
+        cardClockTow8 = new JLabel(clockTow8 = new ImageIcon("images/LR_Cards/ClockTowers/8CT.jpg"));
+        cardClockTow9 = new JLabel(clockTow9 = new ImageIcon("images/LR_Cards/ClockTowers/9CT.jpg"));
+        cardClockTow10 = new JLabel(clockTow10 = new ImageIcon("images/LR_Cards/ClockTowers/10CT.jpg"));
+        cardClockTowJ = new JLabel(clockTowJ = new ImageIcon("images/LR_Cards/ClockTowers/JackCT.jpg"));
+        cardClockTowQ = new JLabel(clockTowQ = new ImageIcon("images/LR_Cards/ClockTowers/QueenCT.jpg"));
+        cardClockTowK = new JLabel(clockTowK = new ImageIcon("images/LR_Cards/ClockTowers/KingCT.jpg"));
+        cardGVLogoA = new JLabel(logoGVA = new ImageIcon("images/LR_Cards/GVLogo/AGVLogo.jpg"));
+        cardGVLogo2 = new JLabel(logoGV2 = new ImageIcon("images/LR_Cards/GVLogo/2GVLogo.jpg"));
+        cardGVLogo3 = new JLabel(logoGV3 = new ImageIcon("images/LR_Cards/GVLogo/3GVLogo.jpg"));
+        cardGVLogo4 = new JLabel(logoGV4 = new ImageIcon("images/LR_Cards/GVLogo/4GVLogo.jpg"));
+        cardGVLogo5 = new JLabel(logoGV5 = new ImageIcon("images/LR_Cards/GVLogo/5GVLogo.jpg"));
+        cardGVLogo6 = new JLabel(logoGV6 = new ImageIcon("images/LR_Cards/GVLogo/6GVLogo.jpg"));
+        cardGVLogo7 = new JLabel(logoGV7 = new ImageIcon("images/LR_Cards/GVLogo/7GVLogo.jpg"));
+        cardGVLogo8 = new JLabel(logoGV8 = new ImageIcon("images/LR_Cards/GVLogo/8GVLogo.jpg"));
+        cardGVLogo9 = new JLabel(logoGV9 = new ImageIcon("images/LR_Cards/GVLogo/9GVLogo.jpg"));
+        cardGVLogo10 = new JLabel(logoGV10 = new ImageIcon("images/LR_Cards/GVLogo/10GVLogo.jpg"));
+        cardGVLogoJ = new JLabel(logoGVJ = new ImageIcon("images/LR_Cards/GVLogo/JackGVLogo.jpg"));
+        cardGVLogoQ = new JLabel(logoGVQ = new ImageIcon("images/LR_Cards/GVLogo/QueenGVLogo.jpg"));
+        cardGVLogoK = new JLabel(logoGVK = new ImageIcon("images/LR_Cards/GVLogo/KingGVLogo.jpg"));
+        cardSailorA = new JLabel(sailorA = new ImageIcon("images/LR_Cards/Sailor/AceSailor.jpg"));
+        cardSailor2 = new JLabel(sailor2 = new ImageIcon("images/LR_Cards/Sailor/2Sailor.jpg"));
+        cardSailor3 = new JLabel(sailor3 = new ImageIcon("images/LR_Cards/Sailor/3Sailor.jpg"));
+        cardSailor4 = new JLabel(sailor4 = new ImageIcon("images/LR_Cards/Sailor/4Sailor.jpg"));
+        cardSailor5 = new JLabel(sailor5 = new ImageIcon("images/LR_Cards/Sailor/5Sailor.jpg"));
+        cardSailor6 = new JLabel(sailor6 = new ImageIcon("images/LR_Cards/Sailor/6Sailor.jpg"));
+        cardSailor7 = new JLabel(sailor7 = new ImageIcon("images/LR_Cards/Sailor/7Sailor.jpg"));
+        cardSailor8 = new JLabel(sailor8 = new ImageIcon("images/LR_Cards/Sailor/8Sailor.jpg"));
+        cardSailor9 = new JLabel(sailor9 = new ImageIcon("images/LR_Cards/Sailor/9Sailor.jpg"));
+        cardSailor10 = new JLabel(sailor10 = new ImageIcon("images/LR_Cards/Sailor/10Sailor.jpg"));
+        cardSailorJ = new JLabel(sailorJ = new ImageIcon("images/LR_Cards/Sailor/JackSailor.jpg"));
+        cardSailorQ = new JLabel(sailorQ = new ImageIcon("images/LR_Cards/Sailor/QueenSailor.jpg"));
+        cardSailorK = new JLabel(sailorK = new ImageIcon("images/LR_Cards/Sailor/KingSailor.jpg"));
 
         // Creating colors
         black = Color.BLACK;
@@ -341,8 +343,6 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Creating labels
         titleLabel = new JLabel("Lakers Rummy");
-        underWLabel = new JLabel(underWater);
-        crabGIFLabel = new JLabel(crabGIF);
 
         // Creating buttons
         playButton = new JButton("Play");
@@ -504,10 +504,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.setLayout(null);
 
         // Creating labels
-        seaGullLabel = new JLabel(avatar1);
-        whaleLabel = new JLabel(avatar2);
-        octopusLabel = new JLabel(avatar3);
-        crabLabel = new JLabel(avatar4);
         p1Label = new JLabel("Cards in hand: ");
         p2Label = new JLabel("Cards in hand: ");
         p3Label = new JLabel("Cards in hand: ");
@@ -515,61 +511,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         dash1Label = new JLabel("_______");
         dash2Label = new JLabel("_______");
         dash3Label = new JLabel("_______");
-        rectangleLeftLabel = new JLabel(rectangleLeft);
-        rectangleRightLabel = new JLabel(rectangleRight);
-        cardDeckLabel = new JLabel(backOfCardLR);
-        cardAnchorA = new JLabel(anchorA);
-        cardAnchor2 = new JLabel(anchor2);
-        cardAnchor3 = new JLabel(anchor3);
-        cardAnchor4 = new JLabel(anchor4);
-        cardAnchor5 = new JLabel(anchor5);
-        cardAnchor6 = new JLabel(anchor6);
-        cardAnchor7 = new JLabel(anchor7);
-        cardAnchor8 = new JLabel(anchor8);
-        cardAnchor9 = new JLabel(anchor9);
-        cardAnchor10 = new JLabel(anchor10);
-        cardAnchorJ = new JLabel(anchorJ);
-        cardAnchorQ = new JLabel(anchorQ);
-        cardAnchorK = new JLabel(anchorK);
-        cardClockTowA = new JLabel(clockTowA);
-        cardClockTow2 = new JLabel(clockTow2);
-        cardClockTow3 = new JLabel(clockTow3);
-        cardClockTow4 = new JLabel(clockTow4);
-        cardClockTow5 = new JLabel(clockTow5);
-        cardClockTow6 = new JLabel(clockTow6);
-        cardClockTow7 = new JLabel(clockTow7);
-        cardClockTow8 = new JLabel(clockTow8);
-        cardClockTow9 = new JLabel(clockTow9);
-        cardClockTow10 = new JLabel(clockTow10);
-        cardClockTowJ = new JLabel(clockTowJ);
-        cardClockTowQ = new JLabel(clockTowQ);
-        cardClockTowK = new JLabel(clockTowK);
-        cardGVLogoA = new JLabel(logoGVA);
-        cardGVLogo2 = new JLabel(logoGV2);
-        cardGVLogo3 = new JLabel(logoGV3);
-        cardGVLogo4 = new JLabel(logoGV4);
-        cardGVLogo5 = new JLabel(logoGV5);
-        cardGVLogo6 = new JLabel(logoGV6);
-        cardGVLogo7 = new JLabel(logoGV7);
-        cardGVLogo8 = new JLabel(logoGV8);
-        cardGVLogo9 = new JLabel(logoGV9);
-        cardGVLogo10 = new JLabel(logoGV10);
-        cardGVLogoJ = new JLabel(logoGVJ);
-        cardGVLogoQ = new JLabel(logoGVQ);
-        cardGVLogoK = new JLabel(logoGVK);
-        cardSailorA = new JLabel(sailorA);
-        cardSailor2 = new JLabel(sailor2);
-        cardSailor3 = new JLabel(sailor3);
-        cardSailor4 = new JLabel(sailor4);
-        cardSailor5 = new JLabel(sailor5);
-        cardSailor6 = new JLabel(sailor6);
-        cardSailor7 = new JLabel(sailor7);
-        cardSailor8 = new JLabel(sailor8);
-        cardSailor9 = new JLabel(sailor9);
-        cardSailor10 = new JLabel(sailor10);
-        cardSailorJ = new JLabel(sailorJ);
-        cardSailorQ = new JLabel(sailorQ);
-        cardSailorK = new JLabel(sailorK);
 
         if (setup) {
             // populating hashmap with smol cards
@@ -1253,6 +1194,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         settings.setForeground(black);
 
         // Setting fonts
+        options.setFont(menuFont);
         titleLabel.setFont(howTitleFont);
         dash1Label.setFont(playButtonFont);
         dash2Label.setFont(playButtonFont);
@@ -1400,6 +1342,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         settings.setForeground(black);
 
         // Setting fonts
+        options.setFont(menuFont);
         titleLabel.setFont(howTitleFont);
         dash1Label.setFont(playButtonFont);
         dash2Label.setFont(playButtonFont);
@@ -1487,11 +1430,8 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Addiing action listeners to elements
         exit.addActionListener(this);
-        if (gameInProg) {
-            returnGame.addActionListener(this);
-        } else {
-            returnMenu.addActionListener(this);
-        }
+        returnGame.addActionListener(this);
+        returnMenu.addActionListener(this);
         rummyHowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Setting elements compatible with the frame
