@@ -52,7 +52,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     // JButton declarations
     private JButton playButton, rummyButton, lakersRummyButton, makeMeldButton,
-            addToMeldButton;
+            addToMeldButton, blGreenButton, dGreenButton, lTanButton;
     private JButton onePlayerButton, twoPlayerButton, threePlayerButton, // Number of players buttons
             fourPlayerButton;
     private JButton discard1, discard2, discard3, discard4, discard5,
@@ -126,7 +126,7 @@ public class RummyGUI extends JFrame implements ActionListener {
     // Font declarations
     private Font titleFont, menuFont, subMenuFont, playButtonFont,
             gameButtonFont, numPlayersButtonFont, avatarFont,
-            coolSquareFont, howTitleFont;
+            coolSquareFont, howTitleFont, settingsTextFont;
 
     // LineBorder declarations
     private LineBorder cardBorder, cardHighlightBorder, menuBorder,
@@ -135,7 +135,8 @@ public class RummyGUI extends JFrame implements ActionListener {
     // Color declarations
     private Color black, darkGrey, grey, lightGrey, white,
             red, orange, brightOrange, yellow, green, blue,
-            aquaBlue, cyan, magenta, pink, darkTan, tan;
+            aquaBlue, cyan, magenta, pink, darkTan, tan,
+            blueGreen, darkGreen;
 
     // Container declarations
     private Container pane;
@@ -144,8 +145,8 @@ public class RummyGUI extends JFrame implements ActionListener {
     private Insets insets;
 
     // Game status variable declarations
-    private final int MENU, GAME, SETTINGS, RUMMYHOW;
-    private int whichGame, numPlayers, currentScreen, turn;
+    private final int MENU, GAME, SETTINGS, RUMMYHOW, BLGREEN, DGREEN, LTAN;
+    private int whichGame, numPlayers, currentScreen, turn, gameColor;
     private boolean gameInProg, deckClick, handCardClick, hasSetClicks, makeMeld, addToMeld, drawn = false,
             setup = true, discard = true;
     private Rummy rummy = new Rummy();
@@ -291,6 +292,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         brightOrange = new Color(255, 135, 0);
         yellow = Color.YELLOW;
         green = Color.GREEN;
+        blueGreen = new Color(0, 150, 170);
+        darkGreen = new Color(0, 150, 100);
         blue = Color.BLUE;
         aquaBlue = new Color(5, 195, 228);
         cyan = Color.CYAN;
@@ -301,6 +304,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Creating fonts
         titleFont = new Font("Segoe Script", Font.BOLD, 120);
+        settingsTextFont = new Font("Georgia", Font.PLAIN, 70);
         menuFont = new Font("Georgia", Font.PLAIN, 21);
         subMenuFont = new Font("Cooper Black", Font.PLAIN, 21);
         coolSquareFont = new Font("Courier", Font.BOLD, 200);
@@ -322,6 +326,10 @@ public class RummyGUI extends JFrame implements ActionListener {
         SETTINGS = 2;
         GAME = 3;
         RUMMYHOW = 4;
+        LTAN = 1;
+        DGREEN = 2;
+        BLGREEN = 3;
+        gameColor = LTAN;
 
         // Calls method to create main menu
         mainMenuScreen();
@@ -1133,7 +1141,13 @@ public class RummyGUI extends JFrame implements ActionListener {
         gameFrame.setVisible(true);
         gameFrame.setSize(1280, 720);
         gameFrame.setJMenuBar(menu);
-        gameFrame.getContentPane().setBackground(tan);
+        if (gameColor == LTAN) {
+            gameFrame.getContentPane().setBackground(tan);
+        } else if (gameColor == DGREEN) {
+            gameFrame.getContentPane().setBackground(darkGreen);
+        } else if (gameColor == BLGREEN) {
+            gameFrame.getContentPane().setBackground(blueGreen);
+        }
 
         // Setting game as in progress
         gameInProg = true;
@@ -1154,18 +1168,17 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane = new Container();
         pane.setLayout(null);
 
-        // Creating Title
-        titleLabel = new JLabel("Settings");
-
         // Creating labels
-        dash1Label = new JLabel("________________________________________");
-        dash2Label = new JLabel("________________________________________");
-        dash3Label = new JLabel("________________________________________");
+        titleLabel = new JLabel("Settings");
         coolSquare1Label = new JLabel("⬛⬛⬛⬛⬛⬛");
         coolSquare2Label = new JLabel("⬛⬛⬛⬛⬛⬛");
+        dash1Label = new JLabel("________________________________________");
+        ex1Label = new JLabel("Game Background Color");
 
         // Creating buttons
-        // playButton = new JButton("Play");
+        blGreenButton = new JButton("Blue-Green");
+        dGreenButton = new JButton("Dark Green");
+        lTanButton = new JButton("Tan");
 
         // Creating menus
         options = new JMenu("Options");
@@ -1183,10 +1196,17 @@ public class RummyGUI extends JFrame implements ActionListener {
         UIManager.put("MenuBar.background", lightGrey);
 
         // Setting foreground colors
+        blGreenButton.setBackground(darkGrey);
+        dGreenButton.setBackground(darkGrey);
+        lTanButton.setBackground(yellow);
+
+        // Setting foreground colors
         titleLabel.setForeground(black);
+        ex1Label.setForeground(black);
+        blGreenButton.setForeground(lightGrey);
+        dGreenButton.setForeground(lightGrey);
+        lTanButton.setForeground(black);
         dash1Label.setForeground(black);
-        dash2Label.setForeground(black);
-        dash3Label.setForeground(black);
         coolSquare1Label.setForeground(yellow);
         coolSquare2Label.setForeground(green);
         options.setForeground(black);
@@ -1196,9 +1216,11 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Setting fonts
         options.setFont(menuFont);
         titleLabel.setFont(howTitleFont);
+        ex1Label.setFont(settingsTextFont);
         dash1Label.setFont(playButtonFont);
-        dash2Label.setFont(playButtonFont);
-        dash3Label.setFont(playButtonFont);
+        blGreenButton.setFont(numPlayersButtonFont);
+        dGreenButton.setFont(numPlayersButtonFont);
+        lTanButton.setFont(numPlayersButtonFont);
         coolSquare1Label.setFont(coolSquareFont);
         coolSquare2Label.setFont(coolSquareFont);
         returnMenu.setFont(subMenuFont);
@@ -1206,16 +1228,20 @@ public class RummyGUI extends JFrame implements ActionListener {
         exit.setFont(subMenuFont);
 
         // Setting borders
-        playButton.setBorder(buttonBorder);
+        blGreenButton.setBorder(buttonBorder);
+        dGreenButton.setBorder(buttonBorder);
+        lTanButton.setBorder(buttonBorder);
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
         titleLabel.setBounds(325 + insets.left, 10 + insets.top, 600, 100);
         dash1Label.setBounds(0 + insets.left, 50 + insets.top, 1300, 100);
-        dash2Label.setBounds(0 + insets.left, 200 + insets.top, 1300, 100);
-        dash3Label.setBounds(0 + insets.left, 350 + insets.top, 1300, 100);
         coolSquare1Label.setBounds(-30 + insets.left, -40 + insets.top, 1300, 200);
         coolSquare2Label.setBounds(10 + insets.left, -40 + insets.top, 1300, 200);
+        blGreenButton.setBounds(50 + insets.left, 300 + insets.top, 200, 100);
+        dGreenButton.setBounds(400 + insets.left, 300 + insets.top, 200, 100);
+        lTanButton.setBounds(750 + insets.left, 300 + insets.top, 200, 100);
+        ex1Label.setBounds(130 + insets.left, 180 + insets.top, 1500, 100);
 
         // Adding elements to menubar
         menu.add(options);
@@ -1235,14 +1261,19 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Adding elements to pane
         pane.add(titleLabel);
+        pane.add(ex1Label);
         pane.add(dash1Label);
-        // pane.add(dash2Label);
-        // pane.add(dash3Label);
+        pane.add(blGreenButton);
+        pane.add(dGreenButton);
+        pane.add(lTanButton);
         pane.add(coolSquare1Label);
         pane.add(coolSquare2Label);
 
         // Addiing action listeners to elements
         exit.addActionListener(this);
+        blGreenButton.addActionListener(this);
+        dGreenButton.addActionListener(this);
+        lTanButton.addActionListener(this);
         if (gameInProg) {
             returnGame.addActionListener(this);
         } else {
@@ -1255,7 +1286,13 @@ public class RummyGUI extends JFrame implements ActionListener {
         settingsFrame.setVisible(true);
         settingsFrame.setSize(1000, 720);
         settingsFrame.setJMenuBar(menu);
-        settingsFrame.getContentPane().setBackground(tan);
+        if (gameColor == LTAN) {
+            settingsFrame.getContentPane().setBackground(tan);
+        } else if (gameColor == DGREEN) {
+            settingsFrame.getContentPane().setBackground(darkGreen);
+        } else if (gameColor == BLGREEN) {
+            settingsFrame.getContentPane().setBackground(blueGreen);
+        }
 
         // Setting current screen location
         currentScreen = SETTINGS;
@@ -1628,6 +1665,39 @@ public class RummyGUI extends JFrame implements ActionListener {
             numPlayers = 4;
             // rummy.addPlayer(numPlayers);
             turn = 0;
+        }
+
+        if (action == blGreenButton) {
+            blGreenButton.setForeground(black);
+            dGreenButton.setForeground(lightGrey);
+            lTanButton.setForeground(lightGrey);
+            blGreenButton.setBackground(yellow);
+            dGreenButton.setBackground(darkGrey);
+            lTanButton.setBackground(darkGrey);
+            settingsFrame.getContentPane().setBackground(blueGreen);
+            gameColor = BLGREEN;
+        }
+
+        if (action == dGreenButton) {
+            blGreenButton.setForeground(lightGrey);
+            dGreenButton.setForeground(black);
+            lTanButton.setForeground(lightGrey);
+            blGreenButton.setBackground(darkGrey);
+            dGreenButton.setBackground(yellow);
+            lTanButton.setBackground(darkGrey);
+            settingsFrame.getContentPane().setBackground(darkGreen);
+            gameColor = DGREEN;
+        }
+
+        if (action == lTanButton) {
+            blGreenButton.setForeground(lightGrey);
+            dGreenButton.setForeground(lightGrey);
+            lTanButton.setForeground(black);
+            blGreenButton.setBackground(darkGrey);
+            dGreenButton.setBackground(darkGrey);
+            lTanButton.setBackground(yellow);
+            settingsFrame.getContentPane().setBackground(tan);
+            gameColor = LTAN;
         }
 
         // ---------- GAMEPLAY ACTIONS ------------
