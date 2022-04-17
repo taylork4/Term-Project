@@ -571,72 +571,57 @@ public class RummyGUI extends JFrame implements ActionListener {
         cardSailorQ = new JLabel(sailorQ);
         cardSailorK = new JLabel(sailorK);
 
-        // smol cards
-        cardAnchorAS = new JLabel(anchorAS);
-        cardAnchor2S = new JLabel(anchor2S);
-        cardAnchor3S = new JLabel(anchor3S);
-        cardAnchor4S = new JLabel(anchor4S);
-        cardAnchor5S = new JLabel(anchor5S);
-        cardAnchor6S = new JLabel(anchor6S);
-        cardAnchor7S = new JLabel(anchor7S);
-        cardAnchor8S = new JLabel(anchor8S);
-        cardAnchor9S = new JLabel(anchor9S);
-        cardAnchor10S = new JLabel(anchor10S);
-        cardAnchorJS = new JLabel(anchorJS);
-        cardAnchorQS = new JLabel(anchorQS);
-        cardAnchorKS = new JLabel(anchorKS);
-
         if (setup) {
-            // populating hashmap
-            cardMap.put(rummy.getCard(0), cardAnchorAS);
+            // populating hashmap with smol cards
+            cardMap.put(rummy.getCard(0), cardAnchorAS = new JLabel(anchorAS));
             cardMap.put(rummy.getCard(1), cardClockTowAS = new JLabel(clockTowAS));
             cardMap.put(rummy.getCard(2), cardGVLogoAS = new JLabel(logoGVAS));
-            cardMap.put(rummy.getCard(3), cardSailor7S = new JLabel(sailorAS));
-            cardMap.put(rummy.getCard(4), cardAnchor2S);
+            cardMap.put(rummy.getCard(3), cardSailorAS = new JLabel(sailorAS));
+            cardMap.put(rummy.getCard(4), cardAnchor2S = new JLabel(anchor2S));
             cardMap.put(rummy.getCard(5), cardClockTow2S = new JLabel(clockTow2S));
             cardMap.put(rummy.getCard(6), cardGVLogo2S = new JLabel(logoGV2S));
             cardMap.put(rummy.getCard(7), cardSailor2S = new JLabel(sailor2S));
-            cardMap.put(rummy.getCard(8), cardAnchor3S);
+            cardMap.put(rummy.getCard(8), cardAnchor3S = new JLabel(anchor3S));
             cardMap.put(rummy.getCard(9), cardClockTow3S = new JLabel(clockTow3S));
             cardMap.put(rummy.getCard(10), cardGVLogo3S = new JLabel(logoGV3S));
             cardMap.put(rummy.getCard(11), cardSailor3S = new JLabel(sailor3S));
-            cardMap.put(rummy.getCard(12), cardAnchor4S);
+            cardMap.put(rummy.getCard(12), cardAnchor4S = new JLabel(anchor4S));
             cardMap.put(rummy.getCard(13), cardClockTow4S = new JLabel(clockTow4S));
             cardMap.put(rummy.getCard(14), cardGVLogo4S = new JLabel(logoGV4S));
             cardMap.put(rummy.getCard(15), cardSailor4S = new JLabel(sailor4S));
-            cardMap.put(rummy.getCard(16), cardAnchor5S);
+            cardMap.put(rummy.getCard(16), cardAnchor5S = new JLabel(anchor5S));
             cardMap.put(rummy.getCard(17), cardClockTow5S = new JLabel(clockTow5S));
             cardMap.put(rummy.getCard(18), cardGVLogo5S = new JLabel(logoGV5S));
             cardMap.put(rummy.getCard(19), cardSailor5S = new JLabel(sailor5S));
-            cardMap.put(rummy.getCard(20), cardAnchor6S);
+            cardMap.put(rummy.getCard(20), cardAnchor6S = new JLabel(anchor6S));
             cardMap.put(rummy.getCard(21), cardClockTow6S = new JLabel(clockTow6S));
             cardMap.put(rummy.getCard(22), cardGVLogo6S = new JLabel(logoGV6S));
             cardMap.put(rummy.getCard(23), cardSailor6S = new JLabel(sailor6S));
-            cardMap.put(rummy.getCard(24), cardAnchor7S);
+            cardMap.put(rummy.getCard(24), cardAnchor7S = new JLabel(anchor7S));
             cardMap.put(rummy.getCard(25), cardClockTow7S = new JLabel(clockTow7S));
             cardMap.put(rummy.getCard(26), cardGVLogo7S = new JLabel(logoGV7S));
             cardMap.put(rummy.getCard(27), cardSailor7S = new JLabel(sailor7S));
-            cardMap.put(rummy.getCard(28), cardAnchor8S);
+            cardMap.put(rummy.getCard(28), cardAnchor8S = new JLabel(anchor8S));
             cardMap.put(rummy.getCard(29), cardClockTow8S = new JLabel(clockTow8S));
             cardMap.put(rummy.getCard(30), cardGVLogo8S = new JLabel(logoGV8S));
             cardMap.put(rummy.getCard(31), cardSailor8S = new JLabel(sailor8S));
-            cardMap.put(rummy.getCard(32), cardAnchor9S);
+            cardMap.put(rummy.getCard(32), cardAnchor9S = new JLabel(anchor9S));
             cardMap.put(rummy.getCard(33), cardClockTow9S = new JLabel(clockTow9S));
             cardMap.put(rummy.getCard(34), cardGVLogo9S = new JLabel(logoGV9S));
             cardMap.put(rummy.getCard(35), cardSailor9S = new JLabel(sailor9S));
-            cardMap.put(rummy.getCard(36), cardAnchor10S);
+            cardMap.put(rummy.getCard(36), cardAnchor10S = new JLabel(anchor10S));
             cardMap.put(rummy.getCard(37), cardClockTow10S = new JLabel(clockTow10S));
             cardMap.put(rummy.getCard(38), cardGVLogo10S = new JLabel(logoGV10S));
             cardMap.put(rummy.getCard(39), cardSailor10S = new JLabel(sailor10S));
-            cardMap.put(rummy.getCard(40), cardAnchorJS);
+            cardMap.put(rummy.getCard(40), cardAnchorJS = new JLabel(anchorJS));
             cardMap.put(rummy.getCard(41), cardClockTowJS = new JLabel(clockTowJS));
             cardMap.put(rummy.getCard(42), cardGVLogoJS = new JLabel(logoGVJS));
             cardMap.put(rummy.getCard(43), cardSailorJS = new JLabel(sailorJS));
-            cardMap.put(rummy.getCard(44), cardAnchorQS);
+            cardMap.put(rummy.getCard(44), cardAnchorQS = new JLabel(anchorQS));
             cardMap.put(rummy.getCard(45), cardClockTowQS = new JLabel(clockTowQS));
-            cardMap.put(rummy.getCard(46), cardGVLogoQS = new JLabel(logoGVQ));
+            cardMap.put(rummy.getCard(46), cardGVLogoQS = new JLabel(logoGVQS));
             cardMap.put(rummy.getCard(47), cardSailorQS = new JLabel(sailorQS));
-            cardMap.put(rummy.getCard(48), cardAnchorKS);
+            cardMap.put(rummy.getCard(48), cardAnchorKS = new JLabel(anchorKS));
             cardMap.put(rummy.getCard(49), cardClockTowKS = new JLabel(clockTowKS));
             cardMap.put(rummy.getCard(50), cardGVLogoKS = new JLabel(logoGVKS));
             cardMap.put(rummy.getCard(51), cardSailorKS = new JLabel(sailorKS));
@@ -649,6 +634,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         for (int i = 0; i < maxHandSize; i++) { // adding cards in hand to be displayed
             if (i < current.hand.cardArr.size()) {
                 handLabels[i] = cardMap.get(current.hand.cardArr.get(i));
+                handLabels[i].setBorder(cardBorder);
             } else {
                 handLabels[i] = null;
             }
@@ -899,7 +885,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         discard6.setFont(menuFont);
         discard7.setFont(menuFont);
         discard8.setFont(menuFont);
-        p1Label.setFont(avatarFont);
+        p1Label.setFont((avatarFont));
         p2Label.setFont(avatarFont);
         p3Label.setFont(avatarFont);
         p4Label.setFont(avatarFont);
@@ -1056,38 +1042,36 @@ public class RummyGUI extends JFrame implements ActionListener {
         cardDeckLabel.setBounds(40 + insets.left, 20 + insets.top, 135, 190);
         cardAnchorA.setBounds(40 + insets.left, 435 + insets.top, 135, 190);
         for (int j = 0; j < 7 * 120; j += 120) { // loop to add cards in hand to bottom of screen
-            if (handLabels[j / 120] != null)
-                handLabels[j / 120].setBounds(180 + j + insets.left, 500 + insets.bottom, 186, 135);
-        }
-        if (handLabels[7] != null) {
-            handLabels[7].setBounds((int) handLabels[6].getLocation().getX(),
-                    (int) handLabels[6].getLocation().getY() - 2, 186, 135);
-            discard8.setBounds(handLabels[7].getX() + 50, handLabels[7].getY() - 55, 90, 40);
+            if (handLabels[j / 120] != null) {
+                handLabels[j / 120].setBounds(225 + j + insets.left, 500 + insets.bottom, 100, 135);
+            }
         }
 
         if (handLabels[0] != null) {
-            discard1.setBounds(handLabels[0].getX() + 50, handLabels[0].getY() - 55, 90, 40);
+            discard1.setBounds(handLabels[0].getX() + 5, handLabels[0].getY() - 55, 90, 40);
         }
         if (handLabels[1] != null) {
-            discard2.setBounds(handLabels[1].getX() + 50, handLabels[1].getY() - 55, 90, 40);
+            discard2.setBounds(handLabels[1].getX() + 5, handLabels[1].getY() - 55, 90, 40);
         }
         if (handLabels[2] != null) {
-            discard3.setBounds(handLabels[2].getX() + 50, handLabels[2].getY() - 55, 90, 40);
+            discard3.setBounds(handLabels[2].getX() + 5, handLabels[2].getY() - 55, 90, 40);
         }
         if (handLabels[3] != null) {
-            discard4.setBounds(handLabels[3].getX() + 50, handLabels[3].getY() - 55, 90, 40);
+            discard4.setBounds(handLabels[3].getX() + 5, handLabels[3].getY() - 55, 90, 40);
         }
         if (handLabels[4] != null) {
-            discard5.setBounds(handLabels[4].getX() + 50, handLabels[4].getY() - 55, 90, 40);
+            discard5.setBounds(handLabels[4].getX() + 5, handLabels[4].getY() - 55, 90, 40);
         }
         if (handLabels[5] != null) {
-            discard6.setBounds(handLabels[5].getX() + 50, handLabels[5].getY() - 55, 90, 40);
+            discard6.setBounds(handLabels[5].getX() + 5, handLabels[5].getY() - 55, 90, 40);
         }
         if (handLabels[6] != null) {
-            discard7.setBounds(handLabels[6].getX() + 50, handLabels[6].getY() - 55, 90, 40);
+            discard7.setBounds(handLabels[6].getX() + 5, handLabels[6].getY() - 55, 90, 40);
         }
         if (handLabels[7] != null) {
-            discard8.setBounds(handLabels[7].getX() + 50, handLabels[7].getY() - 55, 90, 40);
+            handLabels[7].setBounds((int) handLabels[6].getLocation().getX(),
+                    (int) handLabels[6].getLocation().getY() - 200, 100, 135);
+            discard8.setBounds(handLabels[7].getX() + 5, handLabels[7].getY() - 55, 90, 40);
         }
 
         // Adding elements to menubar
@@ -1172,58 +1156,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(cardSailorJ);
         pane.add(cardSailorQ);
         pane.add(cardSailorK);
-        pane.add(cardAnchorAS);
-        pane.add(cardAnchor2S);
-        pane.add(cardAnchor3S);
-        pane.add(cardAnchor4S);
-        pane.add(cardAnchor5S);
-        pane.add(cardAnchor6S);
-        pane.add(cardAnchor7S);
-        pane.add(cardAnchor8S);
-        pane.add(cardAnchor9S);
-        pane.add(cardAnchor10S);
-        pane.add(cardAnchorJS);
-        pane.add(cardAnchorQS);
-        pane.add(cardAnchorKS);
-        pane.add(cardClockTowAS);
-        pane.add(cardClockTow2S);
-        pane.add(cardClockTow3S);
-        pane.add(cardClockTow4S);
-        pane.add(cardClockTow5S);
-        pane.add(cardClockTow6S);
-        pane.add(cardClockTow7S);
-        pane.add(cardClockTow8S);
-        pane.add(cardClockTow9S);
-        pane.add(cardClockTow10S);
-        pane.add(cardClockTowJS);
-        pane.add(cardClockTowQS);
-        pane.add(cardClockTowKS);
-        pane.add(cardGVLogoAS);
-        pane.add(cardGVLogo2S);
-        pane.add(cardGVLogo3S);
-        pane.add(cardGVLogo4S);
-        pane.add(cardGVLogo5S);
-        pane.add(cardGVLogo6S);
-        pane.add(cardGVLogo7S);
-        pane.add(cardGVLogo8S);
-        pane.add(cardGVLogo9S);
-        pane.add(cardGVLogo10S);
-        pane.add(cardGVLogoJS);
-        pane.add(cardGVLogoQS);
-        pane.add(cardGVLogoKS);
-        pane.add(cardSailorAS);
-        pane.add(cardSailor2S);
-        pane.add(cardSailor3S);
-        pane.add(cardSailor4S);
-        pane.add(cardSailor5S);
-        pane.add(cardSailor6S);
-        pane.add(cardSailor7S);
-        pane.add(cardSailor8S);
-        pane.add(cardSailor9S);
-        pane.add(cardSailor10S);
-        pane.add(cardSailorJS);
-        pane.add(cardSailorQS);
-        pane.add(cardSailorKS);
         pane.add(rectangleLeftLabel);
         pane.add(rectangleRightLabel);
 
