@@ -2022,6 +2022,21 @@ public class RummyGUI extends JFrame implements ActionListener {
             pane.remove(rectangleLeftLabel);
             pane.add(discardLabel);
             pane.add(rectangleLeftLabel);
+
+            discardLabel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    if (!drawn) {
+                        rummy.draw(rummy.getDiscard(), rummy.getPlayer(turn % numPlayers).hand);
+                        gameFrame.dispose();
+                        setup = true;
+                        drawn = true;
+                        gameScreen();
+                        makeMeldButton.setBounds(35 + insets.left, 235 + insets.top, 145, 50);
+                        addToMeldButton.setBounds(35 + insets.left, 355 + insets.top, 145, 50);
+                    }
+                }
+            });
         }
     }
 
