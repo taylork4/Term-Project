@@ -57,6 +57,8 @@ public class RummyGUI extends JFrame implements ActionListener {
             fourPlayerButton;
     private JButton discard1, discard2, discard3, discard4, discard5,
             discard6, discard7, discard8;
+    private JButton select1, select2, select3, select4, select5, select6,
+            select7, select8;
 
     // JLabel declarations
     private JLabel titleLabel, p1Label, p2Label, p3Label, p4Label, cardDeckLabel,
@@ -148,8 +150,7 @@ public class RummyGUI extends JFrame implements ActionListener {
     // Game status variable declarations
     private final int MENU, GAME, SETTINGS, RUMMYHOW, BLGREEN, DGREEN, LTAN;
     private int whichGame, numPlayers, currentScreen, turn, gameColor;
-    private boolean gameInProg, deckClick, handCardClick, hasSetClicks, makeMeld, addToMeld, drawn = false,
-            setup = true, discard = true;
+    private boolean makeMeld, addToMeld, drawn, setup, discard;
     private Rummy rummy = new Rummy();
     Player current;
     private HashMap<Card, JLabel> cardMap = new HashMap<Card, JLabel>();
@@ -167,58 +168,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         redX = new ImageIcon("images/red-x.png");
         returnBack = new ImageIcon("images/returnBack.png");
         how2Play = new ImageIcon("images/how2Play.png");
-        anchorAS = new ImageIcon("images/LR_Cards/AnchorsS/AceAnchorS.jpg");
-        anchor2S = new ImageIcon("images/LR_Cards/AnchorsS/2AnchorS.jpg");
-        anchor3S = new ImageIcon("images/LR_Cards/AnchorsS/3AnchorS.jpg");
-        anchor4S = new ImageIcon("images/LR_Cards/AnchorsS/4AnchorS.jpg");
-        anchor5S = new ImageIcon("images/LR_Cards/AnchorsS/5AnchorS.jpg");
-        anchor6S = new ImageIcon("images/LR_Cards/AnchorsS/6AnchorS.jpg");
-        anchor7S = new ImageIcon("images/LR_Cards/AnchorsS/7AnchorS.jpg");
-        anchor8S = new ImageIcon("images/LR_Cards/AnchorsS/8AnchorS.jpg");
-        anchor9S = new ImageIcon("images/LR_Cards/AnchorsS/9AnchorS.jpg");
-        anchor10S = new ImageIcon("images/LR_Cards/AnchorsS/10AnchorS.jpg");
-        anchorJS = new ImageIcon("images/LR_Cards/AnchorsS/JackAnchorS.jpg");
-        anchorQS = new ImageIcon("images/LR_Cards/AnchorsS/QueenAnchorS.jpg");
-        anchorKS = new ImageIcon("images/LR_Cards/AnchorsS/KingAnchorS.jpg");
-        clockTowAS = new ImageIcon("images/LR_Cards/ClockTowersS/AceCTS.jpg");
-        clockTow2S = new ImageIcon("images/LR_Cards/ClockTowersS/2CTS.jpg");
-        clockTow3S = new ImageIcon("images/LR_Cards/ClockTowersS/3CTS.jpg");
-        clockTow4S = new ImageIcon("images/LR_Cards/ClockTowersS/4CTS.jpg");
-        clockTow5S = new ImageIcon("images/LR_Cards/ClockTowersS/5CTS.jpg");
-        clockTow6S = new ImageIcon("images/LR_Cards/ClockTowersS/6CTS.jpg");
-        clockTow7S = new ImageIcon("images/LR_Cards/ClockTowersS/7CTS.jpg");
-        clockTow8S = new ImageIcon("images/LR_Cards/ClockTowersS/8CTS.jpg");
-        clockTow9S = new ImageIcon("images/LR_Cards/ClockTowersS/9CTS.jpg");
-        clockTow10S = new ImageIcon("images/LR_Cards/ClockTowersS/10CTS.jpg");
-        clockTowJS = new ImageIcon("images/LR_Cards/ClockTowersS/JackCTS.jpg");
-        clockTowQS = new ImageIcon("images/LR_Cards/ClockTowersS/QueenCTS.jpg");
-        clockTowKS = new ImageIcon("images/LR_Cards/ClockTowersS/KingCTS.jpg");
-        logoGVAS = new ImageIcon("images/LR_Cards/GVLogoS/AceGVLogoS.jpg");
-        logoGV2S = new ImageIcon("images/LR_Cards/GVLogoS/2GVLogoS.jpg");
-        logoGV3S = new ImageIcon("images/LR_Cards/GVLogoS/3GVLogoS.jpg");
-        logoGV4S = new ImageIcon("images/LR_Cards/GVLogoS/4GVLogoS.jpg");
-        logoGV5S = new ImageIcon("images/LR_Cards/GVLogoS/5GVLogoS.jpg");
-        logoGV6S = new ImageIcon("images/LR_Cards/GVLogoS/6GVLogoS.jpg");
-        logoGV7S = new ImageIcon("images/LR_Cards/GVLogoS/7GVLogoS.jpg");
-        logoGV8S = new ImageIcon("images/LR_Cards/GVLogoS/8GVLogoS.jpg");
-        logoGV9S = new ImageIcon("images/LR_Cards/GVLogoS/9GVLogoS.jpg");
-        logoGV10S = new ImageIcon("images/LR_Cards/GVLogoS/10GVLogoS.jpg");
-        logoGVJS = new ImageIcon("images/LR_Cards/GVLogoS/JackGVLogoS.jpg");
-        logoGVQS = new ImageIcon("images/LR_Cards/GVLogoS/QueenGVLogoS.jpg");
-        logoGVKS = new ImageIcon("images/LR_Cards/GVLogoS/KingGVLogoS.jpg");
-        sailorAS = new ImageIcon("images/LR_Cards/SailorS/AceSailorS.jpg");
-        sailor2S = new ImageIcon("images/LR_Cards/SailorS/2SailorS.jpg");
-        sailor3S = new ImageIcon("images/LR_Cards/SailorS/3SailorS.jpg");
-        sailor4S = new ImageIcon("images/LR_Cards/SailorS/4SailorS.jpg");
-        sailor5S = new ImageIcon("images/LR_Cards/SailorS/5SailorS.jpg");
-        sailor6S = new ImageIcon("images/LR_Cards/SailorS/6SailorS.jpg");
-        sailor7S = new ImageIcon("images/LR_Cards/SailorS/7SailorS.jpg");
-        sailor8S = new ImageIcon("images/LR_Cards/SailorS/8SailorS.jpg");
-        sailor9S = new ImageIcon("images/LR_Cards/SailorS/9SailorS.jpg");
-        sailor10S = new ImageIcon("images/LR_Cards/SailorS/10SailorS.jpg");
-        sailorJS = new ImageIcon("images/LR_Cards/SailorS/JackSailorS.jpg");
-        sailorQS = new ImageIcon("images/LR_Cards/SailorS/QueenSailorS.jpg");
-        sailorKS = new ImageIcon("images/LR_Cards/SailorS/KingSailorS.jpg");
 
         // Creating Labels
         underWLabel = new JLabel(underWater = new ImageIcon("images/underWater.png"));
@@ -230,6 +179,58 @@ public class RummyGUI extends JFrame implements ActionListener {
         rectangleLeftLabel = new JLabel(rectangleLeft = new ImageIcon("images/gameBackgroundTan.png"));
         rectangleRightLabel = new JLabel(rectangleRight = new ImageIcon("images/gameBackgroundTan.png"));
         cardDeckLabel = new JLabel(backOfCardLR = new ImageIcon("images/LR_Cards/LRBackCardDesign.jpg"));
+        cardAnchorAS = new JLabel(anchorAS = new ImageIcon("images/LR_Cards/AnchorsS/AceAnchorS.jpg"));
+        cardAnchor2S = new JLabel(anchor2S = new ImageIcon("images/LR_Cards/AnchorsS/2AnchorS.jpg"));
+        cardAnchor3S = new JLabel(anchor3S = new ImageIcon("images/LR_Cards/AnchorsS/3AnchorS.jpg"));
+        cardAnchor4S = new JLabel(anchor4S = new ImageIcon("images/LR_Cards/AnchorsS/4AnchorS.jpg"));
+        cardAnchor5S = new JLabel(anchor5S = new ImageIcon("images/LR_Cards/AnchorsS/5AnchorS.jpg"));
+        cardAnchor6S = new JLabel(anchor6S = new ImageIcon("images/LR_Cards/AnchorsS/6AnchorS.jpg"));
+        cardAnchor7S = new JLabel(anchor7S = new ImageIcon("images/LR_Cards/AnchorsS/7AnchorS.jpg"));
+        cardAnchor8S = new JLabel(anchor8S = new ImageIcon("images/LR_Cards/AnchorsS/8AnchorS.jpg"));
+        cardAnchor9S = new JLabel(anchor9S = new ImageIcon("images/LR_Cards/AnchorsS/9AnchorS.jpg"));
+        cardAnchor10S = new JLabel(anchor10S = new ImageIcon("images/LR_Cards/AnchorsS/10AnchorS.jpg"));
+        cardAnchorJS = new JLabel(anchorJS = new ImageIcon("images/LR_Cards/AnchorsS/JackAnchorS.jpg"));
+        cardAnchorQS = new JLabel(anchorQS = new ImageIcon("images/LR_Cards/AnchorsS/QueenAnchorS.jpg"));
+        cardAnchorKS = new JLabel(anchorKS = new ImageIcon("images/LR_Cards/AnchorsS/KingAnchorS.jpg"));
+        cardClockTowAS = new JLabel(clockTowAS = new ImageIcon("images/LR_Cards/ClockTowersS/AceCTS.jpg"));
+        cardClockTow2S = new JLabel(clockTow2S = new ImageIcon("images/LR_Cards/ClockTowersS/2CTS.jpg"));
+        cardClockTow3S = new JLabel(clockTow3S = new ImageIcon("images/LR_Cards/ClockTowersS/3CTS.jpg"));
+        cardClockTow4S = new JLabel(clockTow4S = new ImageIcon("images/LR_Cards/ClockTowersS/4CTS.jpg"));
+        cardClockTow5S = new JLabel(clockTow5S = new ImageIcon("images/LR_Cards/ClockTowersS/5CTS.jpg"));
+        cardClockTow6S = new JLabel(clockTow6S = new ImageIcon("images/LR_Cards/ClockTowersS/6CTS.jpg"));
+        cardClockTow7S = new JLabel(clockTow7S = new ImageIcon("images/LR_Cards/ClockTowersS/7CTS.jpg"));
+        cardClockTow8S = new JLabel(clockTow8S = new ImageIcon("images/LR_Cards/ClockTowersS/8CTS.jpg"));
+        cardClockTow9S = new JLabel(clockTow9S = new ImageIcon("images/LR_Cards/ClockTowersS/9CTS.jpg"));
+        cardClockTow10S = new JLabel(clockTow10S = new ImageIcon("images/LR_Cards/ClockTowersS/10CTS.jpg"));
+        cardClockTowJS = new JLabel(clockTowJS = new ImageIcon("images/LR_Cards/ClockTowersS/JackCTS.jpg"));
+        cardClockTowQS = new JLabel(clockTowQS = new ImageIcon("images/LR_Cards/ClockTowersS/QueenCTS.jpg"));
+        cardClockTowKS = new JLabel(clockTowKS = new ImageIcon("images/LR_Cards/ClockTowersS/KingCTS.jpg"));
+        cardGVLogoAS = new JLabel(logoGVAS = new ImageIcon("images/LR_Cards/GVLogoS/AceGVLogoS.jpg"));
+        cardGVLogo2S = new JLabel(logoGV2S = new ImageIcon("images/LR_Cards/GVLogoS/2GVLogoS.jpg"));
+        cardGVLogo3S = new JLabel(logoGV3S = new ImageIcon("images/LR_Cards/GVLogoS/3GVLogoS.jpg"));
+        cardGVLogo4S = new JLabel(logoGV4S = new ImageIcon("images/LR_Cards/GVLogoS/4GVLogoS.jpg"));
+        cardGVLogo5S = new JLabel(logoGV5S = new ImageIcon("images/LR_Cards/GVLogoS/5GVLogoS.jpg"));
+        cardGVLogo6S = new JLabel(logoGV6S = new ImageIcon("images/LR_Cards/GVLogoS/6GVLogoS.jpg"));
+        cardGVLogo7S = new JLabel(logoGV7S = new ImageIcon("images/LR_Cards/GVLogoS/7GVLogoS.jpg"));
+        cardGVLogo8S = new JLabel(logoGV8S = new ImageIcon("images/LR_Cards/GVLogoS/8GVLogoS.jpg"));
+        cardGVLogo9S = new JLabel(logoGV9S = new ImageIcon("images/LR_Cards/GVLogoS/9GVLogoS.jpg"));
+        cardGVLogo10S = new JLabel(logoGV10S = new ImageIcon("images/LR_Cards/GVLogoS/10GVLogoS.jpg"));
+        cardGVLogoJS = new JLabel(logoGVJS = new ImageIcon("images/LR_Cards/GVLogoS/JackGVLogoS.jpg"));
+        cardGVLogoQS = new JLabel(logoGVQS = new ImageIcon("images/LR_Cards/GVLogoS/QueenGVLogoS.jpg"));
+        cardGVLogoKS = new JLabel(logoGVKS = new ImageIcon("images/LR_Cards/GVLogoS/KingGVLogoS.jpg"));
+        cardSailorAS = new JLabel(sailorAS = new ImageIcon("images/LR_Cards/SailorS/AceSailorS.jpg"));
+        cardSailor2S = new JLabel(sailor2S = new ImageIcon("images/LR_Cards/SailorS/2SailorS.jpg"));
+        cardSailor3S = new JLabel(sailor3S = new ImageIcon("images/LR_Cards/SailorS/3SailorS.jpg"));
+        cardSailor4S = new JLabel(sailor4S = new ImageIcon("images/LR_Cards/SailorS/4SailorS.jpg"));
+        cardSailor5S = new JLabel(sailor5S = new ImageIcon("images/LR_Cards/SailorS/5SailorS.jpg"));
+        cardSailor6S = new JLabel(sailor6S = new ImageIcon("images/LR_Cards/SailorS/6SailorS.jpg"));
+        cardSailor7S = new JLabel(sailor7S = new ImageIcon("images/LR_Cards/SailorS/7SailorS.jpg"));
+        cardSailor8S = new JLabel(sailor8S = new ImageIcon("images/LR_Cards/SailorS/8SailorS.jpg"));
+        cardSailor9S = new JLabel(sailor9S = new ImageIcon("images/LR_Cards/SailorS/9SailorS.jpg"));
+        cardSailor10S = new JLabel(sailor10S = new ImageIcon("images/LR_Cards/SailorS/10SailorS.jpg"));
+        cardSailorJS = new JLabel(sailorJS = new ImageIcon("images/LR_Cards/SailorS/JackSailorS.jpg"));
+        cardSailorQS = new JLabel(sailorQS = new ImageIcon("images/LR_Cards/SailorS/QueenSailorS.jpg"));
+        cardSailorKS = new JLabel(sailorKS = new ImageIcon("images/LR_Cards/SailorS/KingSailorS.jpg"));
         cardAnchorA = new JLabel(anchorA = new ImageIcon("images/LR_Cards/Anchors/2Anchor.jpg"));
         cardAnchor2 = new JLabel(anchor2 = new ImageIcon("images/LR_Cards/Anchors/2Anchor.jpg"));
         cardAnchor3 = new JLabel(anchor3 = new ImageIcon("images/LR_Cards/Anchors/3Anchor.jpg"));
@@ -332,6 +333,11 @@ public class RummyGUI extends JFrame implements ActionListener {
         DGREEN = 2;
         BLGREEN = 3;
         gameColor = LTAN;
+        makeMeld = false;
+        addToMeld = false;
+        drawn = false;
+        setup = false;
+        discard = false;
 
         // Calls method to create main menu
         mainMenuScreen();
@@ -489,20 +495,12 @@ public class RummyGUI extends JFrame implements ActionListener {
         whichGame = 1;
         numPlayers = 1;
         currentScreen = MENU;
-        gameInProg = false;
-        deckClick = false;
-        handCardClick = false;
-        hasSetClicks = false;
     }
 
     /**************************************************************************************************************************************************************************************
      * The gameScreen() method creates the game screen.
      */
     public void gameScreen() {
-        // Booleans for making a meld, adding to meld, and drawing a card.
-        boolean makeMeld = false;
-        boolean addToMeld = false;
-
         // Creating menu bar
         menu = new JMenuBar();
 
@@ -522,60 +520,114 @@ public class RummyGUI extends JFrame implements ActionListener {
         dash2Label = new JLabel("_______");
         dash3Label = new JLabel("_______");
 
-        if (setup) {
+        if (!setup) {
             // populating hashmap with smol cards
-            cardMap.put(rummy.getCard(0), cardAnchorAS = new JLabel(anchorAS));
-            cardMap.put(rummy.getCard(1), cardClockTowAS = new JLabel(clockTowAS));
-            cardMap.put(rummy.getCard(2), cardGVLogoAS = new JLabel(logoGVAS));
-            cardMap.put(rummy.getCard(3), cardSailorAS = new JLabel(sailorAS));
-            cardMap.put(rummy.getCard(4), cardAnchor2S = new JLabel(anchor2S));
-            cardMap.put(rummy.getCard(5), cardClockTow2S = new JLabel(clockTow2S));
-            cardMap.put(rummy.getCard(6), cardGVLogo2S = new JLabel(logoGV2S));
-            cardMap.put(rummy.getCard(7), cardSailor2S = new JLabel(sailor2S));
-            cardMap.put(rummy.getCard(8), cardAnchor3S = new JLabel(anchor3S));
-            cardMap.put(rummy.getCard(9), cardClockTow3S = new JLabel(clockTow3S));
-            cardMap.put(rummy.getCard(10), cardGVLogo3S = new JLabel(logoGV3S));
-            cardMap.put(rummy.getCard(11), cardSailor3S = new JLabel(sailor3S));
-            cardMap.put(rummy.getCard(12), cardAnchor4S = new JLabel(anchor4S));
-            cardMap.put(rummy.getCard(13), cardClockTow4S = new JLabel(clockTow4S));
-            cardMap.put(rummy.getCard(14), cardGVLogo4S = new JLabel(logoGV4S));
-            cardMap.put(rummy.getCard(15), cardSailor4S = new JLabel(sailor4S));
-            cardMap.put(rummy.getCard(16), cardAnchor5S = new JLabel(anchor5S));
-            cardMap.put(rummy.getCard(17), cardClockTow5S = new JLabel(clockTow5S));
-            cardMap.put(rummy.getCard(18), cardGVLogo5S = new JLabel(logoGV5S));
-            cardMap.put(rummy.getCard(19), cardSailor5S = new JLabel(sailor5S));
-            cardMap.put(rummy.getCard(20), cardAnchor6S = new JLabel(anchor6S));
-            cardMap.put(rummy.getCard(21), cardClockTow6S = new JLabel(clockTow6S));
-            cardMap.put(rummy.getCard(22), cardGVLogo6S = new JLabel(logoGV6S));
-            cardMap.put(rummy.getCard(23), cardSailor6S = new JLabel(sailor6S));
-            cardMap.put(rummy.getCard(24), cardAnchor7S = new JLabel(anchor7S));
-            cardMap.put(rummy.getCard(25), cardClockTow7S = new JLabel(clockTow7S));
-            cardMap.put(rummy.getCard(26), cardGVLogo7S = new JLabel(logoGV7S));
-            cardMap.put(rummy.getCard(27), cardSailor7S = new JLabel(sailor7S));
-            cardMap.put(rummy.getCard(28), cardAnchor8S = new JLabel(anchor8S));
-            cardMap.put(rummy.getCard(29), cardClockTow8S = new JLabel(clockTow8S));
-            cardMap.put(rummy.getCard(30), cardGVLogo8S = new JLabel(logoGV8S));
-            cardMap.put(rummy.getCard(31), cardSailor8S = new JLabel(sailor8S));
-            cardMap.put(rummy.getCard(32), cardAnchor9S = new JLabel(anchor9S));
-            cardMap.put(rummy.getCard(33), cardClockTow9S = new JLabel(clockTow9S));
-            cardMap.put(rummy.getCard(34), cardGVLogo9S = new JLabel(logoGV9S));
-            cardMap.put(rummy.getCard(35), cardSailor9S = new JLabel(sailor9S));
-            cardMap.put(rummy.getCard(36), cardAnchor10S = new JLabel(anchor10S));
-            cardMap.put(rummy.getCard(37), cardClockTow10S = new JLabel(clockTow10S));
-            cardMap.put(rummy.getCard(38), cardGVLogo10S = new JLabel(logoGV10S));
-            cardMap.put(rummy.getCard(39), cardSailor10S = new JLabel(sailor10S));
-            cardMap.put(rummy.getCard(40), cardAnchorJS = new JLabel(anchorJS));
-            cardMap.put(rummy.getCard(41), cardClockTowJS = new JLabel(clockTowJS));
-            cardMap.put(rummy.getCard(42), cardGVLogoJS = new JLabel(logoGVJS));
-            cardMap.put(rummy.getCard(43), cardSailorJS = new JLabel(sailorJS));
-            cardMap.put(rummy.getCard(44), cardAnchorQS = new JLabel(anchorQS));
-            cardMap.put(rummy.getCard(45), cardClockTowQS = new JLabel(clockTowQS));
-            cardMap.put(rummy.getCard(46), cardGVLogoQS = new JLabel(logoGVQS));
-            cardMap.put(rummy.getCard(47), cardSailorQS = new JLabel(sailorQS));
-            cardMap.put(rummy.getCard(48), cardAnchorKS = new JLabel(anchorKS));
-            cardMap.put(rummy.getCard(49), cardClockTowKS = new JLabel(clockTowKS));
-            cardMap.put(rummy.getCard(50), cardGVLogoKS = new JLabel(logoGVKS));
-            cardMap.put(rummy.getCard(51), cardSailorKS = new JLabel(sailorKS));
+            cardMapSmall.put(rummy.getCard(0), cardAnchorAS);
+            cardMapSmall.put(rummy.getCard(1), cardClockTowAS);
+            cardMapSmall.put(rummy.getCard(2), cardGVLogoAS);
+            cardMapSmall.put(rummy.getCard(3), cardSailorAS);
+            cardMapSmall.put(rummy.getCard(4), cardAnchor2S);
+            cardMapSmall.put(rummy.getCard(5), cardClockTow2S);
+            cardMapSmall.put(rummy.getCard(6), cardGVLogo2S);
+            cardMapSmall.put(rummy.getCard(7), cardSailor2S);
+            cardMapSmall.put(rummy.getCard(8), cardAnchor3S);
+            cardMapSmall.put(rummy.getCard(9), cardClockTow3S);
+            cardMapSmall.put(rummy.getCard(10), cardGVLogo3S);
+            cardMapSmall.put(rummy.getCard(11), cardSailor3S);
+            cardMapSmall.put(rummy.getCard(12), cardAnchor4S);
+            cardMapSmall.put(rummy.getCard(13), cardClockTow4S);
+            cardMapSmall.put(rummy.getCard(14), cardGVLogo4S);
+            cardMapSmall.put(rummy.getCard(15), cardSailor4S);
+            cardMapSmall.put(rummy.getCard(16), cardAnchor5S);
+            cardMapSmall.put(rummy.getCard(17), cardClockTow5S);
+            cardMapSmall.put(rummy.getCard(18), cardGVLogo5S);
+            cardMapSmall.put(rummy.getCard(19), cardSailor5S);
+            cardMapSmall.put(rummy.getCard(20), cardAnchor6S);
+            cardMapSmall.put(rummy.getCard(21), cardClockTow6S);
+            cardMapSmall.put(rummy.getCard(22), cardGVLogo6S);
+            cardMapSmall.put(rummy.getCard(23), cardSailor6S);
+            cardMapSmall.put(rummy.getCard(24), cardAnchor7S);
+            cardMapSmall.put(rummy.getCard(25), cardClockTow7S);
+            cardMapSmall.put(rummy.getCard(26), cardGVLogo7S);
+            cardMapSmall.put(rummy.getCard(27), cardSailor7S);
+            cardMapSmall.put(rummy.getCard(28), cardAnchor8S);
+            cardMapSmall.put(rummy.getCard(29), cardClockTow8S);
+            cardMapSmall.put(rummy.getCard(30), cardGVLogo8S);
+            cardMapSmall.put(rummy.getCard(31), cardSailor8S);
+            cardMapSmall.put(rummy.getCard(32), cardAnchor9S);
+            cardMapSmall.put(rummy.getCard(33), cardClockTow9S);
+            cardMapSmall.put(rummy.getCard(34), cardGVLogo9S);
+            cardMapSmall.put(rummy.getCard(35), cardSailor9S);
+            cardMapSmall.put(rummy.getCard(36), cardAnchor10S);
+            cardMapSmall.put(rummy.getCard(37), cardClockTow10S);
+            cardMapSmall.put(rummy.getCard(38), cardGVLogo10S);
+            cardMapSmall.put(rummy.getCard(39), cardSailor10S);
+            cardMapSmall.put(rummy.getCard(40), cardAnchorJS);
+            cardMapSmall.put(rummy.getCard(41), cardClockTowJS);
+            cardMapSmall.put(rummy.getCard(42), cardGVLogoJS);
+            cardMapSmall.put(rummy.getCard(43), cardSailorJS);
+            cardMapSmall.put(rummy.getCard(44), cardAnchorQS);
+            cardMapSmall.put(rummy.getCard(45), cardClockTowQS);
+            cardMapSmall.put(rummy.getCard(46), cardGVLogoQS);
+            cardMapSmall.put(rummy.getCard(47), cardSailorQS);
+            cardMapSmall.put(rummy.getCard(48), cardAnchorKS);
+            cardMapSmall.put(rummy.getCard(49), cardClockTowKS);
+            cardMapSmall.put(rummy.getCard(50), cardGVLogoKS);
+            cardMapSmall.put(rummy.getCard(51), cardSailorKS);
+            /*
+             * cardMap.put(rummy.getCard(0), cardAnchorA);
+             * cardMap.put(rummy.getCard(1), cardClockTowA);
+             * cardMap.put(rummy.getCard(2), cardGVLogoA);
+             * cardMap.put(rummy.getCard(3), cardSailorA);
+             * cardMap.put(rummy.getCard(4), cardAnchor2);
+             * cardMap.put(rummy.getCard(5), cardClockTow2);
+             * cardMap.put(rummy.getCard(6), cardGVLogo2);
+             * cardMap.put(rummy.getCard(7), cardSailor2);
+             * cardMap.put(rummy.getCard(8), cardAnchor3);
+             * cardMap.put(rummy.getCard(9), cardClockTow3);
+             * cardMap.put(rummy.getCard(10), cardGVLogo3);
+             * cardMap.put(rummy.getCard(11), cardSailor3);
+             * cardMap.put(rummy.getCard(12), cardAnchor4);
+             * cardMap.put(rummy.getCard(13), cardClockTow4);
+             * cardMap.put(rummy.getCard(14), cardGVLogo4);
+             * cardMap.put(rummy.getCard(15), cardSailor4);
+             * cardMap.put(rummy.getCard(16), cardAnchor5);
+             * cardMap.put(rummy.getCard(17), cardClockTow5);
+             * cardMap.put(rummy.getCard(18), cardGVLogo5);
+             * cardMap.put(rummy.getCard(19), cardSailor5);
+             * cardMap.put(rummy.getCard(20), cardAnchor6);
+             * cardMap.put(rummy.getCard(21), cardClockTow6);
+             * cardMap.put(rummy.getCard(22), cardGVLogo6);
+             * cardMap.put(rummy.getCard(23), cardSailor6);
+             * cardMap.put(rummy.getCard(24), cardAnchor7);
+             * cardMap.put(rummy.getCard(25), cardClockTow7);
+             * cardMap.put(rummy.getCard(26), cardGVLogo7);
+             * cardMap.put(rummy.getCard(27), cardSailor7);
+             * cardMap.put(rummy.getCard(28), cardAnchor8);
+             * cardMap.put(rummy.getCard(29), cardClockTow8);
+             * cardMap.put(rummy.getCard(30), cardGVLogo8);
+             * cardMap.put(rummy.getCard(31), cardSailor8);
+             * cardMap.put(rummy.getCard(32), cardAnchor9);
+             * cardMap.put(rummy.getCard(33), cardClockTow9);
+             * cardMap.put(rummy.getCard(34), cardGVLogo9);
+             * cardMap.put(rummy.getCard(35), cardSailor9);
+             * cardMap.put(rummy.getCard(36), cardAnchor10);
+             * cardMap.put(rummy.getCard(37), cardClockTow10);
+             * cardMap.put(rummy.getCard(38), cardGVLogo10);
+             * cardMap.put(rummy.getCard(39), cardSailor10);
+             * cardMap.put(rummy.getCard(40), cardAnchorJ);
+             * cardMap.put(rummy.getCard(41), cardClockTowJ);
+             * cardMap.put(rummy.getCard(42), cardGVLogoJ);
+             * cardMap.put(rummy.getCard(43), cardSailorJ);
+             * cardMap.put(rummy.getCard(44), cardAnchorQ);
+             * cardMap.put(rummy.getCard(45), cardClockTowQ);
+             * cardMap.put(rummy.getCard(46), cardGVLogoQ);
+             * cardMap.put(rummy.getCard(47), cardSailorQ);
+             * cardMap.put(rummy.getCard(48), cardAnchorK);
+             * cardMap.put(rummy.getCard(49), cardClockTowK);
+             * cardMap.put(rummy.getCard(50), cardGVLogoK);
+             * cardMap.put(rummy.getCard(51), cardSailorK);
+             */
 
             rummy.deck.shuffle(); // for testing purposes, did not shuffle yet
             rummy.deal();
@@ -584,7 +636,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         final int maxHandSize = 8;
         for (int i = 0; i < maxHandSize; i++) { // adding cards in hand to be displayed
             if (i < current.hand.cardArr.size()) {
-                handLabels[i] = cardMap.get(current.hand.cardArr.get(i));
+                handLabels[i] = cardMapSmall.get(current.hand.cardArr.get(i));
                 handLabels[i].setBorder(cardBorder);
             } else {
                 handLabels[i] = null;
@@ -594,149 +646,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         p2NumCards = new JLabel("");
         p3NumCards = new JLabel("");
         p4NumCards = new JLabel("");
-
-        // // BELOW: going to remove these and use the buttons I added instead, because
-        // for
-        // // whatever reason
-        // // doing it this way seems impossible. However, for now I will leave this so
-        // i
-        // // can implement
-        // // the buttons tomorrow.
-        // if (handLabels[0] != null) {
-        // handLabels[0].addMouseListener(new MouseAdapter() {
-        // @Override
-        // public void mouseReleased(MouseEvent e) {
-        // // DISCARDING
-        // if (discard && drawn) { // have to make sure they want to discard, and that
-        // they've drawn already
-        // rummy.discard(current, current.hand.cardArr.get(0));
-        // gameFrame.dispose();
-        // turn++;
-        // drawn = false;
-        // gameScreen();
-        // }
-        // }
-        // });
-        // }
-
-        // if (handLabels[1] != null) {
-        // handLabels[1].addMouseListener(new MouseAdapter() {
-        // @Override
-        // public void mouseReleased(MouseEvent e) {
-        // // DISCARDING
-        // if (discard && drawn) { // have to make sure they want to discard, and that
-        // they've drawn already
-        // rummy.discard(current, current.hand.cardArr.get(1));
-        // gameFrame.dispose();
-        // turn++;
-        // drawn = false;
-        // gameScreen();
-        // }
-        // }
-        // });
-        // }
-
-        // if (handLabels[2] != null) {
-        // handLabels[2].addMouseListener(new MouseAdapter() {
-        // @Override
-        // public void mouseReleased(MouseEvent e) {
-        // // DISCARDING
-        // if (discard && drawn) { // have to make sure they want to discard, and that
-        // they've drawn already
-        // rummy.discard(current, current.hand.cardArr.get(2));
-        // gameFrame.dispose();
-        // turn++;
-        // drawn = false;
-        // gameScreen();
-        // }
-        // }
-        // });
-        // }
-
-        // if (handLabels[3] != null) {
-        // handLabels[3].addMouseListener(new MouseAdapter() {
-        // @Override
-        // public void mouseReleased(MouseEvent e) {
-        // // DISCARDING
-        // if (discard && drawn) { // have to make sure they want to discard, and that
-        // they've drawn already
-        // rummy.discard(current, current.hand.cardArr.get(3));
-        // gameFrame.dispose();
-        // turn++;
-        // drawn = false;
-        // gameScreen();
-        // }
-        // }
-        // });
-        // }
-
-        // if (handLabels[4] != null) {
-        // handLabels[4].addMouseListener(new MouseAdapter() {
-        // @Override
-        // public void mouseReleased(MouseEvent e) {
-        // // DISCARDING
-        // if (discard && drawn) { // have to make sure they want to discard, and that
-        // they've drawn already
-        // rummy.discard(current, current.hand.cardArr.get(4));
-        // gameFrame.dispose();
-        // turn++;
-        // drawn = false;
-        // gameScreen();
-        // }
-        // }
-        // });
-        // }
-
-        // if (handLabels[5] != null) {
-        // handLabels[5].addMouseListener(new MouseAdapter() {
-        // @Override
-        // public void mouseReleased(MouseEvent e) {
-        // // DISCARDING
-        // if (discard && drawn) { // have to make sure they want to discard, and that
-        // they've drawn already
-        // rummy.discard(current, current.hand.cardArr.get(5));
-        // gameFrame.dispose();
-        // turn++;
-        // drawn = false;
-        // gameScreen();
-        // }
-        // }
-        // });
-        // }
-
-        // if (handLabels[6] != null) {
-        // handLabels[6].addMouseListener(new MouseAdapter() {
-        // @Override
-        // public void mouseReleased(MouseEvent e) {
-        // // DISCARDING
-        // if (discard && drawn) { // have to make sure they want to discard, and that
-        // they've drawn already
-        // rummy.discard(current, current.hand.cardArr.get(6));
-        // gameFrame.dispose();
-        // turn++;
-        // drawn = false;
-        // gameScreen();
-        // }
-        // }
-        // });
-        // }
-
-        // if (handLabels[7] != null) {
-        // handLabels[7].addMouseListener(new MouseAdapter() {
-        // @Override
-        // public void mouseReleased(MouseEvent e) {
-        // // DISCARDING
-        // if (discard && drawn) { // have to make sure they want to discard, and that
-        // they've drawn already
-        // rummy.discard(current, current.hand.cardArr.get(7));
-        // gameFrame.dispose();
-        // turn++;
-        // drawn = false;
-        // gameScreen();
-        // }
-        // }
-        // });
-        // }
 
         // Creating menus
         options = new JMenu("Options");
@@ -755,6 +664,14 @@ public class RummyGUI extends JFrame implements ActionListener {
         discard6 = new JButton("Discard");
         discard7 = new JButton("Discard");
         discard8 = new JButton("Discard");
+        select1 = new JButton("Select");
+        select2 = new JButton("Select");
+        select3 = new JButton("Select");
+        select4 = new JButton("Select");
+        select5 = new JButton("Select");
+        select6 = new JButton("Select");
+        select7 = new JButton("Select");
+        select8 = new JButton("Select");
 
         // Setting frame icon
         gameFrame.setIconImage(GValleyJava.getImage());
@@ -763,6 +680,22 @@ public class RummyGUI extends JFrame implements ActionListener {
         exit.setBackground(yellow);
         makeMeldButton.setBackground(orange);
         addToMeldButton.setBackground(orange);
+        discard1.setBackground(lightGrey);
+        discard2.setBackground(lightGrey);
+        discard3.setBackground(lightGrey);
+        discard4.setBackground(lightGrey);
+        discard5.setBackground(lightGrey);
+        discard6.setBackground(lightGrey);
+        discard7.setBackground(lightGrey);
+        discard8.setBackground(lightGrey);
+        select1.setBackground(lightGrey);
+        select2.setBackground(lightGrey);
+        select3.setBackground(lightGrey);
+        select4.setBackground(lightGrey);
+        select5.setBackground(lightGrey);
+        select6.setBackground(lightGrey);
+        select7.setBackground(lightGrey);
+        select8.setBackground(lightGrey);
         UIManager.put("MenuBar.background", lightGrey);
 
         // Setting foreground colors
@@ -779,6 +712,22 @@ public class RummyGUI extends JFrame implements ActionListener {
         dash1Label.setForeground(black);
         dash2Label.setForeground(black);
         dash3Label.setForeground(black);
+        discard1.setForeground(black);
+        discard2.setForeground(black);
+        discard3.setForeground(black);
+        discard4.setForeground(black);
+        discard5.setForeground(black);
+        discard6.setForeground(black);
+        discard7.setForeground(black);
+        discard8.setForeground(black);
+        select1.setForeground(black);
+        select2.setForeground(black);
+        select3.setForeground(black);
+        select4.setForeground(black);
+        select5.setForeground(black);
+        select6.setForeground(black);
+        select7.setForeground(black);
+        select8.setForeground(black);
         options.setForeground(black);
         exit.setForeground(black);
 
@@ -793,6 +742,14 @@ public class RummyGUI extends JFrame implements ActionListener {
         discard6.setFont(menuFont);
         discard7.setFont(menuFont);
         discard8.setFont(menuFont);
+        select1.setFont(menuFont);
+        select2.setFont(menuFont);
+        select3.setFont(menuFont);
+        select4.setFont(menuFont);
+        select5.setFont(menuFont);
+        select6.setFont(menuFont);
+        select7.setFont(menuFont);
+        select8.setFont(menuFont);
         p1Label.setFont((avatarFont));
         p2Label.setFont(avatarFont);
         p3Label.setFont(avatarFont);
@@ -818,6 +775,14 @@ public class RummyGUI extends JFrame implements ActionListener {
         discard6.setBorder(meldBorder);
         discard7.setBorder(meldBorder);
         discard8.setBorder(meldBorder);
+        select1.setBorder(meldBorder);
+        select2.setBorder(meldBorder);
+        select3.setBorder(meldBorder);
+        select4.setBorder(meldBorder);
+        select5.setBorder(meldBorder);
+        select6.setBorder(meldBorder);
+        select7.setBorder(meldBorder);
+        select8.setBorder(meldBorder);
         crabLabel.setBorder(cardBorder);
         octopusLabel.setBorder(cardBorder);
         whaleLabel.setBorder(cardBorder);
@@ -880,8 +845,6 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
-        makeMeldButton.setBounds(35 + insets.left, 250 + insets.top, 145, 50);
-        addToMeldButton.setBounds(35 + insets.left, 340 + insets.top, 145, 50);
         seaGullLabel.setBounds(1090 + insets.left, 20 + insets.top, 145, 105);
         whaleLabel.setBounds(1090 + insets.left, 180 + insets.top, 145, 110);
         octopusLabel.setBounds(1090 + insets.left, 350 + insets.top, 145, 110);
@@ -900,40 +863,15 @@ public class RummyGUI extends JFrame implements ActionListener {
         rectangleLeftLabel.setBounds(0 + insets.left, 0 + insets.top, 215, 655);
         rectangleRightLabel.setBounds(1054 + insets.left, 0 + insets.top, 215, 655);
         cardDeckLabel.setBounds(40 + insets.left, 20 + insets.top, 135, 190);
-        cardAnchorA.setBounds(40 + insets.left, 435 + insets.top, 135, 190);
         // loop to add cards in hand to bottom of screen
         for (int j = 0; j < 7 * 120; j += 120) {
             if (handLabels[j / 120] != null) {
                 handLabels[j / 120].setBounds(225 + j + insets.left, 500 + insets.bottom, 100, 135);
             }
         }
-
-        // Adds discard buttons above cards in hand
-        if (handLabels[0] != null) {
-            discard1.setBounds(handLabels[0].getX() + 5, handLabels[0].getY() - 55, 90, 40);
-        }
-        if (handLabels[1] != null) {
-            discard2.setBounds(handLabels[1].getX() + 5, handLabels[1].getY() - 55, 90, 40);
-        }
-        if (handLabels[2] != null) {
-            discard3.setBounds(handLabels[2].getX() + 5, handLabels[2].getY() - 55, 90, 40);
-        }
-        if (handLabels[3] != null) {
-            discard4.setBounds(handLabels[3].getX() + 5, handLabels[3].getY() - 55, 90, 40);
-        }
-        if (handLabels[4] != null) {
-            discard5.setBounds(handLabels[4].getX() + 5, handLabels[4].getY() - 55, 90, 40);
-        }
-        if (handLabels[5] != null) {
-            discard6.setBounds(handLabels[5].getX() + 5, handLabels[5].getY() - 55, 90, 40);
-        }
-        if (handLabels[6] != null) {
-            discard7.setBounds(handLabels[6].getX() + 5, handLabels[6].getY() - 55, 90, 40);
-        }
         if (handLabels[7] != null) {
             handLabels[7].setBounds((int) handLabels[6].getLocation().getX(),
                     (int) handLabels[6].getLocation().getY() - 200, 100, 135);
-            discard8.setBounds(handLabels[7].getX() + 5, handLabels[7].getY() - 55, 90, 40);
         }
 
         // Adding elements to menubar
@@ -1019,6 +957,22 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(cardSailorK);
         pane.add(rectangleLeftLabel);
         pane.add(rectangleRightLabel);
+        pane.add(discard1);
+        pane.add(discard2);
+        pane.add(discard3);
+        pane.add(discard4);
+        pane.add(discard5);
+        pane.add(discard6);
+        pane.add(discard7);
+        pane.add(discard8);
+        pane.add(select1);
+        pane.add(select2);
+        pane.add(select3);
+        pane.add(select4);
+        pane.add(select5);
+        pane.add(select6);
+        pane.add(select7);
+        pane.add(select8);
 
         for (int j = 0; j < 8; j++) {
             if (handLabels[j] != null)
@@ -1026,10 +980,29 @@ public class RummyGUI extends JFrame implements ActionListener {
         }
 
         // adding discard buttons
-        setHandButtons(current);
+        setDiscardButtons(current);
+        setMeldButtons(current);
 
         // Addiing action listeners to elements
         exit.addActionListener(this);
+        makeMeldButton.addActionListener(this);
+        addToMeldButton.addActionListener(this);
+        discard1.addActionListener(this);
+        discard2.addActionListener(this);
+        discard3.addActionListener(this);
+        discard4.addActionListener(this);
+        discard5.addActionListener(this);
+        discard6.addActionListener(this);
+        discard7.addActionListener(this);
+        discard8.addActionListener(this);
+        select1.addActionListener(this);
+        select2.addActionListener(this);
+        select3.addActionListener(this);
+        select4.addActionListener(this);
+        select5.addActionListener(this);
+        select6.addActionListener(this);
+        select7.addActionListener(this);
+        select8.addActionListener(this);
         cardDeckLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -1037,9 +1010,11 @@ public class RummyGUI extends JFrame implements ActionListener {
                 if (!drawn) {
                     rummy.draw(rummy.deck, rummy.getPlayer(turn % numPlayers).hand);
                     gameFrame.dispose();
-                    setup = false;
+                    setup = true;
                     drawn = true;
                     gameScreen();
+                    makeMeldButton.setBounds(35 + insets.left, 250 + insets.top, 145, 50);
+                    addToMeldButton.setBounds(35 + insets.left, 340 + insets.top, 145, 50);
                 }
             }
         });
@@ -1061,8 +1036,7 @@ public class RummyGUI extends JFrame implements ActionListener {
             gameFrame.getContentPane().setBackground(blueGreen);
         }
 
-        // Setting game as in progress
-        gameInProg = true;
+        // Setting screen as game screen
         currentScreen = GAME;
     }
 
@@ -1620,6 +1594,8 @@ public class RummyGUI extends JFrame implements ActionListener {
             rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(0));
             drawn = false;
             turn++;
+            makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
+            addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             gameFrame.dispose();
             gameScreen();
             // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
@@ -1630,6 +1606,8 @@ public class RummyGUI extends JFrame implements ActionListener {
             rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(1));
             drawn = false;
             turn++;
+            makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
+            addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             gameFrame.dispose();
             gameScreen();
             // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
@@ -1640,6 +1618,8 @@ public class RummyGUI extends JFrame implements ActionListener {
             rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(2));
             drawn = false;
             turn++;
+            makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
+            addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             gameFrame.dispose();
             gameScreen();
             // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
@@ -1650,6 +1630,8 @@ public class RummyGUI extends JFrame implements ActionListener {
             rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(3));
             drawn = false;
             turn++;
+            makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
+            addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             gameFrame.dispose();
             gameScreen();
             // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
@@ -1660,6 +1642,8 @@ public class RummyGUI extends JFrame implements ActionListener {
             rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(4));
             drawn = false;
             turn++;
+            makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
+            addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             gameFrame.dispose();
             gameScreen();
             // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
@@ -1670,6 +1654,8 @@ public class RummyGUI extends JFrame implements ActionListener {
             rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(5));
             drawn = false;
             turn++;
+            makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
+            addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             gameFrame.dispose();
             gameScreen();
             // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
@@ -1680,6 +1666,8 @@ public class RummyGUI extends JFrame implements ActionListener {
             rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(6));
             drawn = false;
             turn++;
+            makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
+            addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             gameFrame.dispose();
             gameScreen();
             // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
@@ -1690,19 +1678,141 @@ public class RummyGUI extends JFrame implements ActionListener {
             rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(7));
             drawn = false;
             turn++;
+            makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
+            addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             gameFrame.dispose();
             gameScreen();
             // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
         }
 
         // makeMeldButton is clicked
-        if (action == makeMeldButton) {
+        if (action == makeMeldButton && drawn) {
+            makeMeld = true;
+            addToMeld = false;
+            makeMeldButton.setBackground(yellow);
+            addToMeldButton.setBackground(orange);
+            select1.setBackground(lightGrey);
+            select2.setBackground(lightGrey);
+            select3.setBackground(lightGrey);
+            select4.setBackground(lightGrey);
+            select5.setBackground(lightGrey);
+            select6.setBackground(lightGrey);
+            select7.setBackground(lightGrey);
+            select8.setBackground(lightGrey);
+            discard1.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            discard2.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            discard3.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            discard4.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            discard5.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            discard6.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            discard7.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            discard8.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            setMeldButtons(current);
+        }
 
+        // select1 button is clicked and makeMeldButton has been clicked
+        if (action == select1 && makeMeld && drawn) {
+            select1.setBackground(yellow);
+        }
+
+        // select2 button is clicked and makeMeldButton has been clicked
+        if (action == select2 && makeMeld && drawn) {
+            select2.setBackground(yellow);
+        }
+
+        // select3 button is clicked and makeMeldButton has been clicked
+        if (action == select3 && makeMeld && drawn) {
+            select3.setBackground(yellow);
+        }
+
+        // select4 button is clicked and makeMeldButton has been clicked
+        if (action == select4 && makeMeld && drawn) {
+            select4.setBackground(yellow);
+        }
+
+        // select5 button is clicked and makeMeldButton has been clicked
+        if (action == select5 && makeMeld && drawn) {
+            select5.setBackground(yellow);
+        }
+
+        // select6 button is clicked and makeMeldButton has been clicked
+        if (action == select6 && makeMeld && drawn) {
+            select6.setBackground(yellow);
+        }
+
+        // select7 button is clicked and makeMeldButton has been clicked
+        if (action == select7 && makeMeld && drawn) {
+            select7.setBackground(yellow);
+        }
+
+        // select8 button is clicked and makeMeldButton has been clicked
+        if (action == select8 && makeMeld && drawn) {
+            select8.setBackground(yellow);
         }
 
         // addToMeldButton is clicked
-        if (action == addToMeldButton) {
+        if (action == addToMeldButton && drawn) {
+            addToMeld = true;
+            makeMeld = false;
+            makeMeldButton.setBackground(orange);
+            addToMeldButton.setBackground(yellow);
+            select1.setBackground(lightGrey);
+            select2.setBackground(lightGrey);
+            select3.setBackground(lightGrey);
+            select4.setBackground(lightGrey);
+            select5.setBackground(lightGrey);
+            select6.setBackground(lightGrey);
+            select7.setBackground(lightGrey);
+            select8.setBackground(lightGrey);
+            discard1.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            discard2.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            discard3.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            discard4.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            discard5.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            discard6.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            discard7.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            discard8.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            setMeldButtons(current);
+        }
 
+        // select1 button is clicked and addToMeldButton has been clicked
+        if (action == select1 && addToMeld && drawn) {
+            select1.setBackground(yellow);
+        }
+
+        // select2 button is clicked and addToMeldButton has been clicked
+        if (action == select2 && addToMeld && drawn) {
+            select2.setBackground(yellow);
+        }
+
+        // select3 button is clicked and addToMeldButton has been clicked
+        if (action == select3 && addToMeld && drawn) {
+            select3.setBackground(yellow);
+        }
+
+        // select4 button is clicked and addToMeldButton has been clicked
+        if (action == select4 && addToMeld && drawn) {
+            select4.setBackground(yellow);
+        }
+
+        // select5 button is clicked and addToMeldButton has been clicked
+        if (action == select5 && addToMeld && drawn) {
+            select5.setBackground(yellow);
+        }
+
+        // select6 button is clicked and addToMeldButton has been clicked
+        if (action == select6 && addToMeld && drawn) {
+            select6.setBackground(yellow);
+        }
+
+        // select7 button is clicked and addToMeldButton has been clicked
+        if (action == select7 && addToMeld && drawn) {
+            select7.setBackground(yellow);
+        }
+
+        // select8 button is clicked and addToMeldButton has been clicked
+        if (action == select8 && addToMeld && drawn) {
+            select8.setBackground(yellow);
         }
 
         // if(action == hand1){
@@ -1737,49 +1847,64 @@ public class RummyGUI extends JFrame implements ActionListener {
      * 
      * @param player the player whose turn it currently is
      */
-    private void setHandButtons(Player player) {
-        // Removes discard buttons from pane
-        pane.remove(discard1);
-        pane.remove(discard2);
-        pane.remove(discard3);
-        pane.remove(discard4);
-        pane.remove(discard5);
-        pane.remove(discard6);
-        pane.remove(discard7);
-        pane.remove(discard8);
-
+    private void setDiscardButtons(Player player) {
         // Checks how many cards remain in hand and adds buttons accordingly
-        if (player.hand.cardArr.size() > 0) {
-            pane.add(discard1);
-            discard1.addActionListener(this);
+        if (player.hand.cardArr.size() > 0 && drawn) {
+            discard1.setBounds(handLabels[0].getX() + 5, handLabels[0].getY() - 55, 90, 40);
         }
-        if (player.hand.cardArr.size() > 1) {
-            pane.add(discard2);
-            discard2.addActionListener(this);
+        if (player.hand.cardArr.size() > 1 && drawn) {
+            discard2.setBounds(handLabels[1].getX() + 5, handLabels[1].getY() - 55, 90, 40);
         }
-        if (player.hand.cardArr.size() > 2) {
-            pane.add(discard3);
-            discard3.addActionListener(this);
+        if (player.hand.cardArr.size() > 2 && drawn) {
+            discard3.setBounds(handLabels[2].getX() + 5, handLabels[2].getY() - 55, 90, 40);
         }
-        if (player.hand.cardArr.size() > 3) {
-            pane.add(discard4);
-            discard4.addActionListener(this);
+        if (player.hand.cardArr.size() > 3 && drawn) {
+            discard4.setBounds(handLabels[3].getX() + 5, handLabels[3].getY() - 55, 90, 40);
         }
-        if (player.hand.cardArr.size() > 4) {
-            pane.add(discard5);
-            discard5.addActionListener(this);
+        if (player.hand.cardArr.size() > 4 && drawn) {
+            discard5.setBounds(handLabels[4].getX() + 5, handLabels[4].getY() - 55, 90, 40);
         }
-        if (player.hand.cardArr.size() > 5) {
-            pane.add(discard6);
-            discard6.addActionListener(this);
+        if (player.hand.cardArr.size() > 5 && drawn) {
+            discard6.setBounds(handLabels[5].getX() + 5, handLabels[5].getY() - 55, 90, 40);
         }
-        if (player.hand.cardArr.size() > 6) {
-            pane.add(discard7);
-            discard7.addActionListener(this);
+        if (player.hand.cardArr.size() > 6 && drawn) {
+            discard7.setBounds(handLabels[6].getX() + 5, handLabels[6].getY() - 55, 90, 40);
         }
-        if (player.hand.cardArr.size() > 7) {
-            pane.add(discard8);
-            discard8.addActionListener(this);
+        if (player.hand.cardArr.size() > 7 && drawn) {
+            discard8.setBounds(handLabels[7].getX() + 5, handLabels[7].getY() - 55, 90, 40);
+        }
+    }
+
+    /**************************************************************************************************************************************************************************************
+     * adds meld buttons for each card in the player's hand
+     * 
+     * @param player the player whose turn it currently is
+     */
+    private void setMeldButtons(Player player) {
+        // Checks how many cards remain in hand and adds buttons accordingly
+        if (player.hand.cardArr.size() > 0 && makeMeld || addToMeld) {
+            select1.setBounds(handLabels[0].getX() + 5, handLabels[0].getY() - 55, 90, 40);
+        }
+        if (player.hand.cardArr.size() > 1 && makeMeld || addToMeld) {
+            select2.setBounds(handLabels[1].getX() + 5, handLabels[1].getY() - 55, 90, 40);
+        }
+        if (player.hand.cardArr.size() > 2 && makeMeld || addToMeld) {
+            select3.setBounds(handLabels[2].getX() + 5, handLabels[2].getY() - 55, 90, 40);
+        }
+        if (player.hand.cardArr.size() > 3 && makeMeld || addToMeld) {
+            select4.setBounds(handLabels[3].getX() + 5, handLabels[3].getY() - 55, 90, 40);
+        }
+        if (player.hand.cardArr.size() > 4 && makeMeld || addToMeld) {
+            select5.setBounds(handLabels[4].getX() + 5, handLabels[4].getY() - 55, 90, 40);
+        }
+        if (player.hand.cardArr.size() > 5 && makeMeld || addToMeld) {
+            select6.setBounds(handLabels[5].getX() + 5, handLabels[5].getY() - 55, 90, 40);
+        }
+        if (player.hand.cardArr.size() > 6 && makeMeld || addToMeld) {
+            select7.setBounds(handLabels[6].getX() + 5, handLabels[6].getY() - 55, 90, 40);
+        }
+        if (player.hand.cardArr.size() > 7 && makeMeld || addToMeld) {
+            select8.setBounds(handLabels[7].getX() + 5, handLabels[7].getY() - 55, 90, 40);
         }
     }
 
