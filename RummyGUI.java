@@ -52,7 +52,8 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     // JButton declarations
     private JButton playButton, rummyButton, lakersRummyButton, makeMeldButton,
-            addToMeldButton, blGreenButton, dGreenButton, lTanButton;
+            addToMeldButton, blGreenButton, dGreenButton, lTanButton, confirmButton,
+            cancelButton;
     private JButton onePlayerButton, twoPlayerButton, threePlayerButton, // Number of players buttons
             fourPlayerButton;
     private JButton discard1, discard2, discard3, discard4, discard5,
@@ -129,7 +130,7 @@ public class RummyGUI extends JFrame implements ActionListener {
     // Font declarations
     private Font titleFont, menuFont, subMenuFont, playButtonFont,
             gameButtonFont, numPlayersButtonFont, avatarFont,
-            coolSquareFont, howTitleFont, settingsTextFont;
+            coolSquareFont, howTitleFont, settingsTextFont, confCelFont;
 
     // LineBorder declarations
     private LineBorder cardBorder, cardHighlightBorder, menuBorder,
@@ -310,6 +311,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         settingsTextFont = new Font("Georgia", Font.PLAIN, 70);
         menuFont = new Font("Georgia", Font.PLAIN, 21);
         subMenuFont = new Font("Cooper Black", Font.PLAIN, 21);
+        confCelFont = new Font("Cooper Black", Font.PLAIN, 15);
         coolSquareFont = new Font("Courier", Font.BOLD, 200);
         avatarFont = new Font("Georgia", Font.ITALIC, 15);
         playButtonFont = new Font("Courier", Font.BOLD, 50);
@@ -672,6 +674,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         select6 = new JButton("Select");
         select7 = new JButton("Select");
         select8 = new JButton("Select");
+        cancelButton = new JButton("Cancel");
+        confirmButton = new JButton("Confirm");
 
         // Setting frame icon
         gameFrame.setIconImage(GValleyJava.getImage());
@@ -680,22 +684,25 @@ public class RummyGUI extends JFrame implements ActionListener {
         exit.setBackground(yellow);
         makeMeldButton.setBackground(orange);
         addToMeldButton.setBackground(orange);
-        discard1.setBackground(lightGrey);
-        discard2.setBackground(lightGrey);
-        discard3.setBackground(lightGrey);
-        discard4.setBackground(lightGrey);
-        discard5.setBackground(lightGrey);
-        discard6.setBackground(lightGrey);
-        discard7.setBackground(lightGrey);
-        discard8.setBackground(lightGrey);
-        select1.setBackground(lightGrey);
-        select2.setBackground(lightGrey);
-        select3.setBackground(lightGrey);
-        select4.setBackground(lightGrey);
-        select5.setBackground(lightGrey);
-        select6.setBackground(lightGrey);
-        select7.setBackground(lightGrey);
-        select8.setBackground(lightGrey);
+        discard1.setBackground(orange);
+        discard2.setBackground(orange);
+        discard3.setBackground(orange);
+        discard4.setBackground(orange);
+        discard5.setBackground(orange);
+        discard6.setBackground(orange);
+        discard7.setBackground(orange);
+        discard8.setBackground(orange);
+        select1.setBackground(orange);
+        select2.setBackground(orange);
+        select3.setBackground(orange);
+        select4.setBackground(orange);
+        select5.setBackground(orange);
+        select6.setBackground(orange);
+        select7.setBackground(orange);
+        select8.setBackground(orange);
+        cancelButton.setBackground(brightOrange);
+        confirmButton.setBackground(brightOrange);
+
         UIManager.put("MenuBar.background", lightGrey);
 
         // Setting foreground colors
@@ -728,6 +735,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         select6.setForeground(black);
         select7.setForeground(black);
         select8.setForeground(black);
+        cancelButton.setForeground(black);
+        confirmButton.setForeground(black);
         options.setForeground(black);
         exit.setForeground(black);
 
@@ -750,6 +759,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         select6.setFont(menuFont);
         select7.setFont(menuFont);
         select8.setFont(menuFont);
+        cancelButton.setFont(confCelFont);
+        confirmButton.setFont(confCelFont);
         p1Label.setFont((avatarFont));
         p2Label.setFont(avatarFont);
         p3Label.setFont(avatarFont);
@@ -783,6 +794,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         select6.setBorder(meldBorder);
         select7.setBorder(meldBorder);
         select8.setBorder(meldBorder);
+        cancelButton.setBorder(meldBorder);
+        confirmButton.setBorder(meldBorder);
         crabLabel.setBorder(cardBorder);
         octopusLabel.setBorder(cardBorder);
         whaleLabel.setBorder(cardBorder);
@@ -973,6 +986,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(select6);
         pane.add(select7);
         pane.add(select8);
+        pane.add(confirmButton);
+        pane.add(cancelButton);
 
         for (int j = 0; j < 8; j++) {
             if (handLabels[j] != null)
@@ -1003,6 +1018,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         select6.addActionListener(this);
         select7.addActionListener(this);
         select8.addActionListener(this);
+        confirmButton.addActionListener(this);
+        cancelButton.addActionListener(this);
         cardDeckLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -1013,8 +1030,8 @@ public class RummyGUI extends JFrame implements ActionListener {
                     setup = true;
                     drawn = true;
                     gameScreen();
-                    makeMeldButton.setBounds(35 + insets.left, 250 + insets.top, 145, 50);
-                    addToMeldButton.setBounds(35 + insets.left, 340 + insets.top, 145, 50);
+                    makeMeldButton.setBounds(35 + insets.left, 235 + insets.top, 145, 50);
+                    addToMeldButton.setBounds(35 + insets.left, 355 + insets.top, 145, 50);
                 }
             }
         });
@@ -1691,14 +1708,16 @@ public class RummyGUI extends JFrame implements ActionListener {
             addToMeld = false;
             makeMeldButton.setBackground(yellow);
             addToMeldButton.setBackground(orange);
-            select1.setBackground(lightGrey);
-            select2.setBackground(lightGrey);
-            select3.setBackground(lightGrey);
-            select4.setBackground(lightGrey);
-            select5.setBackground(lightGrey);
-            select6.setBackground(lightGrey);
-            select7.setBackground(lightGrey);
-            select8.setBackground(lightGrey);
+            confirmButton.setBounds(25 + insets.left, 305 + insets.top, 75, 30);
+            cancelButton.setBounds(120 + insets.left, 305 + insets.top, 75, 30);
+            select1.setBackground(orange);
+            select2.setBackground(orange);
+            select3.setBackground(orange);
+            select4.setBackground(orange);
+            select5.setBackground(orange);
+            select6.setBackground(orange);
+            select7.setBackground(orange);
+            select8.setBackground(orange);
             discard1.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
             discard2.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
             discard3.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
@@ -1756,14 +1775,16 @@ public class RummyGUI extends JFrame implements ActionListener {
             makeMeld = false;
             makeMeldButton.setBackground(orange);
             addToMeldButton.setBackground(yellow);
-            select1.setBackground(lightGrey);
-            select2.setBackground(lightGrey);
-            select3.setBackground(lightGrey);
-            select4.setBackground(lightGrey);
-            select5.setBackground(lightGrey);
-            select6.setBackground(lightGrey);
-            select7.setBackground(lightGrey);
-            select8.setBackground(lightGrey);
+            confirmButton.setBounds(25 + insets.left, 305 + insets.top, 75, 30);
+            cancelButton.setBounds(120 + insets.left, 305 + insets.top, 75, 30);
+            select1.setBackground(orange);
+            select2.setBackground(orange);
+            select3.setBackground(orange);
+            select4.setBackground(orange);
+            select5.setBackground(orange);
+            select6.setBackground(orange);
+            select7.setBackground(orange);
+            select8.setBackground(orange);
             discard1.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
             discard2.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
             discard3.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
@@ -1815,6 +1836,57 @@ public class RummyGUI extends JFrame implements ActionListener {
             select8.setBackground(yellow);
         }
 
+        // cancelButton is clicked and addToMeldButton has been clicked
+        if (action == cancelButton && addToMeld && drawn) {
+            addToMeld = false;
+            makeMeldButton.setBackground(orange);
+            addToMeldButton.setBackground(orange);
+            confirmButton.setBounds(2000 + insets.left, 2000 + insets.top, 75, 30);
+            cancelButton.setBounds(2000 + insets.left, 2000 + insets.top, 75, 30);
+            select1.setBackground(orange);
+            select2.setBackground(orange);
+            select3.setBackground(orange);
+            select4.setBackground(orange);
+            select5.setBackground(orange);
+            select6.setBackground(orange);
+            select7.setBackground(orange);
+            select8.setBackground(orange);
+            select1.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            select2.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            select3.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            select4.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            select5.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            select6.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            select7.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            select8.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            setDiscardButtons(current);
+        }
+
+        // cancelButton is clicked and makMeldButton has been clicked
+        if (action == cancelButton && makeMeld && drawn) {
+            makeMeld = false;
+            makeMeldButton.setBackground(orange);
+            addToMeldButton.setBackground(orange);
+            confirmButton.setBounds(2000 + insets.left, 2000 + insets.top, 75, 30);
+            cancelButton.setBounds(2000 + insets.left, 2000 + insets.top, 75, 30);
+            select1.setBackground(orange);
+            select2.setBackground(orange);
+            select3.setBackground(orange);
+            select4.setBackground(orange);
+            select5.setBackground(orange);
+            select6.setBackground(orange);
+            select7.setBackground(orange);
+            select8.setBackground(orange);
+            select1.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            select2.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            select3.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            select4.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            select5.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            select6.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            select7.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            select8.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
+            setDiscardButtons(current);
+        }
         // if(action == hand1){
         // if(makeMeld){
 
