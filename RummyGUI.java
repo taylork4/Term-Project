@@ -64,7 +64,8 @@ public class RummyGUI extends JFrame implements ActionListener {
             rectangleRightLabel, seaGullLabel, whaleLabel, crabLabel, underWLabel,
             crabGIFLabel, coolSquare1Label, coolSquare2Label, ex1Label, ex2Label,
             ex3Label, ex4Label, ex5Label, ex6Label, ex7Label, ex8Label, ex9Label,
-            ex10Label, ex11Label, ex12Label, ex13Label;
+            ex10Label, ex11Label, ex12Label, ex13Label, p1NumCards, p2NumCards,
+            p3NumCards, p4NumCards;
     private JLabel cardAnchorA, cardAnchor2, cardAnchor3, cardAnchor4, // Anchor label for suit
             cardAnchor5, cardAnchor6, cardAnchor7, cardAnchor8, cardAnchor9,
             cardAnchor10, cardAnchorJ, cardAnchorQ, cardAnchorK;
@@ -150,6 +151,7 @@ public class RummyGUI extends JFrame implements ActionListener {
     private boolean gameInProg, deckClick, handCardClick, hasSetClicks, makeMeld, addToMeld, drawn = false,
             setup = true, discard = true;
     private Rummy rummy = new Rummy();
+    Player current;
     private HashMap<Card, JLabel> cardMap = new HashMap<Card, JLabel>();
     private HashMap<Card, JLabel> cardMapSmall = new HashMap<Card, JLabel>();
 
@@ -578,7 +580,7 @@ public class RummyGUI extends JFrame implements ActionListener {
             rummy.deck.shuffle(); // for testing purposes, did not shuffle yet
             rummy.deal();
         }
-        Player current = rummy.getPlayer(turn % numPlayers);
+        current = rummy.getPlayer(turn % numPlayers);
         final int maxHandSize = 8;
         for (int i = 0; i < maxHandSize; i++) { // adding cards in hand to be displayed
             if (i < current.hand.cardArr.size()) {
@@ -588,192 +590,153 @@ public class RummyGUI extends JFrame implements ActionListener {
                 handLabels[i] = null;
             }
         }
+        p1NumCards = new JLabel("" + rummy.getPlayer(0).hand.cardArr.size());
+        p2NumCards = new JLabel("");
+        p3NumCards = new JLabel("");
+        p4NumCards = new JLabel("");
 
-        // BELOW: going to remove these and use the buttons I added instead, because for
-        // whatever reason
-        // doing it this way seems impossible. However, for now I will leave this so i
-        // can implement
-        // the buttons tomorrow.
-        if (handLabels[0] != null) {
-            handLabels[0].addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    // DISCARDING
-                    if (discard && drawn) { // have to make sure they want to discard, and that they've drawn already
-                        rummy.discard(current, current.hand.cardArr.get(0));
-                        gameFrame.dispose();
-                        turn++;
-                        drawn = false;
-                        gameScreen();
-                    }
-                }
-            });
-        }
+        // // BELOW: going to remove these and use the buttons I added instead, because
+        // for
+        // // whatever reason
+        // // doing it this way seems impossible. However, for now I will leave this so
+        // i
+        // // can implement
+        // // the buttons tomorrow.
+        // if (handLabels[0] != null) {
+        // handLabels[0].addMouseListener(new MouseAdapter() {
+        // @Override
+        // public void mouseReleased(MouseEvent e) {
+        // // DISCARDING
+        // if (discard && drawn) { // have to make sure they want to discard, and that
+        // they've drawn already
+        // rummy.discard(current, current.hand.cardArr.get(0));
+        // gameFrame.dispose();
+        // turn++;
+        // drawn = false;
+        // gameScreen();
+        // }
+        // }
+        // });
+        // }
 
-        if (handLabels[1] != null) {
-            handLabels[1].addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    // DISCARDING
-                    if (discard && drawn) { // have to make sure they want to discard, and that they've drawn already
-                        rummy.discard(current, current.hand.cardArr.get(1));
-                        gameFrame.dispose();
-                        turn++;
-                        drawn = false;
-                        gameScreen();
-                    }
-                }
-            });
-        }
+        // if (handLabels[1] != null) {
+        // handLabels[1].addMouseListener(new MouseAdapter() {
+        // @Override
+        // public void mouseReleased(MouseEvent e) {
+        // // DISCARDING
+        // if (discard && drawn) { // have to make sure they want to discard, and that
+        // they've drawn already
+        // rummy.discard(current, current.hand.cardArr.get(1));
+        // gameFrame.dispose();
+        // turn++;
+        // drawn = false;
+        // gameScreen();
+        // }
+        // }
+        // });
+        // }
 
-        if (handLabels[2] != null) {
-            handLabels[2].addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    // DISCARDING
-                    if (discard && drawn) { // have to make sure they want to discard, and that they've drawn already
-                        rummy.discard(current, current.hand.cardArr.get(2));
-                        gameFrame.dispose();
-                        turn++;
-                        drawn = false;
-                        gameScreen();
-                    }
-                }
-            });
-        }
+        // if (handLabels[2] != null) {
+        // handLabels[2].addMouseListener(new MouseAdapter() {
+        // @Override
+        // public void mouseReleased(MouseEvent e) {
+        // // DISCARDING
+        // if (discard && drawn) { // have to make sure they want to discard, and that
+        // they've drawn already
+        // rummy.discard(current, current.hand.cardArr.get(2));
+        // gameFrame.dispose();
+        // turn++;
+        // drawn = false;
+        // gameScreen();
+        // }
+        // }
+        // });
+        // }
 
-        if (handLabels[3] != null) {
-            handLabels[3].addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    // DISCARDING
-                    if (discard && drawn) { // have to make sure they want to discard, and that they've drawn already
-                        rummy.discard(current, current.hand.cardArr.get(3));
-                        gameFrame.dispose();
-                        turn++;
-                        drawn = false;
-                        gameScreen();
-                    }
-                }
-            });
-        }
+        // if (handLabels[3] != null) {
+        // handLabels[3].addMouseListener(new MouseAdapter() {
+        // @Override
+        // public void mouseReleased(MouseEvent e) {
+        // // DISCARDING
+        // if (discard && drawn) { // have to make sure they want to discard, and that
+        // they've drawn already
+        // rummy.discard(current, current.hand.cardArr.get(3));
+        // gameFrame.dispose();
+        // turn++;
+        // drawn = false;
+        // gameScreen();
+        // }
+        // }
+        // });
+        // }
 
-        if (handLabels[4] != null) {
-            handLabels[4].addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    // DISCARDING
-                    if (discard && drawn) { // have to make sure they want to discard, and that they've drawn already
-                        rummy.discard(current, current.hand.cardArr.get(4));
-                        gameFrame.dispose();
-                        turn++;
-                        drawn = false;
-                        gameScreen();
-                    }
-                }
-            });
-        }
+        // if (handLabels[4] != null) {
+        // handLabels[4].addMouseListener(new MouseAdapter() {
+        // @Override
+        // public void mouseReleased(MouseEvent e) {
+        // // DISCARDING
+        // if (discard && drawn) { // have to make sure they want to discard, and that
+        // they've drawn already
+        // rummy.discard(current, current.hand.cardArr.get(4));
+        // gameFrame.dispose();
+        // turn++;
+        // drawn = false;
+        // gameScreen();
+        // }
+        // }
+        // });
+        // }
 
-        if (handLabels[5] != null) {
-            handLabels[5].addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    // DISCARDING
-                    if (discard && drawn) { // have to make sure they want to discard, and that they've drawn already
-                        rummy.discard(current, current.hand.cardArr.get(5));
-                        gameFrame.dispose();
-                        turn++;
-                        drawn = false;
-                        gameScreen();
-                    }
-                }
-            });
-        }
+        // if (handLabels[5] != null) {
+        // handLabels[5].addMouseListener(new MouseAdapter() {
+        // @Override
+        // public void mouseReleased(MouseEvent e) {
+        // // DISCARDING
+        // if (discard && drawn) { // have to make sure they want to discard, and that
+        // they've drawn already
+        // rummy.discard(current, current.hand.cardArr.get(5));
+        // gameFrame.dispose();
+        // turn++;
+        // drawn = false;
+        // gameScreen();
+        // }
+        // }
+        // });
+        // }
 
-        if (handLabels[6] != null) {
-            handLabels[6].addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    // DISCARDING
-                    if (discard && drawn) { // have to make sure they want to discard, and that they've drawn already
-                        rummy.discard(current, current.hand.cardArr.get(6));
-                        gameFrame.dispose();
-                        turn++;
-                        drawn = false;
-                        gameScreen();
-                    }
-                }
-            });
-        }
+        // if (handLabels[6] != null) {
+        // handLabels[6].addMouseListener(new MouseAdapter() {
+        // @Override
+        // public void mouseReleased(MouseEvent e) {
+        // // DISCARDING
+        // if (discard && drawn) { // have to make sure they want to discard, and that
+        // they've drawn already
+        // rummy.discard(current, current.hand.cardArr.get(6));
+        // gameFrame.dispose();
+        // turn++;
+        // drawn = false;
+        // gameScreen();
+        // }
+        // }
+        // });
+        // }
 
-        if (handLabels[7] != null) {
-            handLabels[7].addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    // DISCARDING
-                    if (discard && drawn) { // have to make sure they want to discard, and that they've drawn already
-                        rummy.discard(current, current.hand.cardArr.get(7));
-                        gameFrame.dispose();
-                        turn++;
-                        drawn = false;
-                        gameScreen();
-                    }
-                }
-            });
-        }
-
-        cardAnchorAS = new JLabel(anchorAS);
-        cardAnchor2S = new JLabel(anchor2S);
-        cardAnchor3S = new JLabel(anchor3S);
-        cardAnchor4S = new JLabel(anchor4S);
-        cardAnchor5S = new JLabel(anchor5S);
-        cardAnchor6S = new JLabel(anchor6S);
-        cardAnchor7S = new JLabel(anchor7S);
-        cardAnchor8S = new JLabel(anchor8S);
-        cardAnchor9S = new JLabel(anchor9S);
-        cardAnchor10S = new JLabel(anchor10S);
-        cardAnchorJS = new JLabel(anchorJS);
-        cardAnchorQS = new JLabel(anchorQS);
-        cardAnchorKS = new JLabel(anchorKS);
-        cardClockTowAS = new JLabel(clockTowAS);
-        cardClockTow2S = new JLabel(clockTow2S);
-        cardClockTow3S = new JLabel(clockTow3S);
-        cardClockTow4S = new JLabel(clockTow4S);
-        cardClockTow5S = new JLabel(clockTow5S);
-        cardClockTow6S = new JLabel(clockTow6S);
-        cardClockTow7S = new JLabel(clockTow7S);
-        cardClockTow8S = new JLabel(clockTow8S);
-        cardClockTow9S = new JLabel(clockTow9S);
-        cardClockTow10S = new JLabel(clockTow10S);
-        cardClockTowJS = new JLabel(clockTowJS);
-        cardClockTowQS = new JLabel(clockTowQS);
-        cardClockTowKS = new JLabel(clockTowKS);
-        cardGVLogoAS = new JLabel(logoGVAS);
-        cardGVLogo2S = new JLabel(logoGV2S);
-        cardGVLogo3S = new JLabel(logoGV3S);
-        cardGVLogo4S = new JLabel(logoGV4S);
-        cardGVLogo5S = new JLabel(logoGV5S);
-        cardGVLogo6S = new JLabel(logoGV6S);
-        cardGVLogo7S = new JLabel(logoGV7S);
-        cardGVLogo8S = new JLabel(logoGV8S);
-        cardGVLogo9S = new JLabel(logoGV9S);
-        cardGVLogo10S = new JLabel(logoGV10S);
-        cardGVLogoJS = new JLabel(logoGVJS);
-        cardGVLogoQS = new JLabel(logoGVQS);
-        cardGVLogoKS = new JLabel(logoGVKS);
-        cardSailorAS = new JLabel(sailorAS);
-        cardSailor2S = new JLabel(sailor2S);
-        cardSailor3S = new JLabel(sailor3S);
-        cardSailor4S = new JLabel(sailor4S);
-        cardSailor5S = new JLabel(sailor5S);
-        cardSailor6S = new JLabel(sailor6S);
-        cardSailor7S = new JLabel(sailor7S);
-        cardSailor8S = new JLabel(sailor8S);
-        cardSailor9S = new JLabel(sailor9S);
-        cardSailor10S = new JLabel(sailor10S);
-        cardSailorJS = new JLabel(sailorJS);
-        cardSailorQS = new JLabel(sailorQS);
-        cardSailorKS = new JLabel(sailorKS);
+        // if (handLabels[7] != null) {
+        // handLabels[7].addMouseListener(new MouseAdapter() {
+        // @Override
+        // public void mouseReleased(MouseEvent e) {
+        // // DISCARDING
+        // if (discard && drawn) { // have to make sure they want to discard, and that
+        // they've drawn already
+        // rummy.discard(current, current.hand.cardArr.get(7));
+        // gameFrame.dispose();
+        // turn++;
+        // drawn = false;
+        // gameScreen();
+        // }
+        // }
+        // });
+        // }
 
         // Creating menus
         options = new JMenu("Options");
@@ -809,6 +772,10 @@ public class RummyGUI extends JFrame implements ActionListener {
         p2Label.setForeground(black);
         p3Label.setForeground(black);
         p4Label.setForeground(black);
+        p1NumCards.setForeground(black);
+        p2NumCards.setForeground(black);
+        p3NumCards.setForeground(black);
+        p4NumCards.setForeground(black);
         dash1Label.setForeground(black);
         dash2Label.setForeground(black);
         dash3Label.setForeground(black);
@@ -830,6 +797,10 @@ public class RummyGUI extends JFrame implements ActionListener {
         p2Label.setFont(avatarFont);
         p3Label.setFont(avatarFont);
         p4Label.setFont(avatarFont);
+        p1NumCards.setFont((avatarFont));
+        p2NumCards.setFont(avatarFont);
+        p3NumCards.setFont(avatarFont);
+        p4NumCards.setFont(avatarFont);
         dash1Label.setFont(playButtonFont);
         dash2Label.setFont(playButtonFont);
         dash3Label.setFont(playButtonFont);
@@ -906,58 +877,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         cardSailorJ.setBorder(cardBorder);
         cardSailorQ.setBorder(cardBorder);
         cardSailorK.setBorder(cardBorder);
-        cardAnchorAS.setBorder(cardBorder);
-        cardAnchor2S.setBorder(cardBorder);
-        cardAnchor3S.setBorder(cardBorder);
-        cardAnchor4S.setBorder(cardBorder);
-        cardAnchor5S.setBorder(cardBorder);
-        cardAnchor6S.setBorder(cardBorder);
-        cardAnchor7S.setBorder(cardBorder);
-        cardAnchor8S.setBorder(cardBorder);
-        cardAnchor9S.setBorder(cardBorder);
-        cardAnchor10S.setBorder(cardBorder);
-        cardAnchorJS.setBorder(cardBorder);
-        cardAnchorQS.setBorder(cardBorder);
-        cardAnchorKS.setBorder(cardBorder);
-        cardClockTowAS.setBorder(cardBorder);
-        cardClockTow2S.setBorder(cardBorder);
-        cardClockTow3S.setBorder(cardBorder);
-        cardClockTow4S.setBorder(cardBorder);
-        cardClockTow5S.setBorder(cardBorder);
-        cardClockTow6S.setBorder(cardBorder);
-        cardClockTow7S.setBorder(cardBorder);
-        cardClockTow8S.setBorder(cardBorder);
-        cardClockTow9S.setBorder(cardBorder);
-        cardClockTow10S.setBorder(cardBorder);
-        cardClockTowJS.setBorder(cardBorder);
-        cardClockTowQS.setBorder(cardBorder);
-        cardClockTowKS.setBorder(cardBorder);
-        cardGVLogoAS.setBorder(cardBorder);
-        cardGVLogo2S.setBorder(cardBorder);
-        cardGVLogo3S.setBorder(cardBorder);
-        cardGVLogo4S.setBorder(cardBorder);
-        cardGVLogo5S.setBorder(cardBorder);
-        cardGVLogo6S.setBorder(cardBorder);
-        cardGVLogo7S.setBorder(cardBorder);
-        cardGVLogo8S.setBorder(cardBorder);
-        cardGVLogo9S.setBorder(cardBorder);
-        cardGVLogo10S.setBorder(cardBorder);
-        cardGVLogoJS.setBorder(cardBorder);
-        cardGVLogoQS.setBorder(cardBorder);
-        cardGVLogoKS.setBorder(cardBorder);
-        cardSailorAS.setBorder(cardBorder);
-        cardSailor2S.setBorder(cardBorder);
-        cardSailor3S.setBorder(cardBorder);
-        cardSailor4S.setBorder(cardBorder);
-        cardSailor5S.setBorder(cardBorder);
-        cardSailor6S.setBorder(cardBorder);
-        cardSailor7S.setBorder(cardBorder);
-        cardSailor8S.setBorder(cardBorder);
-        cardSailor9S.setBorder(cardBorder);
-        cardSailor10S.setBorder(cardBorder);
-        cardSailorJS.setBorder(cardBorder);
-        cardSailorQS.setBorder(cardBorder);
-        cardSailorKS.setBorder(cardBorder);
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
@@ -971,6 +890,10 @@ public class RummyGUI extends JFrame implements ActionListener {
         p2Label.setBounds(1090 + insets.left, 285 + insets.top, 200, 50);
         p3Label.setBounds(1090 + insets.left, 450 + insets.top, 200, 50);
         p4Label.setBounds(1090 + insets.left, 605 + insets.top, 200, 50);
+        p1NumCards.setBounds(1200 + insets.left, 120 + insets.top, 200, 50);
+        p2NumCards.setBounds(1090 + insets.left, 285 + insets.top, 50, 50);
+        p3NumCards.setBounds(1090 + insets.left, 450 + insets.top, 50, 50);
+        p4NumCards.setBounds(1090 + insets.left, 605 + insets.top, 50, 50);
         dash1Label.setBounds(1055 + insets.left, 100 + insets.top, 300, 75);
         dash2Label.setBounds(1055 + insets.left, 267 + insets.top, 300, 75);
         dash3Label.setBounds(1055 + insets.left, 428 + insets.top, 300, 75);
@@ -978,12 +901,14 @@ public class RummyGUI extends JFrame implements ActionListener {
         rectangleRightLabel.setBounds(1054 + insets.left, 0 + insets.top, 215, 655);
         cardDeckLabel.setBounds(40 + insets.left, 20 + insets.top, 135, 190);
         cardAnchorA.setBounds(40 + insets.left, 435 + insets.top, 135, 190);
-        for (int j = 0; j < 7 * 120; j += 120) { // loop to add cards in hand to bottom of screen
+        // loop to add cards in hand to bottom of screen
+        for (int j = 0; j < 7 * 120; j += 120) {
             if (handLabels[j / 120] != null) {
                 handLabels[j / 120].setBounds(225 + j + insets.left, 500 + insets.bottom, 100, 135);
             }
         }
 
+        // Adds discard buttons above cards in hand
         if (handLabels[0] != null) {
             discard1.setBounds(handLabels[0].getX() + 5, handLabels[0].getY() - 55, 90, 40);
         }
@@ -1032,6 +957,10 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(p2Label);
         pane.add(p3Label);
         pane.add(p4Label);
+        pane.add(p1NumCards);
+        pane.add(p2NumCards);
+        pane.add(p3NumCards);
+        pane.add(p4NumCards);
         pane.add(dash1Label);
         pane.add(dash2Label);
         pane.add(dash3Label);
@@ -1095,7 +1024,9 @@ public class RummyGUI extends JFrame implements ActionListener {
             if (handLabels[j] != null)
                 pane.add(handLabels[j]);
         }
-        setHandButtons(current); // adding discard buttons
+
+        // adding discard buttons
+        setHandButtons(current);
 
         // Addiing action listeners to elements
         exit.addActionListener(this);
@@ -1120,6 +1051,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         gameFrame.setVisible(true);
         gameFrame.setSize(1280, 720);
         gameFrame.setJMenuBar(menu);
+
+        // Color of game screen depends on what player selects in settings
         if (gameColor == LTAN) {
             gameFrame.getContentPane().setBackground(tan);
         } else if (gameColor == DGREEN) {
@@ -1630,52 +1563,144 @@ public class RummyGUI extends JFrame implements ActionListener {
             turn = 0;
         }
 
+        // blGreenButton is clicked
         if (action == blGreenButton) {
+            // Selects blue-green color
             blGreenButton.setForeground(black);
+            blGreenButton.setBackground(yellow);
+
+            // Fades out other color buttons
             dGreenButton.setForeground(lightGrey);
             lTanButton.setForeground(lightGrey);
-            blGreenButton.setBackground(yellow);
             dGreenButton.setBackground(darkGrey);
             lTanButton.setBackground(darkGrey);
+
+            // Sets settings and game screen to blue-green color
             settingsFrame.getContentPane().setBackground(blueGreen);
             gameColor = BLGREEN;
         }
 
+        // dGreenButton is clicked
         if (action == dGreenButton) {
-            blGreenButton.setForeground(lightGrey);
+            // Selects dark green color
             dGreenButton.setForeground(black);
+            dGreenButton.setBackground(yellow);
+
+            // Fades out other color buttons
+            blGreenButton.setForeground(lightGrey);
             lTanButton.setForeground(lightGrey);
             blGreenButton.setBackground(darkGrey);
-            dGreenButton.setBackground(yellow);
             lTanButton.setBackground(darkGrey);
+
+            // Sets settings and game screen to dark green color
             settingsFrame.getContentPane().setBackground(darkGreen);
             gameColor = DGREEN;
         }
 
+        // lTanButton is clicked
         if (action == lTanButton) {
+            // Selects tan color
+            lTanButton.setForeground(black);
+            lTanButton.setBackground(yellow);
+
+            // Fades out other color buttons
             blGreenButton.setForeground(lightGrey);
             dGreenButton.setForeground(lightGrey);
-            lTanButton.setForeground(black);
             blGreenButton.setBackground(darkGrey);
             dGreenButton.setBackground(darkGrey);
-            lTanButton.setBackground(yellow);
+
+            // sets settings and game screen to tan color
             settingsFrame.getContentPane().setBackground(tan);
             gameColor = LTAN;
         }
 
         // ---------- GAMEPLAY ACTIONS ------------
-        if (action == cardDeckLabel) {
-            if (!drawn) {
-                rummy.draw(rummy.deck, rummy.getPlayer(turn % numPlayers).hand);
-                gameFrame.dispose();
-                gameScreen();
-            }
+        // discard1 button is clicked and card has been drawn
+        if (action == discard1 && drawn) {
+            rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(0));
+            drawn = false;
+            turn++;
+            gameFrame.dispose();
+            gameScreen();
+            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
         }
 
+        // discard2 button is clicked and card has been drawn
+        if (action == discard2 && drawn) {
+            rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(1));
+            drawn = false;
+            turn++;
+            gameFrame.dispose();
+            gameScreen();
+            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
+        }
+
+        // discard3 button is clicked and card has been drawn
+        if (action == discard3 && drawn) {
+            rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(2));
+            drawn = false;
+            turn++;
+            gameFrame.dispose();
+            gameScreen();
+            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
+        }
+
+        // discard4 button is clicked and card has been drawn
+        if (action == discard4 && drawn) {
+            rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(3));
+            drawn = false;
+            turn++;
+            gameFrame.dispose();
+            gameScreen();
+            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
+        }
+
+        // discard5 button is clicked and card has been drawn
+        if (action == discard5 && drawn) {
+            rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(4));
+            drawn = false;
+            turn++;
+            gameFrame.dispose();
+            gameScreen();
+            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
+        }
+
+        // discard6 button is clicked and card has been drawn
+        if (action == discard6 && drawn) {
+            rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(5));
+            drawn = false;
+            turn++;
+            gameFrame.dispose();
+            gameScreen();
+            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
+        }
+
+        // discard7 button is clicked and card has been drawn
+        if (action == discard7 && drawn) {
+            rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(6));
+            drawn = false;
+            turn++;
+            gameFrame.dispose();
+            gameScreen();
+            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
+        }
+
+        // discard8 button is clicked and card has been drawn
+        if (action == discard8 && drawn) {
+            rummy.discard(rummy.getPlayer(turn % numPlayers), current.hand.cardArr.get(7));
+            drawn = false;
+            turn++;
+            gameFrame.dispose();
+            gameScreen();
+            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
+        }
+
+        // makeMeldButton is clicked
         if (action == makeMeldButton) {
 
         }
 
+        // addToMeldButton is clicked
         if (action == addToMeldButton) {
 
         }
@@ -1707,13 +1732,13 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     }
 
-    /**
+    /**************************************************************************************************************************************************************************************
      * adds discard buttons for each card in the player's hand
      * 
      * @param player the player whose turn it currently is
      */
     private void setHandButtons(Player player) {
-
+        // Removes discard buttons from pane
         pane.remove(discard1);
         pane.remove(discard2);
         pane.remove(discard3);
@@ -1723,31 +1748,39 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.remove(discard7);
         pane.remove(discard8);
 
+        // Checks how many cards remain in hand and adds buttons accordingly
         if (player.hand.cardArr.size() > 0) {
             pane.add(discard1);
+            discard1.addActionListener(this);
         }
         if (player.hand.cardArr.size() > 1) {
             pane.add(discard2);
+            discard2.addActionListener(this);
         }
         if (player.hand.cardArr.size() > 2) {
             pane.add(discard3);
+            discard3.addActionListener(this);
         }
         if (player.hand.cardArr.size() > 3) {
             pane.add(discard4);
+            discard4.addActionListener(this);
         }
         if (player.hand.cardArr.size() > 4) {
             pane.add(discard5);
+            discard5.addActionListener(this);
         }
         if (player.hand.cardArr.size() > 5) {
             pane.add(discard6);
+            discard6.addActionListener(this);
         }
         if (player.hand.cardArr.size() > 6) {
             pane.add(discard7);
+            discard7.addActionListener(this);
         }
         if (player.hand.cardArr.size() > 7) {
             pane.add(discard8);
+            discard8.addActionListener(this);
         }
-
     }
 
     /**************************************************************************************************************************************************************************************
