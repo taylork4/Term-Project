@@ -158,6 +158,34 @@ public class Deck {
                 Collections.shuffle(this.cardArr);
         }
 
+
+        public String toString(){
+                String deckAsString = "";
+                for (Card card : cardArr) {
+                        switch(card.getValue()){
+                                case 1:
+                                        deckAsString += "ace";
+                                        break;
+                                case 11:
+                                        deckAsString += "jack";
+                                        break;
+                                case 12:
+                                        deckAsString += "queen";
+                                        break;
+                                case 13:
+                                        deckAsString += "king";
+                                        break;
+                                default:
+                                        deckAsString += card.getValue();
+
+                        }
+                        deckAsString += " of ";
+                        deckAsString += card.getSuit();
+                        deckAsString += ",\n";
+                }
+                return deckAsString;
+        }
+
         /**************************************************************************************************************************************************************************************
          * Methods no longer in use
          */

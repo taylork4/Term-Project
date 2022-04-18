@@ -68,7 +68,7 @@ public class RummyGUI extends JFrame implements ActionListener {
             crabGIFLabel, coolSquare1Label, coolSquare2Label, ex1Label, ex2Label,
             ex3Label, ex4Label, ex5Label, ex6Label, ex7Label, ex8Label, ex9Label,
             ex10Label, ex11Label, ex12Label, ex13Label, p1NumCards, p2NumCards,
-            p3NumCards, p4NumCards;
+            p3NumCards, p4NumCards, discardLabel;
     private JLabel cardAnchorA, cardAnchor2, cardAnchor3, cardAnchor4, // Anchor label for suit
             cardAnchor5, cardAnchor6, cardAnchor7, cardAnchor8, cardAnchor9,
             cardAnchor10, cardAnchorJ, cardAnchorQ, cardAnchorK;
@@ -1028,6 +1028,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         // adding discard buttons
         setDiscardButtons(current);
         setMeldButtons(current);
+
+        //displaying discard pile
+        displayDiscard();
 
         // Addiing action listeners to elements
         exit.addActionListener(this);
@@ -2011,6 +2014,15 @@ public class RummyGUI extends JFrame implements ActionListener {
         }
     }
 
+    private void displayDiscard(){
+        if(!rummy.getDiscard().cardArr.isEmpty()){
+            Card discardShowing = rummy.getDiscard().cardArr.
+                get(rummy.getDiscard().cardArr.size() - 1);
+            discardLabel = cardMapSmall.get(discardShowing);
+            discardLabel.setBounds(40 + insets.left, 500 + insets.bottom, 135, 190);
+            pane.add(discardLabel);
+        }
+    }
     /**************************************************************************************************************************************************************************************
      * The main(String[] args) method allows for the RummyGUI class to be ran.
      * 
