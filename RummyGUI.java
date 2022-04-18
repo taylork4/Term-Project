@@ -134,7 +134,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     // LineBorder declarations
     private LineBorder cardBorder, cardHighlightBorder, menuBorder,
-            buttonBorder, meldBorder;
+            buttonBorder, meldBorder, currentPlayerBorder;
 
     // Color declarations
     private Color black, darkGrey, grey, lightGrey, white,
@@ -320,6 +320,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         howTitleFont = new Font("Segoe Script", Font.BOLD, 80);
 
         // Creating borders
+        currentPlayerBorder = new LineBorder(red, 4);
         cardBorder = new LineBorder(black, 2);
         cardHighlightBorder = new LineBorder(magenta, 3);
         meldBorder = new LineBorder(black, 3);
@@ -645,9 +646,20 @@ public class RummyGUI extends JFrame implements ActionListener {
             }
         }
         p1NumCards = new JLabel("" + rummy.getPlayer(0).hand.cardArr.size());
-        p2NumCards = new JLabel("");
-        p3NumCards = new JLabel("");
-        p4NumCards = new JLabel("");
+        p2NumCards = new JLabel("" + rummy.getPlayer(0).hand.cardArr.size());
+        p3NumCards = new JLabel("" + rummy.getPlayer(0).hand.cardArr.size());
+        p4NumCards = new JLabel("" + rummy.getPlayer(0).hand.cardArr.size());
+        /*
+         * if (numPlayers == 2) {
+         * p2NumCards = new JLabel("" + rummy.getPlayer(1).hand.cardArr.size());
+         * }
+         * if (numPlayers == 3) {
+         * p3NumCards = new JLabel("" + rummy.getPlayer(2).hand.cardArr.size());
+         * }
+         * if (numPlayers == 4) {
+         * p3NumCards = new JLabel("" + rummy.getPlayer(3).hand.cardArr.size());
+         * }
+         */
 
         // Creating menus
         options = new JMenu("Options");
@@ -796,10 +808,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         select8.setBorder(meldBorder);
         cancelButton.setBorder(meldBorder);
         confirmButton.setBorder(meldBorder);
-        crabLabel.setBorder(cardBorder);
-        octopusLabel.setBorder(cardBorder);
-        whaleLabel.setBorder(cardBorder);
-        seaGullLabel.setBorder(cardBorder);
         rectangleLeftLabel.setBorder(buttonBorder);
         rectangleRightLabel.setBorder(buttonBorder);
         cardDeckLabel.setBorder(cardBorder);
@@ -856,6 +864,29 @@ public class RummyGUI extends JFrame implements ActionListener {
         cardSailorQ.setBorder(cardBorder);
         cardSailorK.setBorder(cardBorder);
 
+        if (turn % numPlayers == 0) {
+            seaGullLabel.setBorder(currentPlayerBorder);
+            whaleLabel.setBorder(cardBorder);
+            octopusLabel.setBorder(cardBorder);
+            crabLabel.setBorder(cardBorder);
+        } else if (turn % numPlayers == 1) {
+            seaGullLabel.setBorder(cardBorder);
+            whaleLabel.setBorder(currentPlayerBorder);
+            octopusLabel.setBorder(cardBorder);
+            crabLabel.setBorder(cardBorder);
+        } else if (turn % numPlayers == 2) {
+            seaGullLabel.setBorder(cardBorder);
+            whaleLabel.setBorder(cardBorder);
+            octopusLabel.setBorder(currentPlayerBorder);
+            crabLabel.setBorder(cardBorder);
+        } else if (turn % numPlayers == 3) {
+            seaGullLabel.setBorder(cardBorder);
+            whaleLabel.setBorder(cardBorder);
+            octopusLabel.setBorder(cardBorder);
+            crabLabel.setBorder(currentPlayerBorder);
+        }
+        // seaGullLabel.setBorder(currentPlayerBorder);
+
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
         seaGullLabel.setBounds(1090 + insets.left, 20 + insets.top, 145, 105);
@@ -866,10 +897,10 @@ public class RummyGUI extends JFrame implements ActionListener {
         p2Label.setBounds(1090 + insets.left, 285 + insets.top, 200, 50);
         p3Label.setBounds(1090 + insets.left, 450 + insets.top, 200, 50);
         p4Label.setBounds(1090 + insets.left, 605 + insets.top, 200, 50);
-        p1NumCards.setBounds(1200 + insets.left, 120 + insets.top, 200, 50);
-        p2NumCards.setBounds(1090 + insets.left, 285 + insets.top, 50, 50);
-        p3NumCards.setBounds(1090 + insets.left, 450 + insets.top, 50, 50);
-        p4NumCards.setBounds(1090 + insets.left, 605 + insets.top, 50, 50);
+        p1NumCards.setBounds(1200 + insets.left, 120 + insets.top, 50, 50);
+        p2NumCards.setBounds(1200 + insets.left, 285 + insets.top, 50, 50);
+        p3NumCards.setBounds(1200 + insets.left, 450 + insets.top, 50, 50);
+        p4NumCards.setBounds(1200 + insets.left, 605 + insets.top, 50, 50);
         dash1Label.setBounds(1055 + insets.left, 100 + insets.top, 300, 75);
         dash2Label.setBounds(1055 + insets.left, 267 + insets.top, 300, 75);
         dash3Label.setBounds(1055 + insets.left, 428 + insets.top, 300, 75);
