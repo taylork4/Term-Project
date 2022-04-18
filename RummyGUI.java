@@ -1029,7 +1029,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         setDiscardButtons(current);
         setMeldButtons(current);
 
-        //displaying discard pile
+        // displaying discard pile
         displayDiscard();
 
         // Addiing action listeners to elements
@@ -2014,15 +2014,17 @@ public class RummyGUI extends JFrame implements ActionListener {
         }
     }
 
-    private void displayDiscard(){
-        if(!rummy.getDiscard().cardArr.isEmpty()){
-            Card discardShowing = rummy.getDiscard().cardArr.
-                get(rummy.getDiscard().cardArr.size() - 1);
+    private void displayDiscard() {
+        if (!rummy.getDiscard().cardArr.isEmpty()) {
+            Card discardShowing = rummy.getDiscard().cardArr.get(rummy.getDiscard().cardArr.size() - 1);
             discardLabel = cardMapSmall.get(discardShowing);
-            discardLabel.setBounds(40 + insets.left, 500 + insets.bottom, 135, 190);
+            discardLabel.setBounds(60 + insets.left, 470 + insets.bottom, 100, 135);
+            pane.remove(rectangleLeftLabel);
             pane.add(discardLabel);
+            pane.add(rectangleLeftLabel);
         }
     }
+
     /**************************************************************************************************************************************************************************************
      * The main(String[] args) method allows for the RummyGUI class to be ran.
      * 
