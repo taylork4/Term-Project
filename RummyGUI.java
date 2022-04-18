@@ -54,8 +54,6 @@ public class RummyGUI extends JFrame implements ActionListener {
     private JButton playButton, rummyButton, lakersRummyButton, makeMeldButton,
             addToMeldButton, blGreenButton, dGreenButton, lTanButton, confirmButton,
             cancelButton;
-    private JButton onePlayerButton, twoPlayerButton, threePlayerButton, // Number of players buttons
-            fourPlayerButton;
     private JButton discard1, discard2, discard3, discard4, discard5,
             discard6, discard7, discard8;
     private JButton select1, select2, select3, select4, select5, select6,
@@ -367,10 +365,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         playButton = new JButton("Play");
         rummyButton = new JButton("Rummy");
         lakersRummyButton = new JButton("Lakers Rummy");
-        onePlayerButton = new JButton("1-P");
-        twoPlayerButton = new JButton("2-P");
-        threePlayerButton = new JButton("3-P");
-        fourPlayerButton = new JButton("4-P");
 
         // Creating menus
         options = new JMenu("Options");
@@ -389,10 +383,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         playButton.setBackground(brightOrange);
         rummyButton.setBackground(orange);
         lakersRummyButton.setBackground(darkGrey);
-        onePlayerButton.setBackground(yellow);
-        twoPlayerButton.setBackground(darkGrey);
-        threePlayerButton.setBackground(darkGrey);
-        fourPlayerButton.setBackground(darkGrey);
         UIManager.put("MenuBar.background", lightGrey);
 
         // Setting foreground colors
@@ -405,10 +395,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         playButton.setForeground(black);
         rummyButton.setForeground(black);
         lakersRummyButton.setForeground(lightGrey);
-        onePlayerButton.setForeground(black);
-        twoPlayerButton.setForeground(lightGrey);
-        threePlayerButton.setForeground(lightGrey);
-        fourPlayerButton.setForeground(lightGrey);
 
         // Setting fonts
         titleLabel.setFont(titleFont);
@@ -420,19 +406,11 @@ public class RummyGUI extends JFrame implements ActionListener {
         playButton.setFont(playButtonFont);
         rummyButton.setFont(gameButtonFont);
         lakersRummyButton.setFont(gameButtonFont);
-        onePlayerButton.setFont(numPlayersButtonFont);
-        twoPlayerButton.setFont(numPlayersButtonFont);
-        threePlayerButton.setFont(numPlayersButtonFont);
-        fourPlayerButton.setFont(numPlayersButtonFont);
 
         // Setting borders
         playButton.setBorder(buttonBorder);
         rummyButton.setBorder(buttonBorder);
         lakersRummyButton.setBorder(buttonBorder);
-        onePlayerButton.setBorder(buttonBorder);
-        twoPlayerButton.setBorder(buttonBorder);
-        threePlayerButton.setBorder(buttonBorder);
-        fourPlayerButton.setBorder(buttonBorder);
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
@@ -442,10 +420,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         playButton.setBounds(520 + insets.left, 150 + insets.top, 200, 120);
         rummyButton.setBounds(285 + insets.left, 300 + insets.top, 275, 130);
         lakersRummyButton.setBounds(675 + insets.left, 300 + insets.top, 325, 130);
-        onePlayerButton.setBounds(150 + insets.left, 450 + insets.top, 100, 80);
-        twoPlayerButton.setBounds(300 + insets.left, 450 + insets.top, 100, 80);
-        threePlayerButton.setBounds(450 + insets.left, 450 + insets.top, 100, 80);
-        fourPlayerButton.setBounds(600 + insets.left, 450 + insets.top, 100, 80);
 
         // Adding elements to menubar
         menu.add(options);
@@ -467,10 +441,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(playButton);
         pane.add(rummyButton);
         pane.add(lakersRummyButton);
-        pane.add(onePlayerButton);
-        pane.add(twoPlayerButton);
-        pane.add(threePlayerButton);
-        pane.add(fourPlayerButton);
+
         pane.add(underWLabel);
 
         // Addiing action listeners to elements
@@ -481,10 +452,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         rummyButton.addActionListener(this);
         lakersRummyButton.addActionListener(this);
         rummyHow.addActionListener(this);
-        onePlayerButton.addActionListener(this);
-        twoPlayerButton.addActionListener(this);
-        threePlayerButton.addActionListener(this);
-        fourPlayerButton.addActionListener(this);
         mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Setting elements compatible with the frame
@@ -496,7 +463,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting default whichGame and howManyPlayers
         whichGame = 1;
-        numPlayers = 1;
+        numPlayers = 4;
         currentScreen = MENU;
     }
 
@@ -1480,11 +1447,6 @@ public class RummyGUI extends JFrame implements ActionListener {
             lakersRummyButton.setBackground(darkGrey);
             lakersRummyButton.setForeground(lightGrey);
 
-            // Sets numPlayerButtons underneath rummyButton
-            onePlayerButton.setBounds(150 + insets.left, 450 + insets.top, 100, 80);
-            twoPlayerButton.setBounds(300 + insets.left, 450 + insets.top, 100, 80);
-            threePlayerButton.setBounds(450 + insets.left, 450 + insets.top, 100, 80);
-            fourPlayerButton.setBounds(600 + insets.left, 450 + insets.top, 100, 80);
             whichGame = 1;
         }
 
@@ -1498,94 +1460,8 @@ public class RummyGUI extends JFrame implements ActionListener {
             rummyButton.setBackground(darkGrey);
             rummyButton.setForeground(lightGrey);
 
-            // Sets numPlayerButtons underneath lakersRummyButton
-            onePlayerButton.setBounds(565 + insets.left, 450 + insets.top, 100, 80);
-            twoPlayerButton.setBounds(715 + insets.left, 450 + insets.top, 100, 80);
-            threePlayerButton.setBounds(865 + insets.left, 450 + insets.top, 100, 80);
-            fourPlayerButton.setBounds(1015 + insets.left, 450 + insets.top, 100, 80);
-
             // Setting whichGame
             whichGame = 2;
-        }
-
-        // onePlayerButton button is clicked
-        if (action == onePlayerButton) {
-            // Selects onePlayerButton
-            onePlayerButton.setBackground(yellow);
-            onePlayerButton.setForeground(black);
-
-            // Fades out other player buttons
-            twoPlayerButton.setForeground(lightGrey);
-            threePlayerButton.setForeground(lightGrey);
-            fourPlayerButton.setForeground(lightGrey);
-            twoPlayerButton.setBackground(darkGrey);
-            threePlayerButton.setBackground(darkGrey);
-            fourPlayerButton.setBackground(darkGrey);
-
-            // Setting numPlayers
-            numPlayers = 1;
-            // rummy.addPlayer(numPlayers);
-            turn = 0;
-        }
-
-        // twoPlayerButton button is clicked
-        if (action == twoPlayerButton) {
-            // Selects onePlayerButton
-            twoPlayerButton.setBackground(yellow);
-            twoPlayerButton.setForeground(black);
-
-            // Fades out other player buttons
-            onePlayerButton.setForeground(lightGrey);
-            threePlayerButton.setForeground(lightGrey);
-            fourPlayerButton.setForeground(lightGrey);
-            onePlayerButton.setBackground(darkGrey);
-            threePlayerButton.setBackground(darkGrey);
-            fourPlayerButton.setBackground(darkGrey);
-
-            // Setting numPlayers
-            numPlayers = 2;
-            // rummy.addPlayer(numPlayers);
-            turn = 0;
-        }
-
-        // threePlayerButton button is clicked
-        if (action == threePlayerButton) {
-            // Selects onePlayerButton
-            threePlayerButton.setBackground(yellow);
-            threePlayerButton.setForeground(black);
-
-            // Fades out other player buttons
-            onePlayerButton.setForeground(lightGrey);
-            twoPlayerButton.setForeground(lightGrey);
-            fourPlayerButton.setForeground(lightGrey);
-            onePlayerButton.setBackground(darkGrey);
-            twoPlayerButton.setBackground(darkGrey);
-            fourPlayerButton.setBackground(darkGrey);
-
-            // Setting numPlayers
-            numPlayers = 3;
-            // rummy.addPlayer(numPlayers);
-            turn = 0;
-        }
-
-        // fourPlayerButton button is clicked
-        if (action == fourPlayerButton) {
-            // Selects onePlayerButton
-            fourPlayerButton.setBackground(yellow);
-            fourPlayerButton.setForeground(black);
-
-            // Fades out other player buttons
-            onePlayerButton.setForeground(lightGrey);
-            twoPlayerButton.setForeground(lightGrey);
-            threePlayerButton.setForeground(lightGrey);
-            onePlayerButton.setBackground(darkGrey);
-            twoPlayerButton.setBackground(darkGrey);
-            threePlayerButton.setBackground(darkGrey);
-
-            // Setting numPlayers
-            numPlayers = 4;
-            // rummy.addPlayer(numPlayers);
-            turn = 0;
         }
 
         // blGreenButton is clicked
