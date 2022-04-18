@@ -813,7 +813,6 @@ public class RummyGUI extends JFrame implements ActionListener {
         dash2Label.setForeground(black);
         dash3Label.setForeground(black);
         options.setForeground(black);
-        returnMenu.setForeground(black);
         exit.setForeground(black);
 
         // Setting fonts
