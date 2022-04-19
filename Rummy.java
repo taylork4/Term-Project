@@ -192,10 +192,19 @@ public class Rummy {
      * @param maybeMeld deck that player is trying to make a meld with
      * @return returns 1 if maybeMeld is a meld, 0 if not
      */
-    public int setMaybeMeld(Deck maybeMeld) {
+    public int setMaybeMeld(Deck maybeMeld, Player p) {
         this.maybeMeld = maybeMeld;
         if(checkMeld(this.maybeMeld) == 1){
             this.addMeld(this.maybeMeld);
+
+            //loop: to remove cards in the meld from the player's hand
+            for(Card meldCard : this.maybeMeld.cardArr) {
+                for(int i = 0; i < p.hand.cardArr.size(); i++) {
+                    if(p.hand.cardArr.get(i) == meldCard)
+                        p.hand.cardArr.remove(i);
+                }
+            }
+
             return 1;
         } else {
             return 0;
