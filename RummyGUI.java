@@ -248,7 +248,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         subMenuFont = new Font("Cooper Black", Font.PLAIN, 21);
         confCelFont = new Font("Cooper Black", Font.PLAIN, 15);
         coolSquareFont = new Font("Courier", Font.BOLD, 200);
-        avatarFont = new Font("Georgia", Font.ITALIC, 15);
+        avatarFont = new Font("Georgia", Font.BOLD, 15);
         playButtonFont = new Font("Courier", Font.BOLD, 50);
         gameButtonFont = new Font("Courier", Font.BOLD, 40);
         numPlayersButtonFont = new Font("Courier", Font.BOLD, 30);
@@ -696,18 +696,18 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
-        seaGullLabel.setBounds(1090 + insets.left, 20 + insets.top, 145, 105);
-        whaleLabel.setBounds(1090 + insets.left, 180 + insets.top, 145, 110);
-        octopusLabel.setBounds(1090 + insets.left, 350 + insets.top, 145, 110);
-        crabLabel.setBounds(1090 + insets.left, 510 + insets.top, 145, 110);
-        p1Label.setBounds(1090 + insets.left, 120 + insets.top, 200, 50);
-        p2Label.setBounds(1090 + insets.left, 285 + insets.top, 200, 50);
-        p3Label.setBounds(1090 + insets.left, 450 + insets.top, 200, 50);
-        p4Label.setBounds(1090 + insets.left, 605 + insets.top, 200, 50);
-        p1NumCards.setBounds(1200 + insets.left, 120 + insets.top, 50, 50);
-        p2NumCards.setBounds(1200 + insets.left, 285 + insets.top, 50, 50);
-        p3NumCards.setBounds(1200 + insets.left, 450 + insets.top, 50, 50);
-        p4NumCards.setBounds(1200 + insets.left, 605 + insets.top, 50, 50);
+        seaGullLabel.setBounds(1090 + insets.left, 5 + insets.top, 145, 110);
+        whaleLabel.setBounds(1090 + insets.left, 170 + insets.top, 145, 110);
+        octopusLabel.setBounds(1090 + insets.left, 337 + insets.top, 145, 110);
+        crabLabel.setBounds(1090 + insets.left, 498 + insets.top, 145, 110);
+        p1Label.setBounds(1090 + insets.left, 100 + insets.top, 200, 50);
+        p2Label.setBounds(1090 + insets.left, 265 + insets.top, 200, 50);
+        p3Label.setBounds(1090 + insets.left, 432 + insets.top, 200, 50);
+        p4Label.setBounds(1090 + insets.left, 593 + insets.top, 200, 50);
+        p1NumCards.setBounds(1210 + insets.left, 100 + insets.top, 50, 50);
+        p2NumCards.setBounds(1210 + insets.left, 265 + insets.top, 50, 50);
+        p3NumCards.setBounds(1210 + insets.left, 432 + insets.top, 50, 50);
+        p4NumCards.setBounds(1210 + insets.left, 593 + insets.top, 50, 50);
         dash1Label.setBounds(1055 + insets.left, 100 + insets.top, 300, 75);
         dash2Label.setBounds(1055 + insets.left, 267 + insets.top, 300, 75);
         dash3Label.setBounds(1055 + insets.left, 428 + insets.top, 300, 75);
@@ -717,12 +717,12 @@ public class RummyGUI extends JFrame implements ActionListener {
         // loop to add cards in hand to bottom of screen
         for (int j = 0; j < 7 * 120; j += 120) {
             if (handLabels[j / 120] != null) {
-                handLabels[j / 120].setBounds(225 + j + insets.left, 500 + insets.bottom, 100, 135);
+                handLabels[j / 120].setBounds(225 + j + insets.left, 500 + insets.bottom, 100, 143);
             }
         }
         if (handLabels[7] != null) {
             handLabels[7].setBounds((int) handLabels[6].getLocation().getX(),
-                    (int) handLabels[6].getLocation().getY() - 200, 100, 135);
+                    (int) handLabels[6].getLocation().getY() - 210, 100, 143);
         }
 
         // Adding elements to menubar
@@ -825,7 +825,7 @@ public class RummyGUI extends JFrame implements ActionListener {
             public void mouseReleased(MouseEvent e) {
                 // cardDeckLabel.setBorder(cardHighlightBorder);
                 if (!drawn) {
-                    if(!rummy.deck.cardArr.isEmpty())
+                    if (!rummy.deck.cardArr.isEmpty())
                         rummy.draw(rummy.deck, rummy.getPlayer(turn % numPlayers).hand);
                     else
                         rummy.draw(rummy.getDiscard(), rummy.getPlayer(turn % numPlayers).hand);
@@ -1613,7 +1613,7 @@ public class RummyGUI extends JFrame implements ActionListener {
             select8.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
             setDiscardButtons(current);
 
-            this.maybeMeld.cardArr.clear();  //clear cards the user selected
+            this.maybeMeld.cardArr.clear(); // clear cards the user selected
         }
 
         // cancelButton is clicked and makMeldButton has been clicked
@@ -1641,15 +1641,15 @@ public class RummyGUI extends JFrame implements ActionListener {
             select8.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
             setDiscardButtons(current);
 
-            this.maybeMeld.cardArr.clear();  //clear cards the user selected
+            this.maybeMeld.cardArr.clear(); // clear cards the user selected
         }
 
         if (action == confirmButton && makeMeld && drawn) {
             int result = rummy.setMaybeMeld(this.maybeMeld); // pass possible meld to rummy object
-            if(result == 0){
-                //TODO: decide what to do if it is not a meld
-            } else if(result == 1){
-                //TODO: decide what to do if it IS a meld
+            if (result == 0) {
+                // TODO: decide what to do if it is not a meld
+            } else if (result == 1) {
+                // TODO: decide what to do if it IS a meld
             }
         }
 
@@ -1755,7 +1755,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         if (!rummy.getDiscard().cardArr.isEmpty()) {
             Card discardShowing = rummy.getDiscard().cardArr.get(rummy.getDiscard().cardArr.size() - 1);
             discardLabel = cardMapSmall.get(discardShowing);
-            discardLabel.setBounds(60 + insets.left, 470 + insets.bottom, 100, 135);
+            discardLabel.setBounds(60 + insets.left, 470 + insets.bottom, 100, 143);
             pane.remove(rectangleLeftLabel);
             pane.add(discardLabel);
             pane.add(rectangleLeftLabel);

@@ -107,7 +107,7 @@ public class Deck {
          * Constructor of the Card class that takes an integer as a parameter to
          * create an empty deck.
          * 
-         * @param zero - Integer value that 
+         * @param zero - Integer value that
          */
         public Deck(int zero) {
         }
@@ -158,11 +158,13 @@ public class Deck {
                 Collections.shuffle(this.cardArr);
         }
 
-
-        public String toString(){
+        /**
+         * @return String
+         */
+        public String toString() {
                 String deckAsString = "";
                 for (Card card : cardArr) {
-                        switch(card.getValue()){
+                        switch (card.getValue()) {
                                 case 1:
                                         deckAsString += "ace";
                                         break;
