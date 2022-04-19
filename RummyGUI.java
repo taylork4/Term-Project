@@ -824,7 +824,10 @@ public class RummyGUI extends JFrame implements ActionListener {
             public void mouseReleased(MouseEvent e) {
                 // cardDeckLabel.setBorder(cardHighlightBorder);
                 if (!drawn) {
-                    rummy.draw(rummy.deck, rummy.getPlayer(turn % numPlayers).hand);
+                    if(!rummy.deck.cardArr.isEmpty())
+                        rummy.draw(rummy.deck, rummy.getPlayer(turn % numPlayers).hand);
+                    else
+                        rummy.draw(rummy.getDiscard(), rummy.getPlayer(turn % numPlayers).hand);
                     gameFrame.dispose();
                     setup = true;
                     drawn = true;
