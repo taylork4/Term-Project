@@ -66,8 +66,8 @@ public class RummyGUI extends JFrame implements ActionListener {
             rectangleRightLabel, seaGullLabel, whaleLabel, crabLabel, underWLabel,
             crabGIFLabel, coolSquare1Label, coolSquare2Label, ex1Label, ex2Label,
             ex3Label, ex4Label, ex5Label, ex6Label, ex7Label, ex8Label, ex9Label,
-            ex10Label, ex11Label, ex12Label, ex13Label, p1NumCards, p2NumCards,
-            p3NumCards, p4NumCards, discardLabel, waitingLabel, waitTitleLabel;
+            ex10Label, ex11Label, ex12Label, ex13Label, discardLabel, waitingLabel,
+            waitTitleLabel, player1Score, player2Score, player3Score, player4Score;
     private JLabel cardAnchorAS, cardAnchor2S, cardAnchor3S, cardAnchor4S, // Anchor label for suit (Small)
             cardAnchor5S, cardAnchor6S, cardAnchor7S, cardAnchor8S, cardAnchor9S,
             cardAnchor10S, cardAnchorJS, cardAnchorQS, cardAnchorKS;
@@ -137,7 +137,8 @@ public class RummyGUI extends JFrame implements ActionListener {
     // Game status variable declarations
     private final int MENU, GAME, SETTINGS, RUMMYHOW, BLGREEN, DGREEN, LTAN;
     private int whichGame, numPlayers, currentScreen, turn, gameColor;
-    private boolean makeMeld, addToMeld, drawn, setup, discard, waitingTime;
+    private boolean makeMeld, addToMeld, drawn, setup, discard, waitingTime,
+            gameInProg;
     private Rummy rummy = new Rummy();
     Player current;
     private Deck maybeMeld = new Deck(0);
@@ -271,13 +272,18 @@ public class RummyGUI extends JFrame implements ActionListener {
         LTAN = 1;
         DGREEN = 2;
         BLGREEN = 3;
-        gameColor = LTAN;
+
+        // Initializing boolean values
+        gameInProg = false;
         makeMeld = false;
         addToMeld = false;
         drawn = false;
         setup = false;
         discard = false;
         waitingTime = false;
+
+        // Sets default color of game screen to tan
+        gameColor = LTAN;
 
         // Calls method to create main menu
         mainMenuScreen();
@@ -421,10 +427,22 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.setLayout(null);
 
         // Creating labels
-        p1Label = new JLabel("Cards in hand: ");
-        p2Label = new JLabel("Cards in hand: ");
-        p3Label = new JLabel("Cards in hand: ");
-        p4Label = new JLabel("Cards in hand: ");
+        if (!gameInProg) {
+            p1Label = new JLabel("Cards in hand: 7");
+            p2Label = new JLabel("Cards in hand: 7");
+            p3Label = new JLabel("Cards in hand: 7");
+            p4Label = new JLabel("Cards in hand: 7");
+        } else {
+            p1Label = new JLabel("Cards in hand: " + rummy.getPlayer(0).hand.cardArr.size());
+            p2Label = new JLabel("Cards in hand: " + rummy.getPlayer(1).hand.cardArr.size());
+            p3Label = new JLabel("Cards in hand: " + rummy.getPlayer(2).hand.cardArr.size());
+            p4Label = new JLabel("Cards in hand: " + rummy.getPlayer(3).hand.cardArr.size());
+        }
+
+        player1Score = new JLabel("Score: " + rummy.getPlayer(0).getScore());
+        player2Score = new JLabel("Score: " + rummy.getPlayer(1).getScore());
+        player3Score = new JLabel("Score: " + rummy.getPlayer(2).getScore());
+        player4Score = new JLabel("Score: " + rummy.getPlayer(3).getScore());
         dash1Label = new JLabel("_______");
         dash2Label = new JLabel("_______");
         dash3Label = new JLabel("_______");
@@ -498,21 +516,6 @@ public class RummyGUI extends JFrame implements ActionListener {
             }
         }
         waitTitleLabel = new JLabel("Player " + ((turn % numPlayers) + 1) + "! It's Your Turn");
-        p1NumCards = new JLabel("" + rummy.getPlayer(0).hand.cardArr.size());
-        p2NumCards = new JLabel("" + rummy.getPlayer(1).hand.cardArr.size());
-        p3NumCards = new JLabel("" + rummy.getPlayer(2).hand.cardArr.size());
-        p4NumCards = new JLabel("" + rummy.getPlayer(3).hand.cardArr.size());
-        /*
-         * if (numPlayers == 2) {
-         * p2NumCards = new JLabel("" + rummy.getPlayer(1).hand.cardArr.size());
-         * }
-         * if (numPlayers == 3) {
-         * p3NumCards = new JLabel("" + rummy.getPlayer(2).hand.cardArr.size());
-         * }
-         * if (numPlayers == 4) {
-         * p3NumCards = new JLabel("" + rummy.getPlayer(3).hand.cardArr.size());
-         * }
-         */
 
         // Creating menus
         options = new JMenu("Options");
@@ -581,10 +584,10 @@ public class RummyGUI extends JFrame implements ActionListener {
         p2Label.setForeground(black);
         p3Label.setForeground(black);
         p4Label.setForeground(black);
-        p1NumCards.setForeground(black);
-        p2NumCards.setForeground(black);
-        p3NumCards.setForeground(black);
-        p4NumCards.setForeground(black);
+        player1Score.setForeground(black);
+        player2Score.setForeground(black);
+        player3Score.setForeground(black);
+        player4Score.setForeground(black);
         dash1Label.setForeground(black);
         dash2Label.setForeground(black);
         dash3Label.setForeground(black);
@@ -636,10 +639,10 @@ public class RummyGUI extends JFrame implements ActionListener {
         p2Label.setFont(avatarFont);
         p3Label.setFont(avatarFont);
         p4Label.setFont(avatarFont);
-        p1NumCards.setFont((avatarFont));
-        p2NumCards.setFont(avatarFont);
-        p3NumCards.setFont(avatarFont);
-        p4NumCards.setFont(avatarFont);
+        player1Score.setFont((avatarFont));
+        player2Score.setFont(avatarFont);
+        player3Score.setFont(avatarFont);
+        player4Score.setFont(avatarFont);
         dash1Label.setFont(playButtonFont);
         dash2Label.setFont(playButtonFont);
         dash3Label.setFont(playButtonFont);
@@ -701,14 +704,14 @@ public class RummyGUI extends JFrame implements ActionListener {
         whaleLabel.setBounds(1090 + insets.left, 170 + insets.top, 145, 110);
         octopusLabel.setBounds(1090 + insets.left, 337 + insets.top, 145, 110);
         crabLabel.setBounds(1090 + insets.left, 498 + insets.top, 145, 110);
-        p1Label.setBounds(1090 + insets.left, 100 + insets.top, 200, 50);
-        p2Label.setBounds(1090 + insets.left, 265 + insets.top, 200, 50);
-        p3Label.setBounds(1090 + insets.left, 432 + insets.top, 200, 50);
-        p4Label.setBounds(1090 + insets.left, 593 + insets.top, 200, 50);
-        p1NumCards.setBounds(1210 + insets.left, 100 + insets.top, 50, 50);
-        p2NumCards.setBounds(1210 + insets.left, 265 + insets.top, 50, 50);
-        p3NumCards.setBounds(1210 + insets.left, 432 + insets.top, 50, 50);
-        p4NumCards.setBounds(1210 + insets.left, 593 + insets.top, 50, 50);
+        p1Label.setBounds(1090 + insets.left, 100 + insets.top, 300, 50);
+        p2Label.setBounds(1090 + insets.left, 265 + insets.top, 300, 50);
+        p3Label.setBounds(1090 + insets.left, 432 + insets.top, 300, 50);
+        p4Label.setBounds(1090 + insets.left, 593 + insets.top, 300, 50);
+        player1Score.setBounds(1130 + insets.left, 115 + insets.top, 200, 50);
+        player2Score.setBounds(1130 + insets.left, 280 + insets.top, 200, 50);
+        player3Score.setBounds(1130 + insets.left, 447 + insets.top, 200, 50);
+        player4Score.setBounds(1130 + insets.left, 608 + insets.top, 200, 50);
         dash1Label.setBounds(1055 + insets.left, 100 + insets.top, 300, 75);
         dash2Label.setBounds(1055 + insets.left, 267 + insets.top, 300, 75);
         dash3Label.setBounds(1055 + insets.left, 428 + insets.top, 300, 75);
@@ -758,10 +761,10 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane.add(p2Label);
         pane.add(p3Label);
         pane.add(p4Label);
-        pane.add(p1NumCards);
-        pane.add(p2NumCards);
-        pane.add(p3NumCards);
-        pane.add(p4NumCards);
+        pane.add(player1Score);
+        pane.add(player2Score);
+        pane.add(player3Score);
+        pane.add(player4Score);
         pane.add(dash1Label);
         pane.add(dash2Label);
         pane.add(dash3Label);
@@ -859,6 +862,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting screen as game screen
         currentScreen = GAME;
+        gameInProg = true;
     }
 
     /**************************************************************************************************************************************************************************************

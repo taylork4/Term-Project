@@ -31,4 +31,11 @@ public class Player {
         this.score++;
     }
 
+    /**************************************************************************************************************************************************************************************
+     * The getScore() method retrieves the score of the player.
+     */
+    public int getScore() {
+        return this.score;
+    }
+
 }
