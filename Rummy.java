@@ -20,6 +20,8 @@ public class Rummy {
      */
     public Deck deck; // the full game deck
     private Deck discard; // an empty deck (discard pile)
+    private Deck maybeMeld; // stores cards that may be a meld when the player attempts to make 
+                            // a meld
     private boolean gameInProg;
     private boolean setupComplete;
     private ArrayList<Deck> melds;
@@ -175,6 +177,29 @@ public class Rummy {
      */
     public Card getCard(int index) {
         return this.deck.cardArr.get(index);
+    }
+
+    /**
+     * getter for maybeMeld
+     * @return deck that player is trying to make a meld with
+     */
+    public Deck getMaybeMeld() {
+        return maybeMeld;
+    }
+
+    /**
+     * setter for maybeMeld
+     * @param maybeMeld deck that player is trying to make a meld with
+     * @return returns 1 if maybeMeld is a meld, 0 if not
+     */
+    public int setMaybeMeld(Deck maybeMeld) {
+        this.maybeMeld = maybeMeld;
+        if(checkMeld(this.maybeMeld) == 1){
+            this.addMeld(this.maybeMeld);
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     /**************************************************************************************************************************************************************************************

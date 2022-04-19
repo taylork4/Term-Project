@@ -139,6 +139,7 @@ public class RummyGUI extends JFrame implements ActionListener {
     private boolean makeMeld, addToMeld, drawn, setup, discard, waitingTime;
     private Rummy rummy = new Rummy();
     Player current;
+    private Deck maybeMeld = new Deck(0);
     private HashMap<Card, JLabel> cardMap = new HashMap<Card, JLabel>();
     private HashMap<Card, JLabel> cardMapSmall = new HashMap<Card, JLabel>();
 
@@ -1475,41 +1476,49 @@ public class RummyGUI extends JFrame implements ActionListener {
         // select1 button is clicked and makeMeldButton has been clicked
         if (action == select1 && makeMeld && drawn) {
             select1.setBackground(yellow);
+            this.maybeMeld.add(current.hand.cardArr.get(0));
         }
 
         // select2 button is clicked and makeMeldButton has been clicked
         if (action == select2 && makeMeld && drawn) {
             select2.setBackground(yellow);
+            this.maybeMeld.add(current.hand.cardArr.get(1));
         }
 
         // select3 button is clicked and makeMeldButton has been clicked
         if (action == select3 && makeMeld && drawn) {
             select3.setBackground(yellow);
+            this.maybeMeld.add(current.hand.cardArr.get(2));
         }
 
         // select4 button is clicked and makeMeldButton has been clicked
         if (action == select4 && makeMeld && drawn) {
             select4.setBackground(yellow);
+            this.maybeMeld.add(current.hand.cardArr.get(3));
         }
 
         // select5 button is clicked and makeMeldButton has been clicked
         if (action == select5 && makeMeld && drawn) {
             select5.setBackground(yellow);
+            this.maybeMeld.add(current.hand.cardArr.get(4));
         }
 
         // select6 button is clicked and makeMeldButton has been clicked
         if (action == select6 && makeMeld && drawn) {
             select6.setBackground(yellow);
+            this.maybeMeld.add(current.hand.cardArr.get(5));
         }
 
         // select7 button is clicked and makeMeldButton has been clicked
         if (action == select7 && makeMeld && drawn) {
             select7.setBackground(yellow);
+            this.maybeMeld.add(current.hand.cardArr.get(6));
         }
 
         // select8 button is clicked and makeMeldButton has been clicked
         if (action == select8 && makeMeld && drawn) {
             select8.setBackground(yellow);
+            this.maybeMeld.add(current.hand.cardArr.get(7));
         }
 
         // addToMeldButton is clicked
@@ -1603,6 +1612,8 @@ public class RummyGUI extends JFrame implements ActionListener {
             select7.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
             select8.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
             setDiscardButtons(current);
+
+            this.maybeMeld.cardArr.clear();  //clear cards the user selected
         }
 
         // cancelButton is clicked and makMeldButton has been clicked
@@ -1629,6 +1640,17 @@ public class RummyGUI extends JFrame implements ActionListener {
             select7.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
             select8.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
             setDiscardButtons(current);
+
+            this.maybeMeld.cardArr.clear();  //clear cards the user selected
+        }
+
+        if (action == confirmButton && makeMeld && drawn) {
+            int result = rummy.setMaybeMeld(this.maybeMeld); // pass possible meld to rummy object
+            if(result == 0){
+                //TODO: decide what to do if it is not a meld
+            } else if(result == 1){
+                //TODO: decide what to do if it IS a meld
+            }
         }
 
         if (action == readyButton) {
