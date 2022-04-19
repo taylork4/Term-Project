@@ -502,7 +502,7 @@ public class RummyGUI extends JFrame implements ActionListener {
             cardMapSmall.put(rummy.getCard(50), cardGVLogoKS);
             cardMapSmall.put(rummy.getCard(51), cardSailorKS);
 
-            rummy.deck.shuffle(); // for testing purposes, did not shuffle yet
+            //rummy.deck.shuffle(); // for testing purposes, did not shuffle yet
             rummy.deal();
         }
         current = rummy.getPlayer(turn % numPlayers);
@@ -1650,7 +1650,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         }
 
         if (action == confirmButton && makeMeld && drawn) {
-            int result = rummy.setMaybeMeld(this.maybeMeld); // pass possible meld to rummy object
+            int result = rummy.setMaybeMeld(this.maybeMeld, current); // pass possible meld to rummy object
             if (result == 0) {
                 JOptionPane.showMessageDialog(pane, "The cards " +
                         rummy.getMaybeMeld().toString() +
@@ -1658,9 +1658,14 @@ public class RummyGUI extends JFrame implements ActionListener {
                         JOptionPane.ERROR_MESSAGE);
                 makeMeldButton.setBounds(35 + insets.left, 235 + insets.top, 145, 50);
                 addToMeldButton.setBounds(35 + insets.left, 355 + insets.top, 145, 50);
-
+                
+                this.maybeMeld.cardArr.clear();
             } else if (result == 1) {
                 // TODO: decide what to do if it IS a meld
+                gameFrame.dispose();
+                gameScreen();
+                makeMeldButton.setBounds(35 + insets.left, 235 + insets.top, 145, 50);
+                addToMeldButton.setBounds(35 + insets.left, 355 + insets.top, 145, 50);
             }
         }
 
