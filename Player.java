@@ -15,6 +15,7 @@ public class Player {
      */
     private int score;
     private int numMelds;
+    private int numTurns;
     public Deck hand;
 
     /**************************************************************************************************************************************************************************************
@@ -24,6 +25,21 @@ public class Player {
         score = 0; // Player starts with empty deck and no score.
         hand = new Deck(0); // Cards will be dealt at the start of the game (from Rummy class)
         numMelds = 0;
+        numTurns = 0;
+    }
+
+    /**************************************************************************************************************************************************************************************
+     * The addNumMelds() method counts the number of turns a player has had.
+     */
+    public void addNumTurns() {
+        this.numTurns++;
+    }
+
+    /**************************************************************************************************************************************************************************************
+     * The getNumMelds() method retrieves the number of turns a player has had.
+     */
+    public int getNumTurns() {
+        return this.numTurns;
     }
 
     /**************************************************************************************************************************************************************************************

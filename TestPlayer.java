@@ -20,6 +20,17 @@ public class TestPlayer {
     Player george = new Player();
 
     /**************************************************************************************************************************************************************************************
+     * The testAddNumTurns() method tests whether number of turns are incremented
+     * correctly.
+     */
+    @Test
+    public void testAddNumTurns() {
+        assertEquals(george.getNumTurns(), 0);
+        george.addNumTurns();
+        assertEquals(george.getNumTurns(), 1);
+    }
+
+    /**************************************************************************************************************************************************************************************
      * The testAddNumMelds() method tests whether number of melds are incremented
      * correctly.
      */
