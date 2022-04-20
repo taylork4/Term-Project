@@ -1109,7 +1109,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         dash1Label = new JLabel("________________________________________");
         ex1Label = new JLabel("Making Melds:");
         ex2Label = new JLabel("In a game of Rummy, so long as it is the Player's turn and they have 3 or more of the");
-        ex3Label = new JLabel("same card value ~OR~ 4 or more sequential cards of the suit, they can make a meld.");
+        ex3Label = new JLabel("same card value ~OR~ 3 or more sequential cards of the suit, they can make a meld.");
         dash2Label = new JLabel("----------------------------------------");
         ex4Label = new JLabel("How are points awarded?");
         ex5Label = new JLabel("In Rummy, the less points you have, the better. If a round ends, all players except");
@@ -1715,15 +1715,6 @@ public class RummyGUI extends JFrame implements ActionListener {
                     temp += "Meld " + (i + 1) + ":\n";
                     temp += rummy.getMelds().get(i).toString().toUpperCase();
                     temp += "\n";
-                    if (turn % numPlayers == 0) {
-                        rummy.getPlayer(0).addNumMelds();
-                    } else if (turn % numPlayers == 1) {
-                        rummy.getPlayer(1).addNumMelds();
-                    } else if (turn % numPlayers == 2) {
-                        rummy.getPlayer(2).addNumMelds();
-                    } else if (turn % numPlayers == 3) {
-                        rummy.getPlayer(3).addNumMelds();
-                    }
                 }
                 meldsString = temp;
                 // above: setting the string that displays melds.
