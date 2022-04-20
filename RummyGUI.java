@@ -1109,7 +1109,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         dash1Label = new JLabel("________________________________________");
         ex1Label = new JLabel("Making Melds:");
         ex2Label = new JLabel("In a game of Rummy, so long as it is the Player's turn and they have 3 or more of the");
-        ex3Label = new JLabel("same card value ~OR~ 3 or more sequential cards of the suit, they can make a meld.");
+        ex3Label = new JLabel(
+                "same card value ~OR~ 3 or more sequential cards of the same suit, they can make a meld.");
         dash2Label = new JLabel("----------------------------------------");
         ex4Label = new JLabel("How are points awarded?");
         ex5Label = new JLabel("In Rummy, the less points you have, the better. If a round ends, all players except");
@@ -1120,10 +1121,10 @@ public class RummyGUI extends JFrame implements ActionListener {
         dash3Label = new JLabel("----------------------------------------");
         ex10Label = new JLabel("The Lakers Rummy 'Twist':");
         ex11Label = new JLabel(
-                "Lakers Rummy, while mostly the same as rummy, changes the way the game is scored slightly.");
+                "Lakers Rummy changes the way the game is scored slightly. Unlike regular Rummy, Lakers");
         ex12Label = new JLabel(
-                "Unlike regular Rummy, Lakers Rummy awards players that make more melds. At the end of the");
-        ex13Label = new JLabel("game, each player gets a points reduction by the number of melds they made times 3.");
+                "Rummy awards players that make more melds. At the end of the game, each player gets a");
+        ex13Label = new JLabel("points reduction by the number of melds they made times 3.");
 
         // Creating buttons
         // playButton = new JButton("Play");
