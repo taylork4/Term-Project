@@ -159,6 +159,19 @@ public class Deck {
         }
 
         /**
+         * makes a clone object of the deck
+         * @param d deck to be cloned
+         * @return returns a clone of the deck
+         */
+        public Deck clone() {
+                Deck newDeck = new Deck(0);
+                for(Card c: this.cardArr) {
+                        newDeck.add(c);
+                }
+                return newDeck;
+        }
+
+        /**
          * @return String
          */
         public String toString() {

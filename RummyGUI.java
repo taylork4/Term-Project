@@ -1704,7 +1704,7 @@ public class RummyGUI extends JFrame implements ActionListener {
             int result = rummy.setMaybeMeld(this.maybeMeld, current); // pass possible meld to rummy object
             if (result == 0) {
                 JOptionPane.showMessageDialog(pane, "The cards " +
-                        rummy.getMaybeMeld().toString() +
+                        maybeMeld.toString() +
                         "do not make up a meld!", "Uh Oh! Not a Meld, try again!",
                         JOptionPane.ERROR_MESSAGE);
                 this.maybeMeld.cardArr.clear();

@@ -24,7 +24,7 @@ public class Rummy {
                             // a meld
     private boolean gameInProg;
     private boolean setupComplete;
-    private ArrayList<Deck> maybeMelds, melds;
+    private ArrayList<Deck> melds;
     private ArrayList<Player> players;
     // private Player player;
 
@@ -35,7 +35,6 @@ public class Rummy {
         deck = new Deck();
         discard = new Deck(0);
         melds = new ArrayList<Deck>();
-        maybeMelds = new ArrayList<Deck>();
         players = new ArrayList<Player>();
         gameInProg = true;
         setupComplete = false;
@@ -184,8 +183,8 @@ public class Rummy {
      * getter for maybeMeld
      * @return deck that player is trying to make a meld with
      */
-    public ArrayList<Deck> getMaybeMeld() {
-        return maybeMelds;
+    public Deck getMaybeMeld() {
+        return maybeMeld;
     }
 
     /**
@@ -194,9 +193,8 @@ public class Rummy {
      * @return returns 1 if maybeMeld is a meld, 0 if not
      */
     public int setMaybeMeld(Deck meld, Player p) {
-        this.maybeMelds.add(meld);
         if(checkMeld(meld) == 1){
-            this.addMeld(maybeMelds.get(maybeMelds.size() - 1));
+            this.addMeld(meld.clone());
             
             //loop: to remove cards in the meld from the player's hand
             for(Card meldCard : meld.cardArr) {
