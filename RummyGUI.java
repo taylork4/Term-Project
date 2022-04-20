@@ -1618,7 +1618,7 @@ public class RummyGUI extends JFrame implements ActionListener {
             Deck meldCardFirst = meld.clone();
             meldCardFirst.cardArr.add(0, current.hand.cardArr.get(0));
 
-            if(rummy.addToMeld(meldCardFirst, 0, current) == 1){
+            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1631,7 +1631,7 @@ public class RummyGUI extends JFrame implements ActionListener {
                 this.maybeMeld.cardArr.clear();
                 gameFrame.dispose();
                 gameScreen();
-            } else if(rummy.addToMeld(meldCardLast, 0, current) == 1) {
+            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1656,36 +1656,337 @@ public class RummyGUI extends JFrame implements ActionListener {
         // select2 button is clicked and addToMeldButton has been clicked
         if (action == select2 && addToMeld && drawn) {
             select2.setBackground(yellow);
+
+            Deck[] meldArray = rummy.getMeldsArray();
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
+                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+            
+            Deck meldCardLast = meld.clone();
+            meldCardLast.add(current.hand.cardArr.get(1));
+            Deck meldCardFirst = meld.clone();
+            meldCardFirst.cardArr.add(0, current.hand.cardArr.get(1));
+
+            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else {
+                JOptionPane.showMessageDialog(pane, "The cards " +
+                        maybeMeld.toString() +
+                        "do not make up a meld!", "Uh Oh! Not a Meld, try again!",
+                        JOptionPane.ERROR_MESSAGE);
+                this.maybeMeld.cardArr.clear();
+            }
         }
 
         // select3 button is clicked and addToMeldButton has been clicked
         if (action == select3 && addToMeld && drawn) {
             select3.setBackground(yellow);
+
+            Deck[] meldArray = rummy.getMeldsArray();
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
+                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+            
+            Deck meldCardLast = meld.clone();
+            meldCardLast.add(current.hand.cardArr.get(2));
+            Deck meldCardFirst = meld.clone();
+            meldCardFirst.cardArr.add(0, current.hand.cardArr.get(2));
+
+            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else {
+                JOptionPane.showMessageDialog(pane, "The cards " +
+                        maybeMeld.toString() +
+                        "do not make up a meld!", "Uh Oh! Not a Meld, try again!",
+                        JOptionPane.ERROR_MESSAGE);
+                this.maybeMeld.cardArr.clear();
+            }
         }
 
         // select4 button is clicked and addToMeldButton has been clicked
         if (action == select4 && addToMeld && drawn) {
             select4.setBackground(yellow);
+
+            Deck[] meldArray = rummy.getMeldsArray();
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
+                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+            
+            Deck meldCardLast = meld.clone();
+            meldCardLast.add(current.hand.cardArr.get(3));
+            Deck meldCardFirst = meld.clone();
+            meldCardFirst.cardArr.add(0, current.hand.cardArr.get(3));
+
+            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else {
+                JOptionPane.showMessageDialog(pane, "The cards " +
+                        maybeMeld.toString() +
+                        "do not make up a meld!", "Uh Oh! Not a Meld, try again!",
+                        JOptionPane.ERROR_MESSAGE);
+                this.maybeMeld.cardArr.clear();
+            }
         }
 
         // select5 button is clicked and addToMeldButton has been clicked
         if (action == select5 && addToMeld && drawn) {
             select5.setBackground(yellow);
+
+            Deck[] meldArray = rummy.getMeldsArray();
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
+                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+            
+            Deck meldCardLast = meld.clone();
+            meldCardLast.add(current.hand.cardArr.get(4));
+            Deck meldCardFirst = meld.clone();
+            meldCardFirst.cardArr.add(0, current.hand.cardArr.get(4));
+
+            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else {
+                JOptionPane.showMessageDialog(pane, "The cards " +
+                        maybeMeld.toString() +
+                        "do not make up a meld!", "Uh Oh! Not a Meld, try again!",
+                        JOptionPane.ERROR_MESSAGE);
+                this.maybeMeld.cardArr.clear();
+            }
         }
 
         // select6 button is clicked and addToMeldButton has been clicked
         if (action == select6 && addToMeld && drawn) {
             select6.setBackground(yellow);
+
+            Deck[] meldArray = rummy.getMeldsArray();
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
+                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+            
+            Deck meldCardLast = meld.clone();
+            meldCardLast.add(current.hand.cardArr.get(5));
+            Deck meldCardFirst = meld.clone();
+            meldCardFirst.cardArr.add(0, current.hand.cardArr.get(5));
+
+            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else {
+                JOptionPane.showMessageDialog(pane, "The cards " +
+                        maybeMeld.toString() +
+                        "do not make up a meld!", "Uh Oh! Not a Meld, try again!",
+                        JOptionPane.ERROR_MESSAGE);
+                this.maybeMeld.cardArr.clear();
+            }
         }
 
         // select7 button is clicked and addToMeldButton has been clicked
         if (action == select7 && addToMeld && drawn) {
             select7.setBackground(yellow);
+
+            Deck[] meldArray = rummy.getMeldsArray();
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
+                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+            
+            Deck meldCardLast = meld.clone();
+            meldCardLast.add(current.hand.cardArr.get(6));
+            Deck meldCardFirst = meld.clone();
+            meldCardFirst.cardArr.add(0, current.hand.cardArr.get(6));
+
+            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else {
+                JOptionPane.showMessageDialog(pane, "The cards " +
+                        maybeMeld.toString() +
+                        "do not make up a meld!", "Uh Oh! Not a Meld, try again!",
+                        JOptionPane.ERROR_MESSAGE);
+                this.maybeMeld.cardArr.clear();
+            }
         }
 
         // select8 button is clicked and addToMeldButton has been clicked
         if (action == select8 && addToMeld && drawn) {
             select8.setBackground(yellow);
+
+            Deck[] meldArray = rummy.getMeldsArray();
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
+                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+            
+            Deck meldCardLast = meld.clone();
+            meldCardLast.add(current.hand.cardArr.get(7));
+            Deck meldCardFirst = meld.clone();
+            meldCardFirst.cardArr.add(0, current.hand.cardArr.get(7));
+
+            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else {
+                JOptionPane.showMessageDialog(pane, "The cards " +
+                        maybeMeld.toString() +
+                        "do not make up a meld!", "Uh Oh! Not a Meld, try again!",
+                        JOptionPane.ERROR_MESSAGE);
+                this.maybeMeld.cardArr.clear();
+            }
         }
 
         // cancelButton is clicked and addToMeldButton has been clicked
