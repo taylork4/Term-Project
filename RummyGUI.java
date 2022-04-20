@@ -436,10 +436,10 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Creating textArea
         meldTextArea = new JTextArea(meldsString);
-        //creating scroll pane
+        // creating scroll pane
         meldScrollPane = new JScrollPane(meldTextArea);
         meldScrollPane.setPreferredSize(new Dimension(700, 400));
-        
+
         // Creating labels
         if (!gameInProg) {
             p1Label = new JLabel("Cards in hand: 7");
@@ -516,7 +516,7 @@ public class RummyGUI extends JFrame implements ActionListener {
             cardMapSmall.put(rummy.getCard(50), cardGVLogoKS);
             cardMapSmall.put(rummy.getCard(51), cardSailorKS);
 
-            //rummy.deck.shuffle(); // for testing purposes, did not shuffle yet
+            // rummy.deck.shuffle(); // for testing purposes, did not shuffle yet
             rummy.deal();
         }
         current = rummy.getPlayer(turn % numPlayers);
@@ -1073,10 +1073,11 @@ public class RummyGUI extends JFrame implements ActionListener {
         ex9Label = new JLabel("- J,K,Q,A --> 10 points each");
         dash3Label = new JLabel("----------------------------------------");
         ex10Label = new JLabel("The Lakers Rummy 'Twist':");
-        ex11Label = new JLabel("Lakers Rummy, while mostly the same as rummy, allows a player to cheat. If a player");
-        ex12Label = new JLabel("can get away with a cheat without another player noticing within a turn, the player");
-        ex13Label = new JLabel(
-                "will go unpunished. Otherwise, the player receives 10 points every time they are caught.");
+        ex11Label = new JLabel(
+                "Lakers Rummy, while mostly the same as rummy, changes the way the game is scored slightly.");
+        ex12Label = new JLabel(
+                "Unlike regular Rummy, Lakers Rummy awards players that make more melds. At the end of the");
+        ex13Label = new JLabel("game, each player gets a points reduction by the number of melds they made times 3.");
 
         // Creating buttons
         // playButton = new JButton("Play");
@@ -1679,18 +1680,18 @@ public class RummyGUI extends JFrame implements ActionListener {
                         JOptionPane.ERROR_MESSAGE);
                 makeMeldButton.setBounds(35 + insets.left, 235 + insets.top, 145, 50);
                 addToMeldButton.setBounds(35 + insets.left, 355 + insets.top, 145, 50);
-                
+
                 this.maybeMeld.cardArr.clear();
-                
+
             } else if (result == 1) {
                 String temp = "";
-                for(int i = 0; i < rummy.getMelds().size(); i++){
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
                     temp += rummy.getMelds().get(i).toString().toUpperCase();
                     temp += "\n";
                 }
                 meldsString = temp;
-                //above: setting the string that displays melds.
+                // above: setting the string that displays melds.
 
                 this.maybeMeld.cardArr.clear();
 

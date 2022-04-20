@@ -14,6 +14,7 @@ public class Player {
      * Instance Variables
      */
     private int score;
+    private int numMelds;
     public Deck hand;
 
     /**************************************************************************************************************************************************************************************
@@ -22,6 +23,21 @@ public class Player {
     public Player() {
         score = 0; // Player starts with empty deck and no score.
         hand = new Deck(0); // Cards will be dealt at the start of the game (from Rummy class)
+        numMelds = 0;
+    }
+
+    /**************************************************************************************************************************************************************************************
+     * The addNumMelds() method counts the number of melds a player has made.
+     */
+    public void addNumMelds() {
+        this.numMelds++;
+    }
+
+    /**************************************************************************************************************************************************************************************
+     * The getNumMelds() method retrieves the number of melds a player has made.
+     */
+    public int getNumMelds() {
+        return this.numMelds;
     }
 
     /**************************************************************************************************************************************************************************************

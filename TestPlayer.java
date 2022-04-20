@@ -20,6 +20,17 @@ public class TestPlayer {
     Player george = new Player();
 
     /**************************************************************************************************************************************************************************************
+     * The testAddNumMelds() method tests whether number of melds are incremented
+     * correctly.
+     */
+    @Test
+    public void testAddNumMelds() {
+        assertEquals(george.getNumMelds(), 0);
+        george.addNumMelds();
+        assertEquals(george.getNumMelds(), 1);
+    }
+
+    /**************************************************************************************************************************************************************************************
      * The testAddPoints() method tests whether points are incremented correctly.
      */
     @Test
