@@ -1608,6 +1608,49 @@ public class RummyGUI extends JFrame implements ActionListener {
         // select1 button is clicked and addToMeldButton has been clicked
         if (action == select1 && addToMeld && drawn) {
             select1.setBackground(yellow);
+
+            Deck[] meldArray = rummy.getMeldsArray();
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
+                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+            
+            Deck meldCardLast = meld.clone();
+            meldCardLast.add(current.hand.cardArr.get(0));
+            Deck meldCardFirst = meld.clone();
+            meldCardFirst.cardArr.add(0, current.hand.cardArr.get(0));
+
+            if(rummy.addToMeld(meldCardFirst, 0, current) == 1){
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else if(rummy.addToMeld(meldCardLast, 0, current) == 1) {
+                String temp = "";
+                for (int i = 0; i < rummy.getMelds().size(); i++) {
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                // above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+                gameFrame.dispose();
+                gameScreen();
+            } else {
+                JOptionPane.showMessageDialog(pane, "The cards " +
+                        maybeMeld.toString() +
+                        "do not make up a meld!", "Uh Oh! Not a Meld, try again!",
+                        JOptionPane.ERROR_MESSAGE);
+                this.maybeMeld.cardArr.clear();
+            }
         }
 
         // select2 button is clicked and addToMeldButton has been clicked
@@ -1787,25 +1830,25 @@ public class RummyGUI extends JFrame implements ActionListener {
         if (player.hand.cardArr.size() > 0 && (makeMeld || addToMeld)) {
             select1.setBounds(handLabels[0].getX() + 5, handLabels[0].getY() - 55, 90, 40);
         }
-        if (player.hand.cardArr.size() > 1 && makeMeld || addToMeld) {
+        if (player.hand.cardArr.size() > 1 && (makeMeld || addToMeld)) {
             select2.setBounds(handLabels[1].getX() + 5, handLabels[1].getY() - 55, 90, 40);
         }
-        if (player.hand.cardArr.size() > 2 && makeMeld || addToMeld) {
+        if (player.hand.cardArr.size() > 2 && (makeMeld || addToMeld)) {
             select3.setBounds(handLabels[2].getX() + 5, handLabels[2].getY() - 55, 90, 40);
         }
-        if (player.hand.cardArr.size() > 3 && makeMeld || addToMeld) {
+        if (player.hand.cardArr.size() > 3 && (makeMeld || addToMeld)) {
             select4.setBounds(handLabels[3].getX() + 5, handLabels[3].getY() - 55, 90, 40);
         }
-        if (player.hand.cardArr.size() > 4 && makeMeld || addToMeld) {
+        if (player.hand.cardArr.size() > 4 && (makeMeld || addToMeld)) {
             select5.setBounds(handLabels[4].getX() + 5, handLabels[4].getY() - 55, 90, 40);
         }
-        if (player.hand.cardArr.size() > 5 && makeMeld || addToMeld) {
+        if (player.hand.cardArr.size() > 5 && (makeMeld || addToMeld)) {
             select6.setBounds(handLabels[5].getX() + 5, handLabels[5].getY() - 55, 90, 40);
         }
-        if (player.hand.cardArr.size() > 6 && makeMeld || addToMeld) {
+        if (player.hand.cardArr.size() > 6 && (makeMeld || addToMeld)) {
             select7.setBounds(handLabels[6].getX() + 5, handLabels[6].getY() - 55, 90, 40);
         }
-        if (player.hand.cardArr.size() > 7 && makeMeld || addToMeld) {
+        if (player.hand.cardArr.size() > 7 && (makeMeld || addToMeld)) {
             select8.setBounds(handLabels[7].getX() + 5, handLabels[7].getY() - 55, 90, 40);
         }
     }

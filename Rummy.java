@@ -210,6 +210,39 @@ public class Rummy {
             return 0;
         }
     }
+
+    public int addToMeld(Deck meld, int index, Player p) {
+        if(checkMeld(meld) == 1){
+            this.melds.set(index, meld.clone());
+            
+            //loop: to remove cards in the meld from the player's hand
+            for(Card meldCard : meld.cardArr) {
+                for(int i = 0; i < p.hand.cardArr.size(); i++) {
+                    if(p.hand.cardArr.get(i) == meldCard)
+                        p.hand.cardArr.remove(i);
+                }
+            }
+            //this.maybeMeld = null;
+            return 1;
+        } else {
+            this.maybeMeld = null;
+            return 0;
+        }
+    }
+
+    /**
+     * gets the melds, but as an array
+     * @return returns list of melds, but as an array
+     */
+    public Deck[] getMeldsArray() {
+        Deck[] meldsArray = new Deck[melds.size()];
+
+        for(int i = 0; i < melds.size(); i++) {
+            meldsArray[i] = melds.get(i);
+        }
+
+        return meldsArray;
+    }
     
     //getter for melds in the game
     public ArrayList<Deck> getMelds(){
