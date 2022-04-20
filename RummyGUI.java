@@ -128,7 +128,8 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     // LineBorder declarations
     private LineBorder cardBorder, cardHighlightBorder, menuBorder,
-            buttonBorder, meldBorder, currentPlayerBorder;
+            buttonBorder, meldBorder, currentPlayerBorder, tanBorder,
+            blGreenBorder, dGreenBorder;
 
     // Color declarations
     private Color black, darkGrey, grey, lightGrey, white,
@@ -146,10 +147,10 @@ public class RummyGUI extends JFrame implements ActionListener {
     private final int MENU, GAME, SETTINGS, RUMMYHOW, BLGREEN, DGREEN, LTAN;
     private int whichGame, numPlayers, currentScreen, turn, gameColor;
     private boolean makeMeld, addToMeld, drawn, setup, discard, waitingTime,
-            gameInProg;
+            gameInProg, nextRound, gameOver;
     private Rummy rummy = new Rummy();
     Player current;
-    private Deck maybeMeld = new Deck(0);
+    private Deck maybeMeld;
     private String meldsString = "";
     private HashMap<Card, JLabel> cardMap = new HashMap<Card, JLabel>();
     private HashMap<Card, JLabel> cardMapSmall = new HashMap<Card, JLabel>();
@@ -266,6 +267,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         howTitleFont = new Font("Segoe Script", Font.BOLD, 80);
 
         // Creating borders
+        tanBorder = new LineBorder(tan, 1);
+        blGreenBorder = new LineBorder(blueGreen, 1);
+        dGreenBorder = new LineBorder(darkGreen, 1);
         currentPlayerBorder = new LineBorder(red, 4);
         cardBorder = new LineBorder(black, 2);
         cardHighlightBorder = new LineBorder(magenta, 3);
@@ -290,6 +294,8 @@ public class RummyGUI extends JFrame implements ActionListener {
         setup = false;
         discard = false;
         waitingTime = false;
+        gameOver = false;
+        nextRound = false;
 
         // Sets default color of game screen to tan
         gameColor = LTAN;
@@ -425,6 +431,9 @@ public class RummyGUI extends JFrame implements ActionListener {
      * The gameScreen() method creates the game screen.
      */
     public void gameScreen() {
+        // Creating new deck
+        maybeMeld = new Deck(0);
+
         // Creating menu bar
         menu = new JMenuBar();
 
@@ -437,7 +446,8 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Creating textArea
         meldTextArea = new JTextArea(meldsString);
-        // creating scroll pane
+
+        // Creating scroll pane
         meldScrollPane = new JScrollPane(meldTextArea);
         meldScrollPane.setPreferredSize(new Dimension(700, 400));
 
@@ -533,9 +543,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         waitTitleLabel = new JLabel("Player " + ((turn % numPlayers) + 1) + "! It's Your Turn");
         if (whichGame == 2) {
             player1Melds = new JLabel("Number of melds: " + rummy.getPlayer(0).getNumMelds());
-            player2Melds = new JLabel("Number of melds: " + rummy.getPlayer(0).getNumMelds());
-            player3Melds = new JLabel("Number of melds: " + rummy.getPlayer(0).getNumMelds());
-            player4Melds = new JLabel("Number of melds: " + rummy.getPlayer(0).getNumMelds());
+            player2Melds = new JLabel("Number of melds: " + rummy.getPlayer(1).getNumMelds());
+            player3Melds = new JLabel("Number of melds: " + rummy.getPlayer(2).getNumMelds());
+            player4Melds = new JLabel("Number of melds: " + rummy.getPlayer(3).getNumMelds());
             player1Melds.setForeground(black);
             player2Melds.setForeground(black);
             player3Melds.setForeground(black);
@@ -732,7 +742,6 @@ public class RummyGUI extends JFrame implements ActionListener {
             octopusLabel.setBorder(cardBorder);
             crabLabel.setBorder(currentPlayerBorder);
         }
-        // seaGullLabel.setBorder(currentPlayerBorder);
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
@@ -787,6 +796,10 @@ public class RummyGUI extends JFrame implements ActionListener {
             pane.add(readyButton);
             pane.add(waitingLabel);
             waitingTime = false;
+        } else if (nextRound) {
+
+        } else if (gameOver) {
+
         }
         if (whichGame == 2) {
             pane.add(player1Melds);
@@ -898,18 +911,25 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Color of game screen depends on what player selects in settings
         if (gameColor == LTAN) {
             gameFrame.getContentPane().setBackground(tan);
-            meldScrollPane.setBackground(tan);
+            meldTextArea.setBackground(tan);
+            meldTextArea.setBorder(tanBorder);
+            meldScrollPane.setBorder(tanBorder);
         } else if (gameColor == DGREEN) {
             gameFrame.getContentPane().setBackground(darkGreen);
-            meldScrollPane.setBackground(darkGreen);
+            meldTextArea.setBackground(darkGreen);
+            meldTextArea.setBorder(dGreenBorder);
+            meldScrollPane.setBorder(dGreenBorder);
         } else if (gameColor == BLGREEN) {
             gameFrame.getContentPane().setBackground(blueGreen);
-            meldScrollPane.setBackground(blueGreen);
+            meldTextArea.setBackground(blueGreen);
+            meldTextArea.setBorder(blGreenBorder);
+            meldScrollPane.setBorder(blGreenBorder);
         }
 
         // Setting screen as game screen
         currentScreen = GAME;
         gameInProg = true;
+        current.addNumTurns();
     }
 
     /**************************************************************************************************************************************************************************************
@@ -1379,12 +1399,10 @@ public class RummyGUI extends JFrame implements ActionListener {
             waitingTime = true;
             makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
-            pane.remove(waitingLabel);
             pane.remove(readyButton);
             pane.remove(waitingLabel);
             gameFrame.dispose();
             gameScreen();
-            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
         }
 
         // discard2 button is clicked and card has been drawn
@@ -1395,12 +1413,10 @@ public class RummyGUI extends JFrame implements ActionListener {
             waitingTime = true;
             makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
-            pane.remove(waitingLabel);
             pane.remove(readyButton);
             pane.remove(waitingLabel);
             gameFrame.dispose();
             gameScreen();
-            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
         }
 
         // discard3 button is clicked and card has been drawn
@@ -1411,12 +1427,10 @@ public class RummyGUI extends JFrame implements ActionListener {
             waitingTime = true;
             makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
-            pane.remove(waitingLabel);
             pane.remove(readyButton);
             pane.remove(waitingLabel);
             gameFrame.dispose();
             gameScreen();
-            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
         }
 
         // discard4 button is clicked and card has been drawn
@@ -1427,12 +1441,10 @@ public class RummyGUI extends JFrame implements ActionListener {
             waitingTime = true;
             makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
-            pane.remove(waitingLabel);
             pane.remove(readyButton);
             pane.remove(waitingLabel);
             gameFrame.dispose();
             gameScreen();
-            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
         }
 
         // discard5 button is clicked and card has been drawn
@@ -1443,12 +1455,10 @@ public class RummyGUI extends JFrame implements ActionListener {
             waitingTime = true;
             makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
-            pane.remove(waitingLabel);
             pane.remove(readyButton);
             pane.remove(waitingLabel);
             gameFrame.dispose();
             gameScreen();
-            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
         }
 
         // discard6 button is clicked and card has been drawn
@@ -1459,12 +1469,10 @@ public class RummyGUI extends JFrame implements ActionListener {
             waitingTime = true;
             makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
-            pane.remove(waitingLabel);
             pane.remove(readyButton);
             pane.remove(waitingLabel);
             gameFrame.dispose();
             gameScreen();
-            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
         }
 
         // discard7 button is clicked and card has been drawn
@@ -1475,12 +1483,10 @@ public class RummyGUI extends JFrame implements ActionListener {
             waitingTime = true;
             makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
-            pane.remove(waitingLabel);
             pane.remove(readyButton);
             pane.remove(waitingLabel);
             gameFrame.dispose();
             gameScreen();
-            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
         }
 
         // discard8 button is clicked and card has been drawn
@@ -1491,12 +1497,10 @@ public class RummyGUI extends JFrame implements ActionListener {
             waitingTime = true;
             makeMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
             addToMeldButton.setBounds(2000 + insets.left, 2000 + insets.top, 145, 50);
-            pane.remove(waitingLabel);
             pane.remove(readyButton);
             pane.remove(waitingLabel);
             gameFrame.dispose();
             gameScreen();
-            // UNSURE WHAT ELSE TO DO HERE OR EVEN IF THIS IS RIGHT
         }
 
         // makeMeldButton is clicked
@@ -1665,7 +1669,6 @@ public class RummyGUI extends JFrame implements ActionListener {
             select7.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
             select8.setBounds(2000 + insets.left, 2000 + insets.top, 600, 100);
             setDiscardButtons(current);
-
             this.maybeMeld.cardArr.clear(); // clear cards the user selected
         }
 
@@ -1704,9 +1707,6 @@ public class RummyGUI extends JFrame implements ActionListener {
                         rummy.getMaybeMeld().toString() +
                         "do not make up a meld!", "Uh Oh! Not a Meld, try again!",
                         JOptionPane.ERROR_MESSAGE);
-                makeMeldButton.setBounds(35 + insets.left, 235 + insets.top, 145, 50);
-                addToMeldButton.setBounds(35 + insets.left, 355 + insets.top, 145, 50);
-
                 this.maybeMeld.cardArr.clear();
 
             } else if (result == 1) {
@@ -1715,16 +1715,22 @@ public class RummyGUI extends JFrame implements ActionListener {
                     temp += "Meld " + (i + 1) + ":\n";
                     temp += rummy.getMelds().get(i).toString().toUpperCase();
                     temp += "\n";
+                    if (turn % numPlayers == 0) {
+                        rummy.getPlayer(0).addNumMelds();
+                    } else if (turn % numPlayers == 1) {
+                        rummy.getPlayer(1).addNumMelds();
+                    } else if (turn % numPlayers == 2) {
+                        rummy.getPlayer(2).addNumMelds();
+                    } else if (turn % numPlayers == 3) {
+                        rummy.getPlayer(3).addNumMelds();
+                    }
                 }
                 meldsString = temp;
                 // above: setting the string that displays melds.
 
                 this.maybeMeld.cardArr.clear();
-
                 gameFrame.dispose();
                 gameScreen();
-                makeMeldButton.setBounds(35 + insets.left, 235 + insets.top, 145, 50);
-                addToMeldButton.setBounds(35 + insets.left, 355 + insets.top, 145, 50);
             }
         }
 
@@ -1733,19 +1739,6 @@ public class RummyGUI extends JFrame implements ActionListener {
             waitTitleLabel.setBounds(2000 + insets.left, 2000 + insets.top, 1200, 200);
             readyButton.setBounds(2000 + insets.left, 2000 + insets.top, 300, 80);
         }
-        // if(action == hand1){
-        // if(makeMeld){
-
-        // } else if(addToMeld){
-
-        // } else { // if card is clicked and not trying to make a new meld or add to
-        // meld, discard
-        // if(drawn){
-        // rummy.discard(rummy.getPlayer(turn % numPlayers), rummy.getPlayer(turn %
-        // numPlayers).hand.cardArr.get(0));
-        // }
-        // }
-        // }
     }
 
     /**************************************************************************************************************************************************************************************
@@ -1800,7 +1793,7 @@ public class RummyGUI extends JFrame implements ActionListener {
      */
     private void setMeldButtons(Player player) {
         // Checks how many cards remain in hand and adds buttons accordingly
-        if (player.hand.cardArr.size() > 0 && makeMeld || addToMeld) {
+        if (player.hand.cardArr.size() > 0 && (makeMeld || addToMeld)) {
             select1.setBounds(handLabels[0].getX() + 5, handLabels[0].getY() - 55, 90, 40);
         }
         if (player.hand.cardArr.size() > 1 && makeMeld || addToMeld) {
