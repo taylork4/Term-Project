@@ -24,7 +24,7 @@ public class Rummy {
                             // a meld
     private boolean gameInProg;
     private boolean setupComplete;
-    private ArrayList<Deck> melds;
+    private ArrayList<Deck> maybeMelds, melds;
     private ArrayList<Player> players;
     // private Player player;
 
@@ -35,6 +35,7 @@ public class Rummy {
         deck = new Deck();
         discard = new Deck(0);
         melds = new ArrayList<Deck>();
+        maybeMelds = new ArrayList<Deck>();
         players = new ArrayList<Player>();
         gameInProg = true;
         setupComplete = false;
@@ -183,8 +184,8 @@ public class Rummy {
      * getter for maybeMeld
      * @return deck that player is trying to make a meld with
      */
-    public Deck getMaybeMeld() {
-        return maybeMeld;
+    public ArrayList<Deck> getMaybeMeld() {
+        return maybeMelds;
     }
 
     /**
@@ -192,25 +193,30 @@ public class Rummy {
      * @param maybeMeld deck that player is trying to make a meld with
      * @return returns 1 if maybeMeld is a meld, 0 if not
      */
-    public int setMaybeMeld(Deck maybeMeld, Player p) {
-        this.maybeMeld = maybeMeld;
-        if(checkMeld(this.maybeMeld) == 1){
-            this.addMeld(this.maybeMeld);
+    public int setMaybeMeld(Deck meld, Player p) {
+        this.maybeMelds.add(meld);
+        if(checkMeld(meld) == 1){
+            this.addMeld(maybeMelds.get(maybeMelds.size() - 1));
             
             //loop: to remove cards in the meld from the player's hand
-            for(Card meldCard : this.maybeMeld.cardArr) {
+            for(Card meldCard : meld.cardArr) {
                 for(int i = 0; i < p.hand.cardArr.size(); i++) {
                     if(p.hand.cardArr.get(i) == meldCard)
                         p.hand.cardArr.remove(i);
                 }
             }
-
+            //this.maybeMeld = null;
             return 1;
         } else {
+            this.maybeMeld = null;
             return 0;
         }
     }
-
+    
+    //getter for melds in the game
+    public ArrayList<Deck> getMelds(){
+        return this.melds;
+    }
     /**************************************************************************************************************************************************************************************
      * The main method for Rummy.
      * 

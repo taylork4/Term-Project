@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicBorders;
@@ -59,6 +62,10 @@ public class RummyGUI extends JFrame implements ActionListener {
             discard6, discard7, discard8;
     private JButton select1, select2, select3, select4, select5, select6,
             select7, select8;
+
+    // declarations for text
+    private JTextArea meldTextArea;
+    private JScrollPane meldScrollPane;
 
     // JLabel declarations
     private JLabel titleLabel, p1Label, p2Label, p3Label, p4Label, cardDeckLabel,
@@ -142,6 +149,7 @@ public class RummyGUI extends JFrame implements ActionListener {
     private Rummy rummy = new Rummy();
     Player current;
     private Deck maybeMeld = new Deck(0);
+    private String meldsString = "";
     private HashMap<Card, JLabel> cardMap = new HashMap<Card, JLabel>();
     private HashMap<Card, JLabel> cardMapSmall = new HashMap<Card, JLabel>();
 
@@ -426,6 +434,12 @@ public class RummyGUI extends JFrame implements ActionListener {
         pane = new Container();
         pane.setLayout(null);
 
+        // Creating textArea
+        meldTextArea = new JTextArea(meldsString);
+        //creating scroll pane
+        meldScrollPane = new JScrollPane(meldTextArea);
+        meldScrollPane.setPreferredSize(new Dimension(700, 400));
+        
         // Creating labels
         if (!gameInProg) {
             p1Label = new JLabel("Cards in hand: 7");
@@ -550,6 +564,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         gameFrame.setIconImage(GValleyJava.getImage());
 
         // Setting background colors
+        meldTextArea.setBackground(tan);
         exit.setBackground(yellow);
         makeMeldButton.setBackground(orange);
         addToMeldButton.setBackground(orange);
@@ -617,6 +632,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         readyButton.setFont(playButtonFont);
         makeMeldButton.setFont(menuFont);
         addToMeldButton.setFont(menuFont);
+        meldTextArea.setFont(menuFont);
         discard1.setFont(menuFont);
         discard2.setFont(menuFont);
         discard3.setFont(menuFont);
@@ -700,6 +716,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
         // Setting locations & sizes of certain elements
         insets = pane.getInsets();
+        meldScrollPane.setBounds(225 + insets.left, 20 + insets.top, 700, 400);
         seaGullLabel.setBounds(1090 + insets.left, 5 + insets.top, 145, 110);
         whaleLabel.setBounds(1090 + insets.left, 170 + insets.top, 145, 110);
         octopusLabel.setBounds(1090 + insets.left, 337 + insets.top, 145, 110);
@@ -753,6 +770,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         }
         pane.add(makeMeldButton);
         pane.add(addToMeldButton);
+        pane.add(meldScrollPane);
         pane.add(seaGullLabel);
         pane.add(whaleLabel);
         pane.add(octopusLabel);
@@ -854,10 +872,13 @@ public class RummyGUI extends JFrame implements ActionListener {
         // Color of game screen depends on what player selects in settings
         if (gameColor == LTAN) {
             gameFrame.getContentPane().setBackground(tan);
+            meldScrollPane.setBackground(tan);
         } else if (gameColor == DGREEN) {
             gameFrame.getContentPane().setBackground(darkGreen);
+            meldScrollPane.setBackground(darkGreen);
         } else if (gameColor == BLGREEN) {
             gameFrame.getContentPane().setBackground(blueGreen);
+            meldScrollPane.setBackground(blueGreen);
         }
 
         // Setting screen as game screen
@@ -1660,8 +1681,19 @@ public class RummyGUI extends JFrame implements ActionListener {
                 addToMeldButton.setBounds(35 + insets.left, 355 + insets.top, 145, 50);
                 
                 this.maybeMeld.cardArr.clear();
+                
             } else if (result == 1) {
-                // TODO: decide what to do if it IS a meld
+                String temp = "";
+                for(int i = 0; i < rummy.getMelds().size(); i++){
+                    temp += "Meld " + (i + 1) + ":\n";
+                    temp += rummy.getMelds().get(i).toString().toUpperCase();
+                    temp += "\n";
+                }
+                meldsString = temp;
+                //above: setting the string that displays melds.
+
+                this.maybeMeld.cardArr.clear();
+
                 gameFrame.dispose();
                 gameScreen();
                 makeMeldButton.setBounds(35 + insets.left, 235 + insets.top, 145, 50);

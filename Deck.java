@@ -183,7 +183,7 @@ public class Deck {
                         }
                         deckAsString += " of ";
                         deckAsString += card.getSuit();
-                        deckAsString += ",\n";
+                        deckAsString += ", ";
                 }
                 return deckAsString;
         }
