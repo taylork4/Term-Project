@@ -74,7 +74,8 @@ public class RummyGUI extends JFrame implements ActionListener {
             crabGIFLabel, coolSquare1Label, coolSquare2Label, ex1Label, ex2Label,
             ex3Label, ex4Label, ex5Label, ex6Label, ex7Label, ex8Label, ex9Label,
             ex10Label, ex11Label, ex12Label, ex13Label, discardLabel, waitingLabel,
-            waitTitleLabel, player1Score, player2Score, player3Score, player4Score;
+            waitTitleLabel, player1Score, player2Score, player3Score, player4Score,
+            player1Melds, player2Melds, player3Melds, player4Melds;
     private JLabel cardAnchorAS, cardAnchor2S, cardAnchor3S, cardAnchor4S, // Anchor label for suit (Small)
             cardAnchor5S, cardAnchor6S, cardAnchor7S, cardAnchor8S, cardAnchor9S,
             cardAnchor10S, cardAnchorJS, cardAnchorQS, cardAnchorKS;
@@ -530,6 +531,24 @@ public class RummyGUI extends JFrame implements ActionListener {
             }
         }
         waitTitleLabel = new JLabel("Player " + ((turn % numPlayers) + 1) + "! It's Your Turn");
+        if (whichGame == 2) {
+            player1Melds = new JLabel("Number of melds: " + rummy.getPlayer(0).getNumMelds());
+            player2Melds = new JLabel("Number of melds: " + rummy.getPlayer(0).getNumMelds());
+            player3Melds = new JLabel("Number of melds: " + rummy.getPlayer(0).getNumMelds());
+            player4Melds = new JLabel("Number of melds: " + rummy.getPlayer(0).getNumMelds());
+            player1Melds.setForeground(black);
+            player2Melds.setForeground(black);
+            player3Melds.setForeground(black);
+            player4Melds.setForeground(black);
+            player1Melds.setFont((avatarFont));
+            player2Melds.setFont(avatarFont);
+            player3Melds.setFont(avatarFont);
+            player4Melds.setFont(avatarFont);
+            player1Melds.setBounds(1080 + insets.left, 122 + insets.top, 200, 50);
+            player2Melds.setBounds(1080 + insets.left, 282 + insets.top, 200, 50);
+            player3Melds.setBounds(1080 + insets.left, 442 + insets.top, 200, 50);
+            player4Melds.setBounds(1080 + insets.left, 602 + insets.top, 200, 50);
+        }
 
         // Creating menus
         options = new JMenu("Options");
@@ -591,6 +610,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         UIManager.put("MenuBar.background", lightGrey);
 
         // Setting foreground colors
+        meldTextArea.setForeground(black);
         makeMeldButton.setForeground(black);
         addToMeldButton.setForeground(black);
         waitTitleLabel.setForeground(black);
@@ -718,20 +738,20 @@ public class RummyGUI extends JFrame implements ActionListener {
         insets = pane.getInsets();
         meldScrollPane.setBounds(225 + insets.left, 20 + insets.top, 700, 400);
         seaGullLabel.setBounds(1090 + insets.left, 5 + insets.top, 145, 110);
-        whaleLabel.setBounds(1090 + insets.left, 170 + insets.top, 145, 110);
-        octopusLabel.setBounds(1090 + insets.left, 337 + insets.top, 145, 110);
-        crabLabel.setBounds(1090 + insets.left, 498 + insets.top, 145, 110);
-        p1Label.setBounds(1090 + insets.left, 100 + insets.top, 300, 50);
-        p2Label.setBounds(1090 + insets.left, 265 + insets.top, 300, 50);
-        p3Label.setBounds(1090 + insets.left, 432 + insets.top, 300, 50);
-        p4Label.setBounds(1090 + insets.left, 593 + insets.top, 300, 50);
-        player1Score.setBounds(1130 + insets.left, 115 + insets.top, 200, 50);
-        player2Score.setBounds(1130 + insets.left, 280 + insets.top, 200, 50);
-        player3Score.setBounds(1130 + insets.left, 447 + insets.top, 200, 50);
-        player4Score.setBounds(1130 + insets.left, 608 + insets.top, 200, 50);
-        dash1Label.setBounds(1055 + insets.left, 100 + insets.top, 300, 75);
-        dash2Label.setBounds(1055 + insets.left, 267 + insets.top, 300, 75);
-        dash3Label.setBounds(1055 + insets.left, 428 + insets.top, 300, 75);
+        whaleLabel.setBounds(1090 + insets.left, 165 + insets.top, 145, 110);
+        octopusLabel.setBounds(1090 + insets.left, 325 + insets.top, 145, 110);
+        crabLabel.setBounds(1090 + insets.left, 485 + insets.top, 145, 110);
+        p1Label.setBounds(1090 + insets.left, 98 + insets.top, 300, 50);
+        p2Label.setBounds(1090 + insets.left, 258 + insets.top, 300, 50);
+        p3Label.setBounds(1090 + insets.left, 418 + insets.top, 300, 50);
+        p4Label.setBounds(1090 + insets.left, 578 + insets.top, 300, 50);
+        player1Score.setBounds(1130 + insets.left, 110 + insets.top, 200, 50);
+        player2Score.setBounds(1130 + insets.left, 270 + insets.top, 200, 50);
+        player3Score.setBounds(1130 + insets.left, 430 + insets.top, 200, 50);
+        player4Score.setBounds(1130 + insets.left, 590 + insets.top, 200, 50);
+        dash1Label.setBounds(1055 + insets.left, 95 + insets.top, 300, 75);
+        dash2Label.setBounds(1055 + insets.left, 255 + insets.top, 300, 75);
+        dash3Label.setBounds(1055 + insets.left, 415 + insets.top, 300, 75);
         rectangleLeftLabel.setBounds(0 + insets.left, 0 + insets.top, 215, 655);
         rectangleRightLabel.setBounds(1054 + insets.left, 0 + insets.top, 215, 655);
         cardDeckLabel.setBounds(40 + insets.left, 20 + insets.top, 135, 190);
@@ -767,6 +787,12 @@ public class RummyGUI extends JFrame implements ActionListener {
             pane.add(readyButton);
             pane.add(waitingLabel);
             waitingTime = false;
+        }
+        if (whichGame == 2) {
+            pane.add(player1Melds);
+            pane.add(player2Melds);
+            pane.add(player3Melds);
+            pane.add(player4Melds);
         }
         pane.add(makeMeldButton);
         pane.add(addToMeldButton);
@@ -1676,7 +1702,7 @@ public class RummyGUI extends JFrame implements ActionListener {
             if (result == 0) {
                 JOptionPane.showMessageDialog(pane, "The cards " +
                         rummy.getMaybeMeld().toString() +
-                        "do not make up a meld.", "Not a meld",
+                        "do not make up a meld!", "Uh Oh! Not a Meld, try again!",
                         JOptionPane.ERROR_MESSAGE);
                 makeMeldButton.setBounds(35 + insets.left, 235 + insets.top, 145, 50);
                 addToMeldButton.setBounds(35 + insets.left, 355 + insets.top, 145, 50);
