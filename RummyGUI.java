@@ -809,27 +809,27 @@ public class RummyGUI extends JFrame implements ActionListener {
             waitingTime = false;
         } else if (nextRound && !gameOver) {
             if (rummy.getPlayer(0).hand.cardArr.size() == 0) {
-                roundWinLabel = new JLabel("Player 2 wins round " + round + "!");
+                roundWinLabel = new JLabel("Player 1 wins!");
             } else if (rummy.getPlayer(1).hand.cardArr.size() == 0) {
-                roundWinLabel = new JLabel("Player 2 wins round " + round + "!");
+                roundWinLabel = new JLabel("Player 2 wins!");
             } else if (rummy.getPlayer(2).hand.cardArr.size() == 0) {
-                roundWinLabel = new JLabel("Player 3 wins round " + round + "!");
+                roundWinLabel = new JLabel("Player 3 wins!");
             } else if (rummy.getPlayer(3).hand.cardArr.size() == 0) {
-                roundWinLabel = new JLabel("Player 4 wins round " + round + "!");
+                roundWinLabel = new JLabel("Player 4 wins!");
             }
-            nextRoundButton = new JButton("Play Next Round?");
-            nextRoundButton.setBounds(350 + insets.left, 400 + insets.top, 500, 100);
-            roundWinLabel.setBounds(120 + insets.left, 265 + insets.top, 1200, 200);
+            // nextRoundButton = new JButton("Play Next Round?");
+            // nextRoundButton.setBounds(350 + insets.left, 400 + insets.top, 500, 100);
+            roundWinLabel.setBounds(300 + insets.left, 265 + insets.top, 1200, 200);
             roundWinLabel.setFont(howTitleFont);
-            nextRoundButton.setFont(playButtonFont);
+            // nextRoundButton.setFont(playButtonFont);
             roundWinLabel.setForeground(black);
-            nextRoundButton.setForeground(black);
-            nextRoundButton.setBackground(orange);
-            nextRoundButton.setBorder(buttonBorder);
-            nextRoundButton.addActionListener(this);
+            // nextRoundButton.setForeground(black);
+            // nextRoundButton.setBackground(orange);
+            // nextRoundButton.setBorder(buttonBorder);
+            // nextRoundButton.addActionListener(this);
             beachLabel.setBounds(0 + insets.left, 0 + insets.top, 1500, 700);
             pane.add(roundWinLabel);
-            pane.add(nextRoundButton);
+            // pane.add(nextRoundButton);
             pane.add(beachLabel);
 
         } else if (gameOver) {
