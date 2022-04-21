@@ -75,7 +75,8 @@ public class RummyGUI extends JFrame implements ActionListener {
             ex3Label, ex4Label, ex5Label, ex6Label, ex7Label, ex8Label, ex9Label,
             ex10Label, ex11Label, ex12Label, ex13Label, discardLabel, waitingLabel,
             waitTitleLabel, player1Score, player2Score, player3Score, player4Score,
-            player1Melds, player2Melds, player3Melds, player4Melds;
+            player1Melds, player2Melds, player3Melds, player4Melds, beachLabel,
+            gameWinLabel, roundWinLabel;
     private JLabel cardAnchorAS, cardAnchor2S, cardAnchor3S, cardAnchor4S, // Anchor label for suit (Small)
             cardAnchor5S, cardAnchor6S, cardAnchor7S, cardAnchor8S, cardAnchor9S,
             cardAnchor10S, cardAnchorJS, cardAnchorQS, cardAnchorKS;
@@ -95,7 +96,7 @@ public class RummyGUI extends JFrame implements ActionListener {
     // ImageIcon declarations
     private ImageIcon settingsGear, redX, backOfCardLR, how2Play, returnBack,
             rectangleLeft, rectangleRight, avatar1, avatar2, avatar3, avatar4,
-            underWater, crabGIF, GValleyJava, waiting;
+            underWater, crabGIF, GValleyJava, waiting, beach;
     private ImageIcon anchorA, anchor2, anchor3, anchor4, anchor5, // Anchor suit images
             anchor6, anchor7, anchor8, anchor9, anchor10, anchorJ,
             anchorQ, anchorK;
@@ -145,7 +146,7 @@ public class RummyGUI extends JFrame implements ActionListener {
 
     // Game status variable declarations
     private final int MENU, GAME, SETTINGS, RUMMYHOW, BLGREEN, DGREEN, LTAN;
-    private int whichGame, numPlayers, currentScreen, turn, gameColor;
+    private int whichGame, numPlayers, currentScreen, turn, gameColor, round;
     private boolean makeMeld, addToMeld, drawn, setup, discard, waitingTime,
             gameInProg, nextRound, gameOver;
     private Rummy rummy = new Rummy();
@@ -169,6 +170,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         how2Play = new ImageIcon("images/how2Play.png");
 
         // Creating Labels
+        beachLabel = new JLabel(beach = new ImageIcon("images/beach.jpg"));
         waitingLabel = new JLabel(waiting = new ImageIcon("images/waiting.png"));
         underWLabel = new JLabel(underWater = new ImageIcon("images/underWater.png"));
         crabGIFLabel = new JLabel(crabGIF = new ImageIcon("images/crabGif.gif"));
@@ -285,6 +287,9 @@ public class RummyGUI extends JFrame implements ActionListener {
         LTAN = 1;
         DGREEN = 2;
         BLGREEN = 3;
+
+        // Initializing int values
+        round = 1;
 
         // Initializing boolean values
         gameInProg = false;
@@ -540,6 +545,14 @@ public class RummyGUI extends JFrame implements ActionListener {
                 handLabels[i] = null;
             }
         }
+        // Prepares for next round
+        if (rummy.getPlayer(0).hand.cardArr.size() == 0 || rummy.getPlayer(1).hand.cardArr.size() == 0
+                || rummy.getPlayer(2).hand.cardArr.size() == 0
+                || rummy.getPlayer(3).hand.cardArr.size() == 0 && !nextRound) {
+            nextRound = true;
+            meldScrollPane.setBounds(2000 + insets.left, 2000 + insets.top, 200, 50);
+            meldTextArea.setBounds(2000 + insets.left, 2000 + insets.top, 200, 50);
+        }
         waitTitleLabel = new JLabel("Player " + ((turn % numPlayers) + 1) + "! It's Your Turn");
         if (whichGame == 2) {
             player1Melds = new JLabel("Number of melds: " + rummy.getPlayer(0).getNumMelds());
@@ -786,7 +799,7 @@ public class RummyGUI extends JFrame implements ActionListener {
         gameFrame.add(pane);
 
         // Adding elements to pane
-        if (waitingTime) {
+        if (waitingTime && !nextRound) {
             waitingLabel.setBounds(0 + insets.left, 0 + insets.top, 1500, 700);
             waitTitleLabel.setBounds(120 + insets.left, 40 + insets.top, 1200, 200);
             readyButton.setBounds(475 + insets.left, 180 + insets.top, 300, 80);
@@ -796,7 +809,22 @@ public class RummyGUI extends JFrame implements ActionListener {
             pane.add(readyButton);
             pane.add(waitingLabel);
             waitingTime = false;
-        } else if (nextRound) {
+        } else if (nextRound && !gameOver) {
+            if (rummy.getPlayer(0).hand.cardArr.size() == 0) {
+                roundWinLabel = new JLabel("Player 2 wins round " + round + "!");
+            } else if (rummy.getPlayer(1).hand.cardArr.size() == 0) {
+                roundWinLabel = new JLabel("Player 2 wins round " + round + "!");
+            } else if (rummy.getPlayer(2).hand.cardArr.size() == 0) {
+                roundWinLabel = new JLabel("Player 3 wins round " + round + "!");
+            } else if (rummy.getPlayer(3).hand.cardArr.size() == 0) {
+                roundWinLabel = new JLabel("Player 4 wins round " + round + "!");
+            }
+            roundWinLabel.setBounds(120 + insets.left, 265 + insets.top, 1200, 200);
+            roundWinLabel.setFont(howTitleFont);
+            roundWinLabel.setForeground(black);
+            beachLabel.setBounds(0 + insets.left, 0 + insets.top, 1500, 700);
+            pane.add(roundWinLabel);
+            pane.add(beachLabel);
 
         } else if (gameOver) {
 
@@ -1611,15 +1639,15 @@ public class RummyGUI extends JFrame implements ActionListener {
             select1.setBackground(yellow);
 
             Deck[] meldArray = rummy.getMeldsArray();
-            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
-                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
-            
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld",
+                    JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+
             Deck meldCardLast = meld.clone();
             meldCardLast.add(current.hand.cardArr.get(0));
             Deck meldCardFirst = meld.clone();
             meldCardFirst.cardArr.add(0, current.hand.cardArr.get(0));
 
-            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
+            if (rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1632,12 +1660,15 @@ public class RummyGUI extends JFrame implements ActionListener {
                 this.maybeMeld.cardArr.clear();
                 gameFrame.dispose();
                 gameScreen();
-            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
+            } else if (rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
                     temp += rummy.getMelds().get(i).toString().toUpperCase();
                     temp += "\n";
+                    if (current.hand.cardArr.size() == 0) {
+                        nextRound = true;
+                    }
                 }
                 meldsString = temp;
                 // above: setting the string that displays melds.
@@ -1659,15 +1690,15 @@ public class RummyGUI extends JFrame implements ActionListener {
             select2.setBackground(yellow);
 
             Deck[] meldArray = rummy.getMeldsArray();
-            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
-                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
-            
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld",
+                    JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+
             Deck meldCardLast = meld.clone();
             meldCardLast.add(current.hand.cardArr.get(1));
             Deck meldCardFirst = meld.clone();
             meldCardFirst.cardArr.add(0, current.hand.cardArr.get(1));
 
-            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
+            if (rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1680,7 +1711,7 @@ public class RummyGUI extends JFrame implements ActionListener {
                 this.maybeMeld.cardArr.clear();
                 gameFrame.dispose();
                 gameScreen();
-            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
+            } else if (rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1707,15 +1738,15 @@ public class RummyGUI extends JFrame implements ActionListener {
             select3.setBackground(yellow);
 
             Deck[] meldArray = rummy.getMeldsArray();
-            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
-                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
-            
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld",
+                    JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+
             Deck meldCardLast = meld.clone();
             meldCardLast.add(current.hand.cardArr.get(2));
             Deck meldCardFirst = meld.clone();
             meldCardFirst.cardArr.add(0, current.hand.cardArr.get(2));
 
-            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
+            if (rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1728,7 +1759,7 @@ public class RummyGUI extends JFrame implements ActionListener {
                 this.maybeMeld.cardArr.clear();
                 gameFrame.dispose();
                 gameScreen();
-            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
+            } else if (rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1755,15 +1786,15 @@ public class RummyGUI extends JFrame implements ActionListener {
             select4.setBackground(yellow);
 
             Deck[] meldArray = rummy.getMeldsArray();
-            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
-                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
-            
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld",
+                    JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+
             Deck meldCardLast = meld.clone();
             meldCardLast.add(current.hand.cardArr.get(3));
             Deck meldCardFirst = meld.clone();
             meldCardFirst.cardArr.add(0, current.hand.cardArr.get(3));
 
-            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
+            if (rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1776,7 +1807,7 @@ public class RummyGUI extends JFrame implements ActionListener {
                 this.maybeMeld.cardArr.clear();
                 gameFrame.dispose();
                 gameScreen();
-            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
+            } else if (rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1803,15 +1834,15 @@ public class RummyGUI extends JFrame implements ActionListener {
             select5.setBackground(yellow);
 
             Deck[] meldArray = rummy.getMeldsArray();
-            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
-                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
-            
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld",
+                    JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+
             Deck meldCardLast = meld.clone();
             meldCardLast.add(current.hand.cardArr.get(4));
             Deck meldCardFirst = meld.clone();
             meldCardFirst.cardArr.add(0, current.hand.cardArr.get(4));
 
-            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
+            if (rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1824,7 +1855,7 @@ public class RummyGUI extends JFrame implements ActionListener {
                 this.maybeMeld.cardArr.clear();
                 gameFrame.dispose();
                 gameScreen();
-            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
+            } else if (rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1851,15 +1882,15 @@ public class RummyGUI extends JFrame implements ActionListener {
             select6.setBackground(yellow);
 
             Deck[] meldArray = rummy.getMeldsArray();
-            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
-                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
-            
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld",
+                    JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+
             Deck meldCardLast = meld.clone();
             meldCardLast.add(current.hand.cardArr.get(5));
             Deck meldCardFirst = meld.clone();
             meldCardFirst.cardArr.add(0, current.hand.cardArr.get(5));
 
-            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
+            if (rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1872,7 +1903,7 @@ public class RummyGUI extends JFrame implements ActionListener {
                 this.maybeMeld.cardArr.clear();
                 gameFrame.dispose();
                 gameScreen();
-            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
+            } else if (rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1899,15 +1930,15 @@ public class RummyGUI extends JFrame implements ActionListener {
             select7.setBackground(yellow);
 
             Deck[] meldArray = rummy.getMeldsArray();
-            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
-                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
-            
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld",
+                    JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+
             Deck meldCardLast = meld.clone();
             meldCardLast.add(current.hand.cardArr.get(6));
             Deck meldCardFirst = meld.clone();
             meldCardFirst.cardArr.add(0, current.hand.cardArr.get(6));
 
-            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
+            if (rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1920,7 +1951,7 @@ public class RummyGUI extends JFrame implements ActionListener {
                 this.maybeMeld.cardArr.clear();
                 gameFrame.dispose();
                 gameScreen();
-            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
+            } else if (rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1947,15 +1978,15 @@ public class RummyGUI extends JFrame implements ActionListener {
             select8.setBackground(yellow);
 
             Deck[] meldArray = rummy.getMeldsArray();
-            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld", 
-                JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
-            
+            Deck meld = (Deck) JOptionPane.showInputDialog(pane, "Meld to add to:", "Add card to meld",
+                    JOptionPane.INFORMATION_MESSAGE, null, meldArray, meldArray[0]);
+
             Deck meldCardLast = meld.clone();
             meldCardLast.add(current.hand.cardArr.get(7));
             Deck meldCardFirst = meld.clone();
             meldCardFirst.cardArr.add(0, current.hand.cardArr.get(7));
 
-            if(rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1){
+            if (rummy.addToMeld(meldCardFirst, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -1968,7 +1999,7 @@ public class RummyGUI extends JFrame implements ActionListener {
                 this.maybeMeld.cardArr.clear();
                 gameFrame.dispose();
                 gameScreen();
-            } else if(rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
+            } else if (rummy.addToMeld(meldCardLast, rummy.getMelds().indexOf(meld), current) == 1) {
                 String temp = "";
                 for (int i = 0; i < rummy.getMelds().size(); i++) {
                     temp += "Meld " + (i + 1) + ":\n";
@@ -2063,7 +2094,6 @@ public class RummyGUI extends JFrame implements ActionListener {
                 }
                 meldsString = temp;
                 // above: setting the string that displays melds.
-
                 this.maybeMeld.cardArr.clear();
                 gameFrame.dispose();
                 gameScreen();
