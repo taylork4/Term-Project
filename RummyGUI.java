@@ -57,7 +57,7 @@ public class RummyGUI extends JFrame implements ActionListener {
     // JButton declarations
     private JButton playButton, rummyButton, lakersRummyButton, makeMeldButton,
             addToMeldButton, blGreenButton, dGreenButton, lTanButton, confirmButton,
-            cancelButton, readyButton;
+            cancelButton, readyButton, nextRoundButton;
     private JButton discard1, discard2, discard3, discard4, discard5,
             discard6, discard7, discard8;
     private JButton select1, select2, select3, select4, select5, select6,
@@ -550,8 +550,6 @@ public class RummyGUI extends JFrame implements ActionListener {
                 || rummy.getPlayer(2).hand.cardArr.size() == 0
                 || rummy.getPlayer(3).hand.cardArr.size() == 0 && !nextRound) {
             nextRound = true;
-            meldScrollPane.setBounds(2000 + insets.left, 2000 + insets.top, 200, 50);
-            meldTextArea.setBounds(2000 + insets.left, 2000 + insets.top, 200, 50);
         }
         waitTitleLabel = new JLabel("Player " + ((turn % numPlayers) + 1) + "! It's Your Turn");
         if (whichGame == 2) {
@@ -819,11 +817,19 @@ public class RummyGUI extends JFrame implements ActionListener {
             } else if (rummy.getPlayer(3).hand.cardArr.size() == 0) {
                 roundWinLabel = new JLabel("Player 4 wins round " + round + "!");
             }
+            nextRoundButton = new JButton("Play Next Round?");
+            nextRoundButton.setBounds(350 + insets.left, 400 + insets.top, 500, 100);
             roundWinLabel.setBounds(120 + insets.left, 265 + insets.top, 1200, 200);
             roundWinLabel.setFont(howTitleFont);
+            nextRoundButton.setFont(playButtonFont);
             roundWinLabel.setForeground(black);
+            nextRoundButton.setForeground(black);
+            nextRoundButton.setBackground(orange);
+            nextRoundButton.setBorder(buttonBorder);
+            nextRoundButton.addActionListener(this);
             beachLabel.setBounds(0 + insets.left, 0 + insets.top, 1500, 700);
             pane.add(roundWinLabel);
+            pane.add(nextRoundButton);
             pane.add(beachLabel);
 
         } else if (gameOver) {
@@ -2098,6 +2104,12 @@ public class RummyGUI extends JFrame implements ActionListener {
                 gameFrame.dispose();
                 gameScreen();
             }
+        }
+
+        if (action == nextRoundButton) {
+            beachLabel.setBounds(2000 + insets.left, 2000 + insets.top, 1500, 700);
+            nextRoundButton.setBounds(2000 + insets.left, 2000 + insets.top, 1200, 200);
+            roundWinLabel.setBounds(2000 + insets.left, 2000 + insets.top, 300, 80);
         }
 
         if (action == readyButton) {
