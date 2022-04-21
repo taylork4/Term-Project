@@ -532,7 +532,7 @@ public class RummyGUI extends JFrame implements ActionListener {
             cardMapSmall.put(rummy.getCard(50), cardGVLogoKS);
             cardMapSmall.put(rummy.getCard(51), cardSailorKS);
 
-            // rummy.deck.shuffle(); // for testing purposes, did not shuffle yet
+            rummy.deck.shuffle(); // for testing purposes, did not shuffle yet
             rummy.deal();
         }
         current = rummy.getPlayer(turn % numPlayers);
