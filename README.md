@@ -2,6 +2,7 @@
 ----------------------
 Developers:
 ----------------------
+
 - Noah Arden
 - Owen Carroll
 - Kyle Taylor
@@ -9,12 +10,14 @@ Developers:
 ----------------------
 Project Description:
 ----------------------
+
     The goal of our project is to create a Grand Valley State Lakers inspired edition of the popular card game Rummy. The game has been crafted meticulously and each card suit is a uniquely designed twist to the traditional card style. Rummy, as it plays outside of the digital realm, is a game in which four players compete to discard all of their cards first by adding cards to a meld. A Meld is essentially a fancy word for a set of three cards that are the same number or a run of three sequential cards of the same suit. Laker’s Rummy, while mostly the same, includes a modification to the traditional Rummy by altering the way the game is scored. Traditionally, the number of cards left over in someone’s hand after another player discards all of their cards receives a score based on what cards they have left over. The player who discards all of their cards is left with zero points at the end of a round. In Laker’s Rummy, however, the number of melds each individual player makes will modify the player’s end score. So, if a player places six melds, their score will be deducted by a margin of 6\*3 (3 points for every meld).
     Some features that have been implemented in release 2 include the game initializer, actions for players including drawing cards, playing melds, and adding cards to a meld. Additionally a GUI has been created including graphics for the game and menu options.
 
 ----------------------
 GUI capabilities:
 ----------------------
+
 Main Menu:
 - Main menu to the game screen by clicking the ‘Play’ button.
 - Main menu to the settings screen by clicking the ‘Settings’ menu item.
